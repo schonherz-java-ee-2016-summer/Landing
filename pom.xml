@@ -6,8 +6,13 @@
 
     <groupId>hu.schonherz.training.landing</groupId>
     <artifactId>landing-project</artifactId>
-    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
         <module>landing-core</module>
         <module>landing-service</module>
@@ -16,5 +21,22 @@
         <module>landing-ear</module>
     </modules>
 
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
 
 </project>
