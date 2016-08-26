@@ -12,22 +12,38 @@
     <artifactId>landing-service</artifactId>
     <packaging>ejb</packaging>
 
-    <build>
+    <dependencies>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ejb-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <jarName>landing-service</jarName>
-                    <filterDeploymentDescriptor>true</filterDeploymentDescriptor>
-                    <ejbVersion>3.1</ejbVersion>
-                </configuration>
-            </plugin>
+        <dependency>
+            <groupId>hu.schonherz.training.landing</groupId>
+            <artifactId>landing-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-        </plugins>
 
-    </build>
+        <dependency>
+            <groupId>hu.schonherz.training.landing</groupId>
+            <artifactId>landing-service-client-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.2.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.2.5.RELEASE</version>
+        </dependency>
+
+    </dependencies>
 </project>
