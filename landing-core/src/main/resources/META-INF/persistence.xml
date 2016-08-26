@@ -8,9 +8,9 @@
                           transaction-type="JTA">
                 <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
                 <jta-data-source>java:jboss/datasources/Landing</jta-data-source>
-                <class>hu.schonherz.training.landing.entity.BaseEntity</class>
-                <class>hu.schonherz.training.landing.entity.User</class>
-                <class>hu.schonherz.training.landing.entity.Role</class>
+                <class>hu.schonherz.training.landing.core.entity.BaseEntity</class>
+                <class>hu.schonherz.training.landing.core.entity.User</class>
+                <class>hu.schonherz.training.landing.core.entity.Role</class>
 
                 <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

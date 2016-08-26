@@ -1,9 +1,6 @@
 package hu.schonherz.training.landing.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Role")
@@ -13,6 +10,8 @@ public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Basic
+    @Column(nullable = false)
     private String name;
 
     public String getName() {

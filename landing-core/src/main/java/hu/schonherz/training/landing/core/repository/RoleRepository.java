@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation = Propagation.SUPPORTS)
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    void removeRoleFromUser(Long roleId, Long userId) throws Exception;
+
+    void removeRoleFromUser(Long roleId, Long userId);
+
+    Role findByName(String name);
 
 }

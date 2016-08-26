@@ -15,8 +15,4 @@
 
     <import resource="WEB-INF/spring-security.xml" />
 
-    <jee:local-slsb id="UserService"
-                    jndi-name="java:global/ear/blog-service/UserService!hu.schonherz.training.landing.service.client.api"
-                    business-interface="hu.schonherz.training.landing.service.client.api.UserService" />
-
 </beans>

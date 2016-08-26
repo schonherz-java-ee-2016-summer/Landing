@@ -1,5 +1,7 @@
 package hu.schonherz.training.landing.core.entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -7,11 +9,27 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User extends BaseEntity {
 
+    @Basic
+    @Column(nullable = false)
     private String name;
 
+    @Basic
+    @Column(nullable = false)
     private String email;
 
+    @Basic
+    @Column(nullable = false)
     private String password;
+
+    public User() {
+        super();
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getName() {
         return name;

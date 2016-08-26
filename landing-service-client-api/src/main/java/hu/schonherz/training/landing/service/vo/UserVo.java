@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.vo;
+package hu.schonherz.training.landing.service.vo;
 
 import java.io.Serializable;
 import java.util.List;

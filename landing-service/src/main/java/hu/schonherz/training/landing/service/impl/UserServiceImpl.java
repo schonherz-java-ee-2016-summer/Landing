@@ -1,7 +1,7 @@
 package hu.schonherz.training.landing.service.impl;
 
-import hu.schonherz.training.landing.service.UserService;
-import hu.schonherz.training.landing.vo.UserVo;
+import hu.schonherz.training.landing.service.client.api.UserService;
+import hu.schonherz.training.landing.service.vo.UserVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

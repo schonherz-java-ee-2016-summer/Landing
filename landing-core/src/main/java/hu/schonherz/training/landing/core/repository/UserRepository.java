@@ -9,5 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(propagation = Propagation.SUPPORTS)
 public interface UserRepository extends JpaRepository<User, Long>{
-    User findUserByUserName(String name) throws Exception;
+
+    User findByUsername(String username);
+
+    Long countByUsername(String username);
+
 }
