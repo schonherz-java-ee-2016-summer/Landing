@@ -4,19 +4,16 @@ import hu.schonherz.training.landing.service.vo.UserVo;
 
 import java.util.List;
 
-/**
- * Created on 2016.08.26..
- */
-
 public interface UserService {
 
-    public List<UserVo> getAllUser();
+    List<UserVo> getUsers();
 
-    public UserVo getUserById(Long id);
+    UserVo getUserById(Long id);
 
-    public UserVo getUserByName(String name);
+    UserVo getUserByName(String name);
 
-    public List<UserVo> getAllUser(Integer page, Integer size);
+    List<UserVo> getUsers(Integer page, Integer size);
 
-    public Long countUser();
+    Long countUsers();
+
 }
