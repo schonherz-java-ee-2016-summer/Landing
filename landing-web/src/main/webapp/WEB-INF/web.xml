@@ -11,7 +11,7 @@
 
     <!-- Welcome-files -->
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>home.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- Change to "Production" when you are ready to deploy -->
