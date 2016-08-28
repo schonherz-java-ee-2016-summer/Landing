@@ -1,11 +1,10 @@
-package hu.schonherz.training.landing.service.vo;
+package hu.schonherz.training.landing.vo;
 
 import java.io.Serializable;
 
 /**
  * Created on 2016.08.26..
  */
-
 public class RoleVo implements Serializable {
 
     private static final long serialVersionUID = -8403753397412273249L;
@@ -13,6 +12,14 @@ public class RoleVo implements Serializable {
     private Long id;
 
     private String name;
+
+    public RoleVo() {
+    }
+
+    public RoleVo(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

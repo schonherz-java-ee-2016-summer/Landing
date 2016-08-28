@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.service.vo;
+package hu.schonherz.training.landing.vo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * Created on 2016.08.26..
  */
-
 public class UserVo implements Serializable {
 
     private static final long serialVersionUID = 5932000328505763772L;
@@ -15,6 +14,16 @@ public class UserVo implements Serializable {
     private String name;
     private String password;
     private List<RoleVo> roles;
+
+    public UserVo(Long id, String name, String password, List<RoleVo> roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public UserVo() {
+    }
 
     public Long getId() {
         return id;

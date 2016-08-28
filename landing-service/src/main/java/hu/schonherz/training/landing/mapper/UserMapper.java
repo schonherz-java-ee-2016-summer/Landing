@@ -1,7 +1,7 @@
-package hu.schonherz.training.landing.service.mapper;
+package hu.schonherz.training.landing.mapper;
 
 import hu.schonherz.training.landing.core.entity.User;
-import hu.schonherz.training.landing.service.vo.UserVo;
+import hu.schonherz.training.landing.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 

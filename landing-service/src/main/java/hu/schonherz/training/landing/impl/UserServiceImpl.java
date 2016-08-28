@@ -1,9 +1,9 @@
-package hu.schonherz.training.landing.service.impl;
+package hu.schonherz.training.landing.impl;
 
 import hu.schonherz.training.landing.core.repository.UserRepository;
-import hu.schonherz.training.landing.service.client.api.UserService;
-import hu.schonherz.training.landing.service.mapper.UserMapper;
-import hu.schonherz.training.landing.service.vo.UserVo;
+import hu.schonherz.training.landing.mapper.UserMapper;
+import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserVo> getUsers() {
         return UserMapper.toVo(userRepository.findAll());
+    }
+
+    @Override
+    public void createUser(UserVo userVo) {
+        userRepository.save(UserMapper.toEntity(userVo));
     }
 
     @Override
