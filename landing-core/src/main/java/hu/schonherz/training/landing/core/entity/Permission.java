@@ -7,8 +7,6 @@ import java.util.List;
 @Table(name = "Permission")
 public class Permission extends BaseEntity {
 
-    private static final long serialVersionUID = 343200021345763772L;
-
     @Basic
     @Column(nullable = false)
     private String name;

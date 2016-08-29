@@ -25,15 +25,19 @@ public class User extends BaseEntity {
             inverseJoinColumns = { @JoinColumn(name = "role_id", nullable = false) })
     private List<Role> roles;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    private List<Group> groups;
+
     public User() {
         super();
     }
 
-    public User(String name, String email, String password, List<Role> roles) {
+    public User(String name, String email, String password, List<Role> roles, List<Group> groups) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.groups = groups;
     }
 
     public String getName() {
@@ -68,12 +72,21 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
+                ", groups=" + groups +
                 '}';
     }
 }

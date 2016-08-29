@@ -12,6 +12,7 @@
                 <class>hu.schonherz.training.landing.core.entity.User</class>
                 <class>hu.schonherz.training.landing.core.entity.Role</class>
                 <class>hu.schonherz.training.landing.core.entity.Permission</class>
+                <class>hu.schonherz.training.landing.core.entity.Group</class>
 
                 <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
