@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public void createUser(UserVo userVo);
+    void createUser(UserVo userVo);
 
     UserVo getUserById(Long id);
 
@@ -17,5 +17,7 @@ public interface UserService {
     List<UserVo> getUsers(Integer page, Integer size);
 
     Long countUsers();
+
+    void updateUser(UserVo userVo);
 
 }

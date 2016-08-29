@@ -2,9 +2,6 @@ package hu.schonherz.training.landing.vo;
 
 import java.io.Serializable;
 
-/**
- * Created on 2016.08.26..
- */
 public class RoleVo implements Serializable {
 
     private static final long serialVersionUID = -8403753397412273249L;

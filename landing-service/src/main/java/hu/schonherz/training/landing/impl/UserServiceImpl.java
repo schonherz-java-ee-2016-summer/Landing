@@ -7,13 +7,17 @@ import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
-@Service
-@Transactional
+@Stateless(name = "UserService", mappedName = "UserService")
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@Interceptors({SpringBeanAutowiringInterceptor.class})
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -50,5 +54,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long countUsers() {
         return userRepository.count();
+    }
+
+    @Override
+    public void updateUser(UserVo userVo) {
+        userRepository.save(UserMapper.toEntity(userVo));
     }
 }
