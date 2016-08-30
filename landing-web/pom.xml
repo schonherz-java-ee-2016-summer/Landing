@@ -2,17 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>landing-project</artifactId>
         <groupId>hu.schonherz.training.landing</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
     <artifactId>landing-web</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
+
         <dependency>
             <groupId>hu.schonherz.training.landing</groupId>
             <artifactId>landing-service-client-api</artifactId>
@@ -24,6 +25,12 @@
             <groupId>hu.schonherz.training.landing</groupId>
             <artifactId>landing-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>hu.schonherz.training</groupId>
+            <artifactId>template</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -72,11 +79,7 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.1.1.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>hu.schonherz.training.landing</groupId>
-            <artifactId>landing-service-client-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
     <build>
