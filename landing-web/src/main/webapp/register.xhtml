@@ -8,11 +8,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en">
 
-    <h:head>
-        <title>Registration Page</title>
-    </h:head>
-
     <ui:composition template="/templates/pageTemplate.xhtml">
+
+        <ui:define name="title">
+            Registration Page
+        </ui:define>
+
         <ui:define name="body">
             <f:view>
                 <h:form id="registerForm">

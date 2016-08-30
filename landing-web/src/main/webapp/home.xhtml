@@ -8,11 +8,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en">
 
-    <h:head>
-        <title>Home Page</title>
-    </h:head>
-
     <ui:composition template="/templates/pageTemplate.xhtml">
+
+        <ui:define name="title">
+            Home Page
+        </ui:define>
+
         <ui:define name="body">
             <h:panelGrid id="panel" columns="2" border="1" cellpadding="10"
                          cellspacing="1">
