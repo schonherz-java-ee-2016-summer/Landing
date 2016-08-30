@@ -1,10 +1,9 @@
-package hu.schonherz.training.landing.managedbeans;
+package hu.schonherz.training.landing.web.managedbeans.request;
 
 import hu.schonherz.training.landing.vo.UserVo;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 
 @ManagedBean(name = "userBean")
 @RequestScoped

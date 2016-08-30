@@ -22,12 +22,6 @@
         </dependency>
 
         <dependency>
-            <groupId>hu.schonherz.training.landing</groupId>
-            <artifactId>landing-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>hu.schonherz.training</groupId>
             <artifactId>template</artifactId>
             <version>1.0-SNAPSHOT</version>

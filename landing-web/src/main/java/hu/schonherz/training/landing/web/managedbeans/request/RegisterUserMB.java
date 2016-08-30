@@ -1,6 +1,5 @@
-package hu.schonherz.training.landing.managedbeans.request;
+package hu.schonherz.training.landing.web.managedbeans.request;
 
-import hu.schonherz.training.landing.managedbeans.UserMB;
 import hu.schonherz.training.landing.service.UserService;
 
 import javax.ejb.EJB;
