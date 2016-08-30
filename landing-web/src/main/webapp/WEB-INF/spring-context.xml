@@ -13,6 +13,6 @@
 
     <context:component-scan base-package="hu.schonherz.training.landing.web" />
 
-    <import resource="/spring-security.xml" />
+    <import resource="spring-security.xml" />
 
 </beans>

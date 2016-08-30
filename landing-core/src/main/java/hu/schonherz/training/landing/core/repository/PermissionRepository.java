@@ -12,8 +12,6 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS)
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
-    /*Permission findByName(String name);
-
-    List<Permission> getAllPermission();*/
+    Permission findByName(String name);
 
 }
