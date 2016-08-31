@@ -19,13 +19,13 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = {
             @JoinColumn(name = "user_id", nullable = false) },
             inverseJoinColumns = { @JoinColumn(name = "role_id", nullable = false) })
     private List<Role> roles;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     private List<Group> groups;
 
     public User() {
