@@ -4,6 +4,7 @@ import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -33,7 +34,7 @@ public class LoginUserMB {
                 return "401";
             }
 
-            if (!(usr.getPassword().equals(user.getUser().getPassword()))) {
+            if (!BCrypt.checkpw(user.getUser().getPassword(), usr.getPassword())) {
                 LOGGER.error("Wrong password!");
                 return "401";
             }
@@ -43,7 +44,7 @@ public class LoginUserMB {
             return "400";
         }
 
-        LOGGER.info(usr.getName() + " logged in!");
+        LOGGER.info(user.getUser().getName() + " logged in!");
         return "200";
     }
 
