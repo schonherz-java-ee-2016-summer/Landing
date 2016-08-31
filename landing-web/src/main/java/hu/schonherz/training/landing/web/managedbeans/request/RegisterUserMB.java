@@ -6,6 +6,7 @@ import hu.schonherz.training.landing.web.managedbeans.session.LoginUserMB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class RegisterUserMB {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginUserMB.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserMB.class);
 
     @ManagedProperty(value = "#{userBean}")
     private UserMB user;
@@ -27,7 +28,7 @@ public class RegisterUserMB {
     public String doRegister() {
         UserVo usr;
 
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
         user.getUser().setPassword(encPassword);
 
