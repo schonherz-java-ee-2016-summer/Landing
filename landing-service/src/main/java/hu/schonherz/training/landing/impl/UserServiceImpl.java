@@ -9,13 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.List;
 
 @Stateless(name = "UserService", mappedName = "UserService")
+@TransactionManagement(TransactionManagementType.BEAN)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class UserServiceImpl implements UserService {
