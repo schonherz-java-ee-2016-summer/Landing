@@ -14,7 +14,6 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 @Stateless(name = "UserService", mappedName = "UserService")
-@TransactionManagement(TransactionManagementType.BEAN)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class UserServiceImpl implements UserService {

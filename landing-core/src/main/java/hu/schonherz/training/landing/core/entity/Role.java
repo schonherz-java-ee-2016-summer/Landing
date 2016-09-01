@@ -15,11 +15,8 @@ public class Role extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Permission> permissions;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-    private List<User> users;
 
     public Role() {
         super();
@@ -46,20 +43,11 @@ public class Role extends BaseEntity {
         this.permissions = permissions;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     @Override
     public String toString() {
         return "Role{" +
                 "name='" + name + '\'' +
                 ", permissions=" + permissions +
-                ", users=" + users +
                 '}';
     }
 }

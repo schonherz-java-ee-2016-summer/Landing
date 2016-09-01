@@ -1,6 +1,7 @@
 package hu.schonherz.training.landing.core.repository;
 
 
+import hu.schonherz.training.landing.core.entity.Role;
 import hu.schonherz.training.landing.core.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,8 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByName(String name);
+
+    List<Role> findRolesByName(String name);
 
     //List<User> getAllUser();
 

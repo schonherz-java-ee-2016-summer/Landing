@@ -11,19 +11,13 @@ public class Group extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "group_user", joinColumns = {
-            @JoinColumn(name = "group_id", nullable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "user_id", nullable = false) })
-    private List<User> users;
-
     public Group() {
         super();
     }
 
-    public Group(String name, List<User> users) {
+    public Group(String name) {
         this.name = name;
-        this.users = users;
+        //this.users = users;
     }
 
     public String getName() {
@@ -34,19 +28,10 @@ public class Group extends BaseEntity {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     @Override
     public String toString() {
         return "Group{" +
                 "name='" + name + '\'' +
-                ", users=" + users +
                 '}';
     }
 }
