@@ -9,15 +9,13 @@ public class PermissionVo implements Serializable {
 
     private Long id;
     private String name;
-    private List<RoleVo> roles;
 
     public PermissionVo() {
     }
 
-    public PermissionVo(Long id, String name, List<RoleVo> roles) {
+    public PermissionVo(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.roles = roles;
     }
 
     public Long getId() {
@@ -36,11 +34,4 @@ public class PermissionVo implements Serializable {
         this.name = name;
     }
 
-    public List<RoleVo> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleVo> roles) {
-        this.roles = roles;
-    }
 }

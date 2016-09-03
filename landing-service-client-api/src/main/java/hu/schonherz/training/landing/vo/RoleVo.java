@@ -7,7 +7,6 @@ public class RoleVo implements Serializable {
     private static final long serialVersionUID = -8403753397412273249L;
 
     private Long id;
-
     private String name;
 
     public RoleVo() {

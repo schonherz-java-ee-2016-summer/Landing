@@ -2,7 +2,6 @@ package hu.schonherz.training.landing.web.managedbeans.request;
 
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
-import hu.schonherz.training.landing.web.managedbeans.session.LoginUserMB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

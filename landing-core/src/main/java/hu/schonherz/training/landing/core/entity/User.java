@@ -19,22 +19,23 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @Basic
+    @Column(nullable = false)
+    private boolean active;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Role> roles;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Group> groups;
-
     public User() {
-        super();
+        this.active = true;
     }
 
-    public User(String name, String email, String password, List<Role> roles, List<Group> groups) {
+    public User(String name, String email, String password, List<Role> roles) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.active = true;
         this.roles = roles;
-        this.groups = groups;
     }
 
     public String getName() {
@@ -61,6 +62,14 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -69,21 +78,12 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", roles=" + roles +
-                ", groups=" + groups +
-                '}';
+                ", active=" + active +
+                "} ";
     }
 }

@@ -4,11 +4,15 @@ import hu.schonherz.training.landing.core.entity.User;
 import hu.schonherz.training.landing.vo.UserVo;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserMapper {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserMapper.class);
 
     private static Mapper mapper = new DozerBeanMapper();
 
@@ -16,6 +20,8 @@ public class UserMapper {
         if (userEntity == null) {
             return null;
         }
+
+        LOGGER.info("User entity mapped to UserVo", userEntity);
         return mapper.map(userEntity, UserVo.class);
     }
 
@@ -23,6 +29,8 @@ public class UserMapper {
         if (userVo == null) {
             return null;
         }
+
+        LOGGER.info("UserVo mapped to User entity", userVo);
         return mapper.map(userVo, User.class);
     }
 

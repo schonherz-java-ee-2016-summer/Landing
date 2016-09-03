@@ -5,8 +5,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "Role")
-@NamedQueries({
-    @NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name= :roleName") })
 public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
