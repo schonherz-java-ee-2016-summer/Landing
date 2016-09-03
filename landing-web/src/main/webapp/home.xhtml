@@ -8,8 +8,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en">
 
-    <ui:composition template="/templates/pageTemplate.xhtml">
 
+    <ui:composition template="/templates/pageTemplate.xhtml">
         <ui:define name="title">
             Home Page
         </ui:define>
@@ -25,6 +25,20 @@
                 <h:outputLabel value="Not a member yet"/>
                 <h:outputLink value="register.xhtml">Sign Up</h:outputLink>
             </h:panelGrid>
+                <div class="media-left ember content">
+                    <h2>Band</h2>
+                    <a href="/Band">
+                        <img src="images/1.jpg" alt="img01"/>
+                    </a>
+                </div>
+                <div class="media-right content">
+                    <h2>Venue</h2>
+                    <a href="/Venue">
+                        <img src="images/2.jpg" alt="img01"/>
+                    </a>
+                </div>
+
+
         </ui:define>
     </ui:composition>
 </html>
