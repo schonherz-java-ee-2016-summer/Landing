@@ -21,5 +21,23 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>showProfile</from-outcome>
+            <to-view-id>/showProfile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editProfile</from-outcome>
+            <to-view-id>/editProfile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
   
 </faces-config>
