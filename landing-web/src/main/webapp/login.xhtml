@@ -20,19 +20,19 @@
             <table>
                 <tr>
                     <td><h:outputText value="Enter Your Name:" /></td>
-                    <td><h:inputText id="lname" value="#{sUserBean.user.name}"
+                    <td><h:inputText id="lname" name="lname" value="#{sUserBean.user.name}"
                                      required="true" requiredMessage="Please enter your name" /></td>
                     <td><h:message for="lname" style="color:red" /></td>
                 </tr>
                 <tr>
                     <td><h:outputText value="Enter Password:" /></td>
-                    <td><h:inputSecret id="psw" value="#{sUserBean.user.password}"
+                    <td><h:inputSecret id="psw" name="psw" value="#{sUserBean.user.password}"
                                        required="true" requiredMessage="Please enter your password" /></td>
                     <td><h:message for="psw" style="color:red" /></td>
                 </tr>
                 <tr>
                     <td />
-                    <td><h:commandButton value="login" action="#{login.doLogin}" /></td>
+                    <td><h:commandButton value="login" type="submit" /></td>
                 </tr>
             </table>
         </h:form>

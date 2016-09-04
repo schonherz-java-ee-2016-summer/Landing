@@ -12,10 +12,10 @@
                                 access="hasRole('BLOGGER')" method="POST" />
         <security:intercept-url pattern="/pages/secured/*"
                                 access="hasRole('USER')" />
-        <security:form-login login-page="/pages/login.jsp"
-                             login-processing-url="/login" default-target-url="/index.jsp"
-                             authentication-failure-url="/pages/login.jsp?error=true"
-                             username-parameter="j_username" password-parameter="j_password" />
+        <security:form-login login-page="/login.xhtml"
+                             login-processing-url="/login" default-target-url="/home.xhtml"
+                             authentication-failure-url="/login.xhtml?error=true"
+                             username-parameter="lname" password-parameter="psw" />
         <security:logout logout-url="/logout"
                          logout-success-url="/index.jsp" />
         <security:remember-me remember-me-parameter="remember-me"
