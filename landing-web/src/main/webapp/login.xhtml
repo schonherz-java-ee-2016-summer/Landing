@@ -32,7 +32,10 @@
                 </tr>
                 <tr>
                     <td />
-                    <td><h:commandButton value="login" type="submit" /></td>
+                    <td><h:commandButton value="login" action="#{login.doLogin}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
                 </tr>
             </table>
         </h:form>
