@@ -21,6 +21,10 @@ public class UserMapper {
             return null;
         }
 
+        LOGGER.info(userEntity.getName());
+        LOGGER.info(userEntity.getEmail());
+        LOGGER.info(String.valueOf(userEntity.isActive()));
+        //LOGGER.info("Data ", userEntity.getName(), userEntity.getEmail(), userEntity.isActive());
         LOGGER.info("User entity mapped to UserVo", userEntity);
         return mapper.map(userEntity, UserVo.class);
     }

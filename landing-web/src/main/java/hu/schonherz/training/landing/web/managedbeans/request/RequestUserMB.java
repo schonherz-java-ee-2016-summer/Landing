@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "userBean")
 @RequestScoped
-public class UserMB {
+public class RequestUserMB {
 
     private UserVo user = new UserVo();
     private String confirmPassword;

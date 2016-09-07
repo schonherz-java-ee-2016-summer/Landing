@@ -26,6 +26,7 @@ public class LoginUserMB {
     public String doLogin() {
 
         UserVo usr;
+
         try {
             usr = userService.getUserByName(user.getUser().getName());
 
@@ -44,6 +45,7 @@ public class LoginUserMB {
             return "400";
         }
 
+        user.setLoggedIn(true);
         LOGGER.info(user.getUser().getName() + " logged in!");
         return "200";
     }

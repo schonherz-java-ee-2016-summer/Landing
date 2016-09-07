@@ -8,40 +8,40 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en">
 
-<ui:composition template="/templates/pageTemplate.xhtml">
+    <ui:composition template="/templates/pageTemplate.xhtml">
 
-<ui:define name="title">
-    Home Page
-</ui:define>
+        <ui:define name="title">
+            Home Page
+        </ui:define>
 
-<ui:define name="body">
-    <f:view>
-        <h:form id="loginForm">
-            <table>
-                <tr>
-                    <td><h:outputText value="Enter Your Name:" /></td>
-                    <td><h:inputText id="lname" name="lname" value="#{sUserBean.user.name}"
-                                     required="true" requiredMessage="Please enter your name"
-                                     validator="#{loginUsernameValidator.validate}" /></td>
-                    <td><h:message for="lname" style="color:red" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Enter Password:" /></td>
-                    <td><h:inputSecret id="psw" name="psw" value="#{sUserBean.user.password}"
-                                       required="true" requiredMessage="Please enter your password"
-                                       validator="#{loginPasswordValidator.validate}" /></td>
-                    <td><h:message for="psw" style="color:red" /></td>
-                </tr>
-                <tr>
-                    <td />
-                    <td><h:commandButton value="login" action="#{login.doLogin}" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
-                </tr>
-            </table>
-        </h:form>
-    </f:view>
-</ui:define>
-</ui:composition>
+        <ui:define name="body">
+            <f:view>
+                <h:form id="loginForm">
+                    <table>
+                        <tr>
+                            <td><h:outputText value="Enter Your Name:"/></td>
+                            <td><h:inputText id="lname" name="lname" value="#{sUserBean.user.name}"
+                                             required="true" requiredMessage="Please enter your name"
+                                             validator="#{loginUsernameValidator.validate}"/></td>
+                            <td><h:message for="lname" style="color:red"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Enter Password:"/></td>
+                            <td><h:inputSecret id="psw" name="psw" value="#{sUserBean.user.password}"
+                                               required="true" requiredMessage="Please enter your password"
+                                               validator="#{loginPasswordValidator.validate}"/></td>
+                            <td><h:message for="psw" style="color:red"/></td>
+                        </tr>
+                        <tr>
+                            <td/>
+                            <td><h:commandButton value="login" action="#{login.doLogin}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+                        </tr>
+                    </table>
+                </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
 </html>

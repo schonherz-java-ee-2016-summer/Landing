@@ -4,12 +4,15 @@ import hu.schonherz.training.landing.vo.UserVo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 @ManagedBean(name = "sUserBean")
 @SessionScoped
-public class SessionUserMB {
+public class SessionUserMB implements Serializable {
 
     private UserVo user = new UserVo();
+
+    private boolean loggedIn = false;
 
     public UserVo getUser() {
         return user;
@@ -19,4 +22,11 @@ public class SessionUserMB {
         this.user = user;
     }
 
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
 }

@@ -6,10 +6,6 @@
     <security:http disable-url-rewriting="false">
         <security:csrf disabled="true" />
         <security:headers disabled="true" />
-        <security:intercept-url pattern="/comment/*"
-                                access="hasRole('USER')" method="POST" />
-        <security:intercept-url pattern="/blog/*"
-                                access="hasRole('BLOGGER')" method="POST" />
         <security:intercept-url pattern="/pages/secured/*"
                                 access="hasRole('USER')" />
         <security:form-login login-page="/login.xhtml"

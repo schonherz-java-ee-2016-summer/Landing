@@ -5,7 +5,6 @@ import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +18,7 @@ public class RegisterUserMB {
     private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserMB.class);
 
     @ManagedProperty(value = "#{userBean}")
-    private UserMB user;
+    private RequestUserMB user;
 
     @EJB
     private UserService userService;
@@ -50,11 +49,11 @@ public class RegisterUserMB {
         return "200";
     }
 
-    public UserMB getUser() {
+    public RequestUserMB getUser() {
         return user;
     }
 
-    public void setUser(UserMB user) {
+    public void setUser(RequestUserMB user) {
         this.user = user;
     }
 }
