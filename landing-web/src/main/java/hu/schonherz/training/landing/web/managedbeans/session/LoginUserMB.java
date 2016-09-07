@@ -30,13 +30,13 @@ public class LoginUserMB {
             usr = userService.getUserByName(user.getUser().getName());
 
             if (usr == null) {
-                LOGGER.error("Wrong username!");
-                return "401";
+                LOGGER.warn("Wrong username!");
+                return "login";
             }
 
             if (!BCrypt.checkpw(user.getUser().getPassword(), usr.getPassword())) {
-                LOGGER.error("Wrong password!");
-                return "401";
+                LOGGER.warn("Wrong password!");
+                return "login";
             }
         } catch (Exception e) {
             e.printStackTrace();

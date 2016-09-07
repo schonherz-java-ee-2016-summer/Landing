@@ -27,20 +27,25 @@ public class RegisterUserMB {
     public String doRegister() {
         UserVo usr;
 
-        PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
-        user.getUser().setPassword(encPassword);
 
         usr = userService.getUserByName(user.getUser().getName());
 
-        if (usr != null) {
-            LOGGER.error(user.getUser().getName() + " user already exists!");
-            return "400";
+        if (!user.getUser().getPassword().equals(user.getConfirmPassword())) {
+            LOGGER.warn("Passwords do not match!");
+            return "register";
         }
+        if (usr != null) {
+            LOGGER.warn(user.getUser().getName() + " user already exists!");
+            return "register";
+        }
+
+        user.getUser().setPassword(encPassword);
 
         userService.createUser(user.getUser());
 
-        LOGGER.info(user.getUser().getName() + " registered with " + user.getUser().getEmail() + " email adress!");
+        LOGGER.info(user.getUser().getName() + " registered with " + user.getUser().getEmail() + " email address!");
 
         return "200";
     }

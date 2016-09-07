@@ -21,13 +21,15 @@
                 <tr>
                     <td><h:outputText value="Enter Your Name:" /></td>
                     <td><h:inputText id="lname" name="lname" value="#{sUserBean.user.name}"
-                                     required="true" requiredMessage="Please enter your name" /></td>
+                                     required="true" requiredMessage="Please enter your name"
+                                     validator="#{loginUsernameValidator.validate}" /></td>
                     <td><h:message for="lname" style="color:red" /></td>
                 </tr>
                 <tr>
                     <td><h:outputText value="Enter Password:" /></td>
                     <td><h:inputSecret id="psw" name="psw" value="#{sUserBean.user.password}"
-                                       required="true" requiredMessage="Please enter your password" /></td>
+                                       required="true" requiredMessage="Please enter your password"
+                                       validator="#{loginPasswordValidator.validate}" /></td>
                     <td><h:message for="psw" style="color:red" /></td>
                 </tr>
                 <tr>
