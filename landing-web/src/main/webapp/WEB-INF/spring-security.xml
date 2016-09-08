@@ -6,12 +6,12 @@
     <security:http disable-url-rewriting="false">
         <security:csrf disabled="true" />
         <security:headers disabled="true" />
-        <security:intercept-url pattern="/pages/secured/*"
+        <security:intercept-url pattern="/secured/*"
                                 access="hasRole('USER')" />
         <security:form-login login-page="/login.xhtml"
                              login-processing-url="/login" default-target-url="/home.xhtml"
                              authentication-failure-url="/login.xhtml?error=true"
-                             username-parameter="lname" password-parameter="psw" />
+                             username-parameter="name" password-parameter="psw" />
         <security:logout logout-url="/logout"
                          logout-success-url="/index.jsp" />
         <security:remember-me remember-me-parameter="remember-me"

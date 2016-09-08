@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.web.managedbeans.session;
+package hu.schonherz.training.landing.web.managedbeans.login;
 
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
@@ -9,16 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "login")
-@SessionScoped
-public class LoginUserMB {
+@RequestScoped
+public class LoginMB {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginUserMB.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginMB.class);
 
-    @ManagedProperty(value = "#{sUserBean}")
-    private SessionUserMB user;
+    @ManagedProperty(value = "#{loginUser}")
+    private LoginUserMB loginUser;
 
     @EJB
     private UserService userService;
@@ -28,14 +28,14 @@ public class LoginUserMB {
         UserVo usr;
 
         try {
-            usr = userService.getUserByName(user.getUser().getName());
+            usr = userService.getUserByName(loginUser.getUser().getName());
 
             if (usr == null) {
                 LOGGER.warn("Wrong username!");
                 return "login";
             }
 
-            if (!BCrypt.checkpw(user.getUser().getPassword(), usr.getPassword())) {
+            if (!BCrypt.checkpw(loginUser.getUser().getPassword(), usr.getPassword())) {
                 LOGGER.warn("Wrong password!");
                 return "login";
             }
@@ -45,16 +45,16 @@ public class LoginUserMB {
             return "400";
         }
 
-        user.setLoggedIn(true);
-        LOGGER.info(user.getUser().getName() + " logged in!");
+        loginUser.setLoggedIn(true);
+        LOGGER.info(loginUser.getUser().getName() + " logged in!");
         return "200";
     }
 
-    public SessionUserMB getUser() {
-        return user;
+    public LoginUserMB getLoginUser() {
+        return loginUser;
     }
 
-    public void setUser(SessionUserMB user) {
-        this.user = user;
+    public void setLoginUser(LoginUserMB loginUser) {
+        this.loginUser = loginUser;
     }
 }

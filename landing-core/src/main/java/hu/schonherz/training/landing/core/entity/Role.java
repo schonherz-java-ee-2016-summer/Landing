@@ -13,7 +13,7 @@ public class Role extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Permission> permissions;
 
     public Role() {

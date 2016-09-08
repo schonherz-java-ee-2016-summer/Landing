@@ -1,8 +1,7 @@
-package hu.schonherz.training.landing.web.managedbeans.request;
+package hu.schonherz.training.landing.web.managedbeans.login;
 
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
-import hu.schonherz.training.landing.web.managedbeans.session.SessionUserMB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -23,17 +22,14 @@ public class LoginPasswordValidator implements Validator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginPasswordValidator.class);
 
-    @ManagedProperty(value = "#{sUserBean}")
-    private SessionUserMB user;
+    @ManagedProperty(value = "#{loginUser}")
+    private LoginUserMB user;
 
     @EJB
     private UserService userService;
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object submittedValue) throws ValidatorException {
-        if (submittedValue == null) {
-            return; // Let required="true" handle.
-        }
 
         String password = submittedValue.toString();
         UserVo dbUser = userService.getUserByName(user.getUser().getName());
@@ -46,11 +42,11 @@ public class LoginPasswordValidator implements Validator {
         }
     }
 
-    public SessionUserMB getUser() {
+    public LoginUserMB getUser() {
         return user;
     }
 
-    public void setUser(SessionUserMB user) {
+    public void setUser(LoginUserMB user) {
         this.user = user;
     }
 }

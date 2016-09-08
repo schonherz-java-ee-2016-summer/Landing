@@ -16,31 +16,36 @@
 
         <ui:define name="body">
             <f:view>
-                <h:form id="loginForm">
+                <!--<h:form id="loginForm">-->
+                <form action="login" method="post">
+
                     <table>
                         <tr>
                             <td><h:outputText value="Enter Your Name:"/></td>
-                            <td><h:inputText id="lname" name="lname" value="#{sUserBean.user.name}"
+                            <td><input type="text" name="name"/></td>
+                            <!--<td><h:inputText id="username" name="username" value="#{loginUser.user.name}"
                                              required="true" requiredMessage="Please enter your name"
                                              validator="#{loginUsernameValidator.validate}"/></td>
-                            <td><h:message for="lname" style="color:red"/></td>
+                            <td><h:message for="username" style="color:red"/></td>-->
                         </tr>
                         <tr>
                             <td><h:outputText value="Enter Password:"/></td>
-                            <td><h:inputSecret id="psw" name="psw" value="#{sUserBean.user.password}"
+                            <td><input type="password" name="psw"/></td>
+                            <!--<td><h:inputSecret id="psw" name="psw" value="#{loginUser.user.password}"
                                                required="true" requiredMessage="Please enter your password"
                                                validator="#{loginPasswordValidator.validate}"/></td>
-                            <td><h:message for="psw" style="color:red"/></td>
+                            <td><h:message for="psw" style="color:red"/></td>-->
                         </tr>
                         <tr>
-                            <td/>
-                            <td><h:commandButton value="login" action="#{login.doLogin}"/></td>
+                            <td><button type="submit">Login</button></td>
+                            <!--<td><h:commandButton value="login" action="#{login.doLogin}"/></td>-->
                         </tr>
                         <tr>
                             <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
                         </tr>
                     </table>
-                </h:form>
+                    <!--</h:form>-->
+                </form>
             </f:view>
         </ui:define>
     </ui:composition>

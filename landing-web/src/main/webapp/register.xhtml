@@ -21,14 +21,14 @@
                     <table>
                         <tr>
                             <td><h:outputText value="Enter Your Name:"/></td>
-                            <td><h:inputText id="lname" value="#{userBean.user.name}"
+                            <td><h:inputText id="lname" value="#{registerUser.user.name}"
                                              required="true" requiredMessage="Please enter your name"
                                              validator="#{registerUsernameValidator.validate}" /></td>
                             <td><h:message for="lname" style="color:red"/></td>
                         </tr>
                         <tr>
                             <td><h:outputText value="Enter Your email:"/></td>
-                            <td><h:inputText id="email" value="#{userBean.user.email}"
+                            <td><h:inputText id="email" value="#{registerUser.user.email}"
                                              required="true" requiredMessage="Please enter your email"
                                              validatorMessage="Invalid email format">
                                 <f:validateRegex
@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td><h:outputText value="Enter Password:"/></td>
-                            <td><h:inputSecret id="psw" value="#{userBean.user.password}"
+                            <td><h:inputSecret id="psw" value="#{registerUser.user.password}"
                                                required="true" requiredMessage="Please enter your password"
                                                validatorMessage="Password must be 5 or more character long">
                                 <f:validateLength minimum="5"/>
@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <td><h:outputText value="Confirm Password:"/></td>
-                            <td><h:inputSecret id="confirmpsw" value="#{userBean.confirmPassword}"
+                            <td><h:inputSecret id="confirmpsw" value="#{registerUser.confirmPassword}"
                                                required="true" requiredMessage="Please confirm your password"
                                                validatorMessage="Password must be 5 or more character long">
                                 <f:validateLength minimum="5"/>

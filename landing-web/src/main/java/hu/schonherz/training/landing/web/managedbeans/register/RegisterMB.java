@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.web.managedbeans.request;
+package hu.schonherz.training.landing.web.managedbeans.register;
 
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
@@ -13,12 +13,12 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "register")
 @RequestScoped
-public class RegisterUserMB {
+public class RegisterMB {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserMB.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterMB.class);
 
-    @ManagedProperty(value = "#{userBean}")
-    private RequestUserMB user;
+    @ManagedProperty(value = "#{registerUser}")
+    private RegisterUserMB user;
 
     @EJB
     private UserService userService;
@@ -49,11 +49,11 @@ public class RegisterUserMB {
         return "200";
     }
 
-    public RequestUserMB getUser() {
+    public RegisterUserMB getUser() {
         return user;
     }
 
-    public void setUser(RequestUserMB user) {
+    public void setUser(RegisterUserMB user) {
         this.user = user;
     }
 }

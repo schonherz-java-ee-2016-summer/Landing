@@ -1,17 +1,15 @@
-package hu.schonherz.training.landing.web.managedbeans.session;
+package hu.schonherz.training.landing.web.managedbeans.login;
 
 import hu.schonherz.training.landing.vo.UserVo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
 
-@ManagedBean(name = "sUserBean")
+@ManagedBean(name = "loginUser")
 @SessionScoped
-public class SessionUserMB implements Serializable {
+public class LoginUserMB {
 
     private UserVo user = new UserVo();
-
     private boolean loggedIn = false;
 
     public UserVo getUser() {

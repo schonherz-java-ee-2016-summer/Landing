@@ -1,8 +1,13 @@
 package hu.schonherz.training.landing.impl;
 
+import hu.schonherz.training.landing.core.entity.Role;
+import hu.schonherz.training.landing.core.entity.User;
+import hu.schonherz.training.landing.core.repository.RoleRepository;
 import hu.schonherz.training.landing.core.repository.UserRepository;
+import hu.schonherz.training.landing.mapper.RoleMapper;
 import hu.schonherz.training.landing.mapper.UserMapper;
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +16,7 @@ import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless(name = "UserService", mappedName = "UserService")
@@ -22,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public List<UserVo> getUsers() {
@@ -30,7 +38,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(UserVo userVo) {
-        userRepository.save(UserMapper.toEntity(userVo));
+        User user = userRepository.save(UserMapper.toEntity(userVo));
+        user.setRoles(new ArrayList<>());
+        user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        userRepository.save(user);
     }
 
     @Override

@@ -1,13 +1,13 @@
-package hu.schonherz.training.landing.web.managedbeans.request;
+package hu.schonherz.training.landing.web.managedbeans.register;
 
 import hu.schonherz.training.landing.vo.UserVo;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@ManagedBean(name = "userBean")
-@RequestScoped
-public class RequestUserMB {
+@ManagedBean(name = "registerUser")
+@ViewScoped
+public class RegisterUserMB {
 
     private UserVo user = new UserVo();
     private String confirmPassword;

@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.web.managedbeans.request;
+package hu.schonherz.training.landing.web.managedbeans.login;
 
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.UserVo;
