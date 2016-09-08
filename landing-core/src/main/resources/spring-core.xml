@@ -17,10 +17,9 @@
     <jpa:repositories base-package="hu.schonherz.training.landing.core.repository"
                       repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" />
 
-    <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-        <property name="persistenceUnitName" value="hu.schonherz.training.landing" />
+    <bean id="entityManagerFactory" class="org.hibernate.jpa.internal.EntityManagerFactoryImpl"
+          factory-method="getNamedEntityManagerFactory">
+        <constructor-arg value="EntityManagerJNDI" />
     </bean>
 
     <bean id="transactionManager"
