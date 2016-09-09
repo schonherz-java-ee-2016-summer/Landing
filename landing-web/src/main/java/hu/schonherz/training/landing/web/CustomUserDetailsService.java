@@ -1,9 +1,12 @@
 package hu.schonherz.training.landing.web;
 
 
+import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,8 +25,12 @@ import java.util.Set;
 @EJB(name = "UserService", beanInterface = UserService.class)
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomUserDetailsService.class);
+
     @EJB
     UserService userService;
+    @EJB
+    RoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
@@ -37,7 +44,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             }
             //user = userService.setUpRoles(user);
 
-            List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
+            List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
+            LOGGER.info("Roles ", roles);
+            List<GrantedAuthority> authorities = buildUserAuthority(roles);
 
             return buildUserForAuthentication(user, authorities);
         } catch (Exception e) {

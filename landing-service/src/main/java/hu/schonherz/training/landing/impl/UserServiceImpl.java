@@ -21,6 +21,7 @@ import java.util.List;
 
 @Stateless(name = "UserService", mappedName = "UserService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class UserServiceImpl implements UserService {
 
@@ -40,7 +41,10 @@ public class UserServiceImpl implements UserService {
     public void createUser(UserVo userVo) {
         User user = userRepository.save(UserMapper.toEntity(userVo));
         user.setRoles(new ArrayList<>());
-        user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        Role role = roleRepository.findByName("ROLE_USER");
+        LOGGER.info(role.getName());
+        LOGGER.info(role.getId().toString());
+        user.getRoles().add(role);
         userRepository.save(user);
     }
 

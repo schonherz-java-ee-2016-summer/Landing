@@ -24,6 +24,9 @@ public class User extends BaseEntity {
     private boolean active;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
     private List<Role> roles;
 
     public User() {
