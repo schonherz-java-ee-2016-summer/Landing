@@ -6,7 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 
     <ui:composition template="/templates/pageTemplate.xhtml">
@@ -20,40 +20,37 @@
                 <h:form id="registerForm">
                     <table>
                         <tr>
-                            <td><h:outputText value="Enter Your Name:"/></td>
-                            <td><h:inputText id="lname" value="#{registerUser.user.name}"
+                            <td><p:outputLabel for="lname" value="Enter Your Name:"/></td>
+                            <td><p:inputText id="lname" value="#{registerUser.user.name}"
                                              required="true" requiredMessage="Please enter your name"
                                              validator="#{registerUsernameValidator.validate}" /></td>
                             <td><h:message for="lname" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><h:outputText value="Enter Your email:"/></td>
-                            <td><h:inputText id="email" value="#{registerUser.user.email}"
+                            <td><p:outputLabel for="email" value="Enter Your email:"/></td>
+                            <td><p:inputText id="email" value="#{registerUser.user.email}"
                                              required="true" requiredMessage="Please enter your email"
                                              validatorMessage="Invalid email format">
                                 <f:validateRegex
                                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                            </h:inputText></td>
+                            </p:inputText></td>
                             <td><h:message for="email" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><h:outputText value="Enter Password:"/></td>
-                            <td><h:inputSecret id="psw" value="#{registerUser.user.password}"
+                            <td><p:outputLabel for="psw" value="Enter Password:"/></td>
+                            <td><p:password id="psw" value="#{registerUser.user.password}"
                                                required="true" requiredMessage="Please enter your password"
-                                               validatorMessage="Password must be 5 or more character long">
+                                               match="confirmpsw" feedback="true">
                                 <f:validateLength minimum="5"/>
-                            </h:inputSecret></td>
+                            </p:password></td>
                             <td><h:message for="psw" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><h:outputText value="Confirm Password:"/></td>
-                            <td><h:inputSecret id="confirmpsw" value="#{registerUser.confirmPassword}"
-                                               required="true" requiredMessage="Please confirm your password"
-                                               validatorMessage="Password must be 5 or more character long">
+                            <td><p:outputLabel for="confirmpsw" value="Confirm Password:"/></td>
+                            <td><p:password id="confirmpsw" value="#{registerUser.confirmPassword}"
+                                               required="true" requiredMessage="Please confirm your password">
                                 <f:validateLength minimum="5"/>
-                                <o:validateEqual id="equal" components="psw confirmpsw"
-                                                 message="Passwords are not equal" showMessageFor="confirmpsw" />
-                            </h:inputSecret></td>
+                            </p:password></td>
                             <td><h:message for="confirmpsw" style="color:red"/></td>
                         </tr>
                         <tr>
