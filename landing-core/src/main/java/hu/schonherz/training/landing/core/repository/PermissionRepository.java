@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional(propagation = Propagation.SUPPORTS)
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
     Permission findByName(String name);

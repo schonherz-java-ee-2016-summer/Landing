@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional(propagation = Propagation.SUPPORTS)
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByName(String name);
