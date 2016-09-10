@@ -31,10 +31,6 @@ public class RegisterMB {
 
         usr = userService.getUserByName(user.getUser().getName());
 
-        if (!user.getUser().getPassword().equals(user.getConfirmPassword())) {
-            LOGGER.warn("Passwords do not match!");
-            return "register";
-        }
         if (usr != null) {
             LOGGER.warn(user.getUser().getName() + " user already exists!");
             return "register";

@@ -37,21 +37,21 @@
                             <td><h:message for="email" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><p:outputLabel for="psw" value="Enter Password:"/></td>
-                            <td><p:password id="psw" value="#{registerUser.user.password}"
-                                               required="true" requiredMessage="Please enter your password"
-                                               match="confirmpsw" feedback="true">
+                            <td><p:outputLabel for="psw1" value="Enter Password:"/></td>
+                            <td><p:password id="psw1" value="#{registerUser.user.password}"
+                                            required="true" requiredMessage="Please enter your password"
+                                            match="psw2" feedback="true">
                                 <f:validateLength minimum="5"/>
                             </p:password></td>
-                            <td><h:message for="psw" style="color:red"/></td>
+                            <td><h:message for="psw1" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><p:outputLabel for="confirmpsw" value="Confirm Password:"/></td>
-                            <td><p:password id="confirmpsw" value="#{registerUser.confirmPassword}"
-                                               required="true" requiredMessage="Please confirm your password">
+                            <td><p:outputLabel for="psw2" value="Confirm Password:"/></td>
+                            <td><p:password id="psw2" value="#{registerUser.user.password}"
+                                            required="true" requiredMessage="Please confirm your password">
                                 <f:validateLength minimum="5"/>
                             </p:password></td>
-                            <td><h:message for="confirmpsw" style="color:red"/></td>
+                            <td><h:message for="psw2" style="color:red"/></td>
                         </tr>
                         <tr>
                             <td/>

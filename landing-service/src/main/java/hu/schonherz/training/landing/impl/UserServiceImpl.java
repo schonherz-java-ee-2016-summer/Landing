@@ -42,8 +42,6 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.save(UserMapper.toEntity(userVo));
         user.setRoles(new ArrayList<>());
         Role role = roleRepository.findByName("ROLE_USER");
-        LOGGER.info(role.getName());
-        LOGGER.info(role.getId().toString());
         user.getRoles().add(role);
         userRepository.save(user);
     }
