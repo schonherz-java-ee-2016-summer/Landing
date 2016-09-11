@@ -25,6 +25,11 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
+    public List<RoleVo> getRoles() {
+        return RoleMapper.toVo(roleRepository.findAll());
+    }
+
+    @Override
     public List<RoleVo> getRolesByUserId(Long userId) {
         return RoleMapper.toVo(roleRepository.findRolesByUserId(userId));
     }

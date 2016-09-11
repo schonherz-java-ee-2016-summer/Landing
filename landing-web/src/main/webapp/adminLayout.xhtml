@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+
+<ui:composition template="/templates/pageTemplate.xhtml">
+
+    <ui:define name="title">
+        Admin
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <p:growl id="msg" showDetail="true" escape="false" />
+
+            <h3 style="margin-top: 0">User Management</h3>
+            <p:pickList id="pickList" value="#{userManagement.users}" var="users" itemLabel="#{users}"
+                        itemValue="#{users}" effect="bounce" showCheckbox="true" responsive="true"
+                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                <f:facet name="sourceCaption">Users List</f:facet>
+                <f:facet name="targetCaption">Selected Users List</f:facet>
+
+                <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="msg" />
+                <p:ajax event="select" listener="#{userManagement.onSelect}" update="msg" />
+                <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="msg" />
+            </p:pickList>
+
+            <p:outputLabel for="roles" value="Roles:" />
+            <p:selectOneRadio id="roles" value="#{roleManagement.role}" layout="responsive" columns="3">
+                    <f:selectItems value="#{roleManagement.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>
+            </p:selectOneRadio>
+
+            <p:commandButton id="usersSubmit" value="Submit" update="displayUsers" oncomplete="PF('usersDialog').show()" style="margin-top:5px" />
+
+            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
+                <h:panelGrid id="displayUsers" columns="2">
+                    <h:outputText value="Source: " style="font-weight:bold" />
+                    <ui:repeat value="#{userManagement.users.source}" var="item">
+                        <h:outputText value="#{item}" style="margin-right:5px" />
+                    </ui:repeat>
+
+                    <h:outputText value="Target: " style="font-weight:bold" />
+                    <ui:repeat value="#{userManagement.users.target}" var="item">
+                        <h:outputText value="#{item}" style="margin-right:5px" />
+                    </ui:repeat>
+
+                    <h:outputText value="Role: " style="font-weight:bold" />
+                    <h:outputText value="#{roleManagement.role}" style="margin-right:5px" />
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

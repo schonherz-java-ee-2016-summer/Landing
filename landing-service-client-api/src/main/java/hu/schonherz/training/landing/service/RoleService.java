@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface RoleService {
 
+    List<RoleVo> getRoles();
+
     List<RoleVo> getRolesByUserId(Long userId);
 
 }
