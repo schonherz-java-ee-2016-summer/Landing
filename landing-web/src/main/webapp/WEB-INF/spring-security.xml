@@ -8,6 +8,9 @@
         <security:headers disabled="true" />
         <security:intercept-url pattern="/secured/*"
                                 access="hasRole('USER')" />
+        <security:intercept-url pattern="/admin/*"
+                                access="hasRole('ADMIN')" />
+        <!--TODO<security:access-denied-handler-->
         <security:form-login login-page="/login.xhtml"
                              login-processing-url="/login" default-target-url="/home.xhtml"
                              authentication-failure-url="/login.xhtml?error=true"

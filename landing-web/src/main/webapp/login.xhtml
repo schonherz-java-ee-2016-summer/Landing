@@ -11,17 +11,16 @@
     <ui:composition template="/templates/pageTemplate.xhtml">
 
         <ui:define name="title">
-            Home Page
+            #{msg['login.title']}
         </ui:define>
 
         <ui:define name="body">
             <f:view>
-                <!--<h:form id="loginForm">-->
                 <form action="login" method="post">
 
                     <table>
                         <tr>
-                            <td><h:outputText value="Enter Your Name:"/></td>
+                            <td><h:outputText value="#{msg['login.name.label']}"/></td>
                             <td><input type="text" name="name"/></td>
                             <!--<td><h:inputText id="username" name="username" value="#{loginUser.user.name}"
                                              required="true" requiredMessage="Please enter your name"
@@ -29,7 +28,7 @@
                             <td><h:message for="username" style="color:red"/></td>-->
                         </tr>
                         <tr>
-                            <td><h:outputText value="Enter Password:"/></td>
+                            <td><h:outputText value="#{msg['login.password.label']}"/></td>
                             <td><input type="password" name="psw"/></td>
                             <!--<td><h:inputSecret id="psw" name="psw" value="#{loginUser.user.password}"
                                                required="true" requiredMessage="Please enter your password"
@@ -37,11 +36,11 @@
                             <td><h:message for="psw" style="color:red"/></td>-->
                         </tr>
                         <tr>
-                            <td><button type="submit">Login</button></td>
+                            <td><button type="submit">#{msg['login.submitButton.label']}</button></td>
                             <!--<td><h:commandButton value="login" action="#{login.doLogin}"/></td>-->
                         </tr>
                         <tr>
-                            <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+                            <td><h:outputLink value="home.xhtml">#{msg['home.title']}</h:outputLink></td>
                         </tr>
                     </table>
                     <!--</h:form>-->

@@ -20,45 +20,45 @@
                 <h:form id="registerForm">
                     <table>
                         <tr>
-                            <td><p:outputLabel for="lname" value="Enter Your Name:"/></td>
-                            <td><p:inputText id="lname" value="#{registerUser.user.name}"
-                                             required="true" requiredMessage="Please enter your name"
+                            <td><p:outputLabel for="name" value="#{msg['register.name.label']}"/></td>
+                            <td><p:inputText id="name" value="#{registerUser.user.name}"
+                                             required="true" requiredMessage="#{msg['register.name.requiredMessage']}"
                                              validator="#{registerUsernameValidator.validate}" /></td>
-                            <td><h:message for="lname" style="color:red"/></td>
+                            <td><h:message for="name" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><p:outputLabel for="email" value="Enter Your email:"/></td>
+                            <td><p:outputLabel for="email" value="#{msg['register.email.label']}"/></td>
                             <td><p:inputText id="email" value="#{registerUser.user.email}"
-                                             required="true" requiredMessage="Please enter your email"
-                                             validatorMessage="Invalid email format">
+                                             required="true" requiredMessage="#{msg['register.email.requiredMessage']}"
+                                             validatorMessage="#{msg['register.email.validatorMessage']}">
                                 <f:validateRegex
                                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             </p:inputText></td>
                             <td><h:message for="email" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><p:outputLabel for="psw1" value="Enter Password:"/></td>
+                            <td><p:outputLabel for="psw1" value="#{msg['register.password.label']}"/></td>
                             <td><p:password id="psw1" value="#{registerUser.user.password}"
-                                            required="true" requiredMessage="Please enter your password"
+                                            required="true" requiredMessage="#{msg['register.password.requiredMessage']}"
                                             match="psw2" feedback="true">
                                 <f:validateLength minimum="5"/>
                             </p:password></td>
                             <td><h:message for="psw1" style="color:red"/></td>
                         </tr>
                         <tr>
-                            <td><p:outputLabel for="psw2" value="Confirm Password:"/></td>
+                            <td><p:outputLabel for="psw2" value="#{msg['register.confirmpassword.label']}"/></td>
                             <td><p:password id="psw2" value="#{registerUser.user.password}"
-                                            required="true" requiredMessage="Please confirm your password">
+                                            required="true" requiredMessage="#{msg['register.confirmpassword.requiredMessage']}">
                                 <f:validateLength minimum="5"/>
                             </p:password></td>
                             <td><h:message for="psw2" style="color:red"/></td>
                         </tr>
                         <tr>
                             <td/>
-                            <td><h:commandButton value="register" action="#{register.doRegister}"/></td>
+                            <td><h:commandButton value="#{msg['register.submitButton.label']}" action="#{register.doRegister}"/></td>
                         </tr>
                         <tr>
-                            <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+                            <td><h:outputLink value="home.xhtml">#{msg['home.title']}</h:outputLink></td>
                         </tr>
                     </table>
                 </h:form>

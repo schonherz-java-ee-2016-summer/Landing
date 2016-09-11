@@ -17,12 +17,12 @@
         <ui:define name="body">
             <p:dataList value="#{loginUser.user}" var="user">
                 <f:facet name="header">
-                    Profile data
+                    #{msg['showProfile.dataList.header']}
                 </f:facet>
-                <div><h:outputText value="Name: #{user.name}"/></div>
-                <div><h:outputText value="E-mail address: #{user.email}"/></div>
-                <div><h:outputText rendered="#{user.active}" value="Profile activity: your profile is active"/></div>
-                <div><h:outputText rendered="#{!user.active}" value="Profile activity: your profile is inactive"/></div>
+                <div><h:outputText value="#{msg['showProfile.name.label']} #{user.name}"/></div>
+                <div><h:outputText value="#{msg['showProfile.email.label']} #{user.email}"/></div>
+                <div><h:outputText rendered="#{user.active}" value="#{msg['showProfile.activity.active.label']}"/></div>
+                <div><h:outputText rendered="#{!user.active}" value="#{msg['showProfile.activity.inactive.label']}"/></div>
             </p:dataList>
         </ui:define>
 

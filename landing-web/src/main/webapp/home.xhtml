@@ -14,7 +14,7 @@
 
     <ui:composition template="/templates/pageTemplate.xhtml">
         <ui:define name="title">
-            Home Page
+            #{msg['home.title']}
         </ui:define>
 
         <ui:define name="body">
@@ -22,29 +22,29 @@
             <ui:fragment rendered="#{!loginUser.loggedIn}">
                 <h:form>
                     <div class="form-control">
-                        <h:outputLink value="login.xhtml">Sign In</h:outputLink>
-                        <h:outputText value=" or "/>
-                        <h:outputLink value="register.xhtml">Sign Up</h:outputLink>
+                        <h:outputLink value="login.xhtml">#{msg['home.signIn']}</h:outputLink>
+                        <h:outputText value=" #{msg['home.or']} "/>
+                        <h:outputLink value="register.xhtml">#{msg['home.signUp']}</h:outputLink>
                     </div>
                 </h:form>
             </ui:fragment>
 
             <ui:fragment rendered="#{loginUser.loggedIn}">
                 <div class="form-control">
-                    <h:outputText value="Logged in as #{loginUser.user.name}" styleClass="text-success"/>
+                    <h:outputText value="#{msg['home.loggedInAs']} #{loginUser.user.name}" styleClass="text-success"/>
                 </div>
             </ui:fragment>
 
             <div class="col-xs-6">
-                <h2>Band</h2>
+                <h2>#{msg['home.band']}</h2>
                 <a href="/Band">
-                    <h:graphicImage styleClass="col-xs-12" value="images/1.jpg"/>
+                    <h:graphicImage styleClass="col-xs-12" value="images/band.jpg"/>
                 </a>
             </div>
             <div class="col-xs-6">
-                <h2>Venue</h2>
+                <h2>#{msg['home.venue']}</h2>
                 <a href="/Venue">
-                    <h:graphicImage styleClass="col-xs-12" value="images/2.jpg"/>
+                    <h:graphicImage styleClass="col-xs-12" value="images/venue.jpg"/>
                 </a>
             </div>
 
