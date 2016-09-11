@@ -12,19 +12,29 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
-    <context:component-scan base-package="hu.schonherz.training.landing" />
+    <context:component-scan base-package="hu.schonherz.training.landing.core" />
 
-    <jpa:repositories base-package="hu.schonherz.training.landing.core.repository"
-                      repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" />
+    <jee:jndi-lookup jndi-name="java:jboss/datasources/Venue" id="dataSource"
+                     expected-type="javax.sql.DataSource"/>
 
-    <bean id="entityManagerFactory" class="org.hibernate.jpa.internal.EntityManagerFactoryImpl"
-          factory-method="getNamedEntityManagerFactory">
-        <constructor-arg value="EntityManagerJNDI" />
+    <jee:jndi-lookup jndi-name="java:/EntityManager"
+                     id="entityManager" expected-type="javax.persistence.EntityManager"/>
+
+    <jee:jndi-lookup jndi-name="java:/EntityManagerFactory"
+                     id="entityManagerFactory" expected-type="javax.persistence.EntityManagerFactory"/>
+
+    <tx:jta-transaction-manager/>
+
+    <tx:annotation-driven/>
+
+    <jpa:repositories base-package="hu.schonherz.training.landing.core.repository"/>
+
+    <bean class="org.springframework.data.jpa.repository.support.DefaultJpaContext">
+        <constructor-arg>
+            <set>
+                <ref bean="entityManager"/>
+            </set>
+        </constructor-arg>
     </bean>
-
-    <bean id="transactionManager"
-          class="org.springframework.transaction.jta.JtaTransactionManager"/>
-
-    <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>
