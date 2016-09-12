@@ -28,26 +28,11 @@ public class RegisterMB {
     private RoleService roleService;
 
     public String doRegister() {
-        UserVo userVo;
-
+        
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
-
-        userVo = userService.getUserByName(user.getUser().getName());
-
-        if (userVo != null) {
-            LOGGER.warn(user.getUser().getName() + " user already exists!");
-            return "register";
-        }
-
         user.getUser().setPassword(encPassword);
-        userVo = userService.saveUser(user.getUser());
-        RoleVo userRole = roleService.getRoleByName("ROLE_USER");
-
-        userService.addRoleToUser(userVo.getId(), userRole);
-
-        //usr.getRoles().add(userRole);
-        //userService.saveUser(usr);
+        userService.registerUser(user.getUser());
 
         LOGGER.info(user.getUser().getName() + " registered with " + user.getUser().getEmail() + " email address!");
 
