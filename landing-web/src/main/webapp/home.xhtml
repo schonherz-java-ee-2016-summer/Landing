@@ -22,9 +22,9 @@
             <ui:fragment rendered="#{!loginUser.loggedIn}">
                 <h:form>
                     <div class="form-control">
-                        <h:outputLink value="login.xhtml">#{msg['home.signIn']}</h:outputLink>
+                        <h:button outcome="login" value="#{msg['home.signIn']}"/>
                         <h:outputText value=" #{msg['home.or']} "/>
-                        <h:outputLink value="register.xhtml">#{msg['home.signUp']}</h:outputLink>
+                        <h:button outcome="register" value="#{msg['home.signUp']}"/>
                     </div>
                 </h:form>
             </ui:fragment>
@@ -38,13 +38,13 @@
             <div class="col-xs-6">
                 <h2>#{msg['home.band']}</h2>
                 <a href="/Band">
-                    <h:graphicImage styleClass="col-xs-12" value="images/band.jpg"/>
+                    <h:graphicImage styleClass="col-xs-12" value="/images/band.jpg"/>
                 </a>
             </div>
             <div class="col-xs-6">
                 <h2>#{msg['home.venue']}</h2>
                 <a href="/Venue">
-                    <h:graphicImage styleClass="col-xs-12" value="images/venue.jpg"/>
+                    <h:graphicImage styleClass="col-xs-12" value="/images/venue.jpg"/>
                 </a>
             </div>
 
