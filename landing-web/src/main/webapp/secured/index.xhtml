@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE html
+                PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en">
+
+<h:head>
+    <h:outputStylesheet library="" name="basic.css" rel="stylesheet"/>
+</h:head>
+
+<ui:composition template="/templates/pageTemplate.xhtml">
+    <ui:define name="title">
+        #{msg['home.title']}
+    </ui:define>
+
+    <ui:define name="body">
+
+            <div class="form-control">
+                <h:outputText value="#{msg['home.loggedInAs']} #{userSession.user.username}" styleClass="text-success"/>
+                <form action="logout" method="post">
+                    <button type="submit">#{msg['home.logout']}</button>
+                </form>
+            </div>
+
+
+        <div class="col-xs-6">
+            <h2>#{msg['home.band']}</h2>
+            <a href="/Band">
+                <h:graphicImage styleClass="col-xs-12" value="/images/band.jpg"/>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <h2>#{msg['home.venue']}</h2>
+            <a href="/Venue">
+                <h:graphicImage styleClass="col-xs-12" value="/images/venue.jpg"/>
+            </a>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
+
+</html>

@@ -19,7 +19,6 @@
 
         <ui:define name="body">
 
-            <ui:fragment rendered="#{!loginUser.loggedIn}">
                 <h:form>
                     <div class="form-control">
                         <h:button outcome="login" value="#{msg['home.signIn']}"/>
@@ -27,13 +26,6 @@
                         <h:button outcome="register" value="#{msg['home.signUp']}"/>
                     </div>
                 </h:form>
-            </ui:fragment>
-
-            <ui:fragment rendered="#{loginUser.loggedIn}">
-                <div class="form-control">
-                    <h:outputText value="#{msg['home.loggedInAs']} #{loginUser.user.name}" styleClass="text-success"/>
-                </div>
-            </ui:fragment>
 
             <div class="col-xs-6">
                 <h2>#{msg['home.band']}</h2>

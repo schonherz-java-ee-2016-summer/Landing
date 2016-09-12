@@ -12,10 +12,10 @@
                                 access="hasRole('ADMIN')" />
         <!--TODO<security:access-denied-handler-->
         <security:form-login login-page="/login.xhtml"
-                             login-processing-url="/login" default-target-url="/secured/showProfile.xhtml"
+                             login-processing-url="/login" default-target-url="/secured/index.xhtml"
                              authentication-failure-url="/login.xhtml?error=true"
                              username-parameter="j_username" password-parameter="j_password" />
-        <security:logout logout-url="/logout"
+        <security:logout logout-url="/secured/logout"
                          logout-success-url="/home.xhtml" />
         <security:remember-me remember-me-parameter="remember-me"
                               key="myAppKey" remember-me-cookie="remember-me"
