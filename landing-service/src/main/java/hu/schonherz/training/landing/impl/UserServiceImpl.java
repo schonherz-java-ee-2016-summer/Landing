@@ -1,6 +1,5 @@
 package hu.schonherz.training.landing.impl;
 
-import hu.schonherz.training.landing.core.entity.Permission;
 import hu.schonherz.training.landing.core.entity.Role;
 import hu.schonherz.training.landing.core.entity.User;
 import hu.schonherz.training.landing.core.repository.RoleRepository;
@@ -27,9 +26,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    public static final String DEFAULT_USER_ROLE = "DEFAULT_USER_ROLE";
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public List<UserVo> getUsers() {
@@ -64,6 +67,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addRoleToUser(Long userId, RoleVo roleVo) {
         userRepository.findOne(userId).getRoles().add(RoleMapper.toEntity(roleVo));
+    }
+
+    @Override
+    public void registerUser(UserVo user) {
+
+        User userEntity = UserMapper.toEntity(user);
+        if (userEntity.getRoles() == null) {
+            userEntity.setRoles(new ArrayList<>(1));
+        }
+
+        addDefaultRole(userEntity);
+        userRepository.save(userEntity);
+    }
+
+    private void addDefaultRole(User userEntity) {
+        Role role = roleRepository.findByName(DEFAULT_USER_ROLE);
+        userEntity.getRoles().add(role);
     }
 
 }

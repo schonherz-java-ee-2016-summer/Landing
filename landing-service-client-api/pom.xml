@@ -10,13 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>landing-service-client-api</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>hu.schonherz.training.landing</groupId>
-            <artifactId>landing-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 
 </project>
