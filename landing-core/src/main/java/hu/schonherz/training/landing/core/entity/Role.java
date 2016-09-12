@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "Roles")
 public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class Role extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Permission> permissions;
 
     public Role() {

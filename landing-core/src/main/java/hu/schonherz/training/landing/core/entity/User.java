@@ -1,11 +1,12 @@
 package hu.schonherz.training.landing.core.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 public class User extends BaseEntity {
 
     @Basic
@@ -24,11 +25,12 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private boolean active;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Role> roles;
 
     public User() {
         this.active = true;
+        this.roles = new ArrayList<>();
     }
 
     public User(String name, String email, String password, List<Role> roles) {
@@ -36,7 +38,7 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
         this.active = true;
-        this.roles = roles;
+        this.roles = new ArrayList<>();
     }
 
     public String getName() {

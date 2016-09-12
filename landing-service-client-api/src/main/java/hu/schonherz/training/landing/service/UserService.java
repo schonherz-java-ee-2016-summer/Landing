@@ -1,12 +1,13 @@
 package hu.schonherz.training.landing.service;
 
+import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
 
 import java.util.List;
 
 public interface UserService {
 
-    void createUser(UserVo userVo);
+    UserVo saveUser(UserVo userVo);
 
     UserVo getUserById(Long id);
 
@@ -14,10 +15,10 @@ public interface UserService {
 
     List<UserVo> getUsers();
 
-    List<UserVo> getUsers(Integer page, Integer size);
-
     Long countUsers();
 
-    void updateUser(UserVo userVo);
+    void deleteUser(Long id);
+
+    void addRoleToUser(Long userId, RoleVo roleVo);
 
 }

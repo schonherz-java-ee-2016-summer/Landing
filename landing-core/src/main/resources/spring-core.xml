@@ -14,7 +14,7 @@
 
     <context:component-scan base-package="hu.schonherz.training.landing.core" />
 
-    <jee:jndi-lookup jndi-name="java:jboss/datasources/Venue" id="dataSource"
+    <jee:jndi-lookup jndi-name="java:jboss/datasources/Landing" id="dataSource"
                      expected-type="javax.sql.DataSource"/>
 
     <jee:jndi-lookup jndi-name="java:/EntityManager"
@@ -27,7 +27,7 @@
 
     <tx:annotation-driven/>
 
-    <jpa:repositories base-package="hu.schonherz.training.landing.core.repository"/>
+    <jpa:repositories base-package="hu.schonherz.training.landing.core"/>
 
     <bean class="org.springframework.data.jpa.repository.support.DefaultJpaContext">
         <constructor-arg>

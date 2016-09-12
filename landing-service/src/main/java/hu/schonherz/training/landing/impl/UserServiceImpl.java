@@ -1,5 +1,6 @@
 package hu.schonherz.training.landing.impl;
 
+import hu.schonherz.training.landing.core.entity.Permission;
 import hu.schonherz.training.landing.core.entity.Role;
 import hu.schonherz.training.landing.core.entity.User;
 import hu.schonherz.training.landing.core.repository.RoleRepository;
@@ -29,8 +30,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Override
     public List<UserVo> getUsers() {
@@ -38,12 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserVo userVo) {
-        User user = userRepository.save(UserMapper.toEntity(userVo));
-        user.setRoles(new ArrayList<>());
-        Role role = roleRepository.findByName("ROLE_USER");
-        user.getRoles().add(role);
-        userRepository.save(user);
+    public UserVo saveUser(UserVo userVo) {
+        return UserMapper.toVo(userRepository.save(UserMapper.toEntity(userVo)));
     }
 
     @Override
@@ -57,18 +52,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserVo> getUsers(Integer page, Integer size) {
-        // TODO
-        return null;
-    }
-
-    @Override
     public Long countUsers() {
         return userRepository.count();
     }
 
     @Override
-    public void updateUser(UserVo userVo) {
-        userRepository.save(UserMapper.toEntity(userVo));
+    public void deleteUser(Long id) {
+        userRepository.delete(id);
     }
+
+    @Override
+    public void addRoleToUser(Long userId, RoleVo roleVo) {
+        userRepository.findOne(userId).getRoles().add(RoleMapper.toEntity(roleVo));
+    }
+
 }

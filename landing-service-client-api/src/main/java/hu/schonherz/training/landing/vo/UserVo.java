@@ -1,6 +1,7 @@
 package hu.schonherz.training.landing.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserVo implements Serializable {

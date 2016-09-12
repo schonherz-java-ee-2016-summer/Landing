@@ -1,6 +1,8 @@
 package hu.schonherz.training.landing.web.managedbeans.register;
 
+import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,23 +24,30 @@ public class RegisterMB {
 
     @EJB
     private UserService userService;
+    @EJB
+    private RoleService roleService;
 
     public String doRegister() {
-        UserVo usr;
+        UserVo userVo;
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
 
-        usr = userService.getUserByName(user.getUser().getName());
+        userVo = userService.getUserByName(user.getUser().getName());
 
-        if (usr != null) {
+        if (userVo != null) {
             LOGGER.warn(user.getUser().getName() + " user already exists!");
             return "register";
         }
 
         user.getUser().setPassword(encPassword);
+        userVo = userService.saveUser(user.getUser());
+        RoleVo userRole = roleService.getRoleByName("ROLE_USER");
 
-        userService.createUser(user.getUser());
+        userService.addRoleToUser(userVo.getId(), userRole);
+
+        //usr.getRoles().add(userRole);
+        //userService.saveUser(usr);
 
         LOGGER.info(user.getUser().getName() + " registered with " + user.getUser().getEmail() + " email address!");
 

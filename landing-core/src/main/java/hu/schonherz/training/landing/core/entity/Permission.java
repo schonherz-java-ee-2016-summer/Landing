@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Permission")
+@Table(name = "Permissions")
 public class Permission extends BaseEntity {
 
     @Basic
