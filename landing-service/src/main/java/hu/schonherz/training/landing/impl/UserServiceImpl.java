@@ -26,7 +26,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-    public static final String DEFAULT_USER_ROLE = "DEFAULT_USER_ROLE";
+
+    public static final String DEFAULT_USER_ROLE = "ROLE_USER";
 
     @Autowired
     private UserRepository userRepository;
