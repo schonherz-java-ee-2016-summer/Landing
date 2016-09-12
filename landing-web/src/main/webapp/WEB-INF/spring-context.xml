@@ -17,11 +17,11 @@
     <import resource="spring-security.xml" />
 
     <jee:local-slsb id="UserService"
-                    jndi-name="java:global/Landing/landing-service/UserService!hu.schonherz.training.landing.service.UserService"
+                    jndi-name="java:global/landing-ear/landing-service/UserService!hu.schonherz.training.landing.service.UserService"
                     business-interface="hu.schonherz.training.landing.service.UserService" />
 
     <jee:local-slsb id="RoleService"
-                    jndi-name="java:global/Landing/landing-service/RoleService!hu.schonherz.training.landing.service.RoleService"
+                    jndi-name="java:global/landing-ear/landing-service/RoleService!hu.schonherz.training.landing.service.RoleService"
                     business-interface="hu.schonherz.training.landing.service.RoleService" />
 
 </beans>
