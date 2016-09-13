@@ -20,10 +20,9 @@
         <ui:define name="body">
 
                 <h:form>
-                    <div class="form-control">
-                        <h:button outcome="login" value="#{msg['home.signIn']}"/>
-                        <h:outputText value=" #{msg['home.or']} "/>
-                        <h:button outcome="register" value="#{msg['home.signUp']}"/>
+                    <div class="nav-divider">
+                        <h:button styleClass="button" outcome="login" value="#{msg['home.signIn']}"/>
+                        <h:button styleClass="button" outcome="register" value="#{msg['home.signUp']}"/>
                     </div>
                 </h:form>
 

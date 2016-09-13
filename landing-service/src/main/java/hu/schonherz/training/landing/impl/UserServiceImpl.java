@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserVo getUserByEmail(String email) {
+        return UserMapper.toVo(userRepository.findByEmail(email));
+    }
+
+    @Override
     public Long countUsers() {
         return userRepository.count();
     }

@@ -16,8 +16,6 @@ public class UserMB implements Serializable {
      */
     private User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
-
     public User getUser() {
         return user;
     }

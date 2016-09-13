@@ -13,6 +13,8 @@ public interface UserService {
 
     UserVo getUserByName(String name);
 
+    UserVo getUserByEmail(String email);
+
     List<UserVo> getUsers();
 
     Long countUsers();
