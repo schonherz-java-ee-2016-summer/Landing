@@ -50,7 +50,7 @@
                         <webModule>
                             <groupId>hu.schonherz.training.landing</groupId>
                             <artifactId>landing-web</artifactId>
-                            <contextRoot>landing-web</contextRoot>
+                            <contextRoot>landing</contextRoot>
                         </webModule>
                     </modules>
 

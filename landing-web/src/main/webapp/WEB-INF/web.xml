@@ -81,4 +81,9 @@
         <local>hu.schonherz.training.landing.service.RoleService</local>
     </ejb-local-ref>
 
+    <ejb-local-ref>
+        <ejb-ref-name>PermissionService</ejb-ref-name>
+        <local>hu.schonherz.training.landing.service.PermissionService</local>
+    </ejb-local-ref>
+
 </web-app>

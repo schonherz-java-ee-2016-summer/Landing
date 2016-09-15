@@ -1,11 +1,11 @@
-package hu.schonherz.training.landing.impl;
+package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.core.entity.Role;
 import hu.schonherz.training.landing.core.entity.User;
 import hu.schonherz.training.landing.core.repository.RoleRepository;
 import hu.schonherz.training.landing.core.repository.UserRepository;
-import hu.schonherz.training.landing.mapper.RoleMapper;
-import hu.schonherz.training.landing.mapper.UserMapper;
+import hu.schonherz.training.landing.service.mapper.RoleMapper;
+import hu.schonherz.training.landing.service.mapper.UserMapper;
 import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;

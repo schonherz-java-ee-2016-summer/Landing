@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.mapper;
+package hu.schonherz.training.landing.service.mapper;
 
 import hu.schonherz.training.landing.core.entity.Permission;
 import hu.schonherz.training.landing.vo.PermissionVo;

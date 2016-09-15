@@ -10,13 +10,11 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-
     <context:component-scan base-package="hu.schonherz.training.landing.web" />
-
 
     <import resource="spring-security.xml" />
 
-    <bean id="loggedInUsersMapp" class="hu.schonherz.training.landing.web.LoggedInUsersMapp"></bean>
+    <bean id="loggedInUsersMapp" class="hu.schonherz.training.landing.web.LoggedInUsersMapp"/>
 
     <jee:local-slsb id="UserService"
                     jndi-name="java:global/landing-ear/landing-service/UserService!hu.schonherz.training.landing.service.UserService"

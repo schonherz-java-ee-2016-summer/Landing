@@ -34,7 +34,5 @@ public class AuthenticationSuccesHandler implements AuthenticationSuccessHandler
         UserVo user = userService.getUserByName(userDetails.getUsername());
         loggedInUsersMapp.getUsersMap().put(UUID.randomUUID().toString(), user);
         LOGGER.info("AuthenticationSuccesHandler: " + user.getId() + " " + user.getName() + " added to the LoggedInUserMapp");
-       
-        return;
     }
 }

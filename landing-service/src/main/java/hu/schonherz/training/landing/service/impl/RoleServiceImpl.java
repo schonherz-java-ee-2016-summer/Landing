@@ -1,7 +1,7 @@
-package hu.schonherz.training.landing.impl;
+package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.core.repository.RoleRepository;
-import hu.schonherz.training.landing.mapper.RoleMapper;
+import hu.schonherz.training.landing.service.mapper.RoleMapper;
 import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.vo.RoleVo;
 import org.slf4j.Logger;

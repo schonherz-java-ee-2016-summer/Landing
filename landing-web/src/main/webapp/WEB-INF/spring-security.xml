@@ -15,8 +15,7 @@
                              login-processing-url="/login" default-target-url="/secured/index.xhtml"
                              authentication-failure-url="/login.xhtml?error=true"
                              username-parameter="j_username" password-parameter="j_password"
-                             authentication-success-handler-ref="authenticationSuccessHandler"
-                             />
+                             authentication-success-handler-ref="authenticationSuccessHandler" />
         <security:logout logout-url="/secured/logout"
                          logout-success-url="/home.xhtml"/>
         <security:remember-me remember-me-parameter="remember-me"

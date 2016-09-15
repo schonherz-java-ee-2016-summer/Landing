@@ -1,7 +1,7 @@
-package hu.schonherz.training.landing.impl;
+package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.core.repository.PermissionRepository;
-import hu.schonherz.training.landing.mapper.PermissionMapper;
+import hu.schonherz.training.landing.service.mapper.PermissionMapper;
 import hu.schonherz.training.landing.service.PermissionService;
 import hu.schonherz.training.landing.vo.PermissionVo;
 import org.slf4j.Logger;

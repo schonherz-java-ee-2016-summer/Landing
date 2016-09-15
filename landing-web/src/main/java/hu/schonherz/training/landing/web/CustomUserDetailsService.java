@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("customUserDetailsService")
+@Service
 @EJB(name = "UserService", beanInterface = UserService.class)
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -42,13 +42,12 @@ public class CustomUserDetailsService implements UserDetailsService {
             if (user == null) {
                 throw new UsernameNotFoundException(username);
             }
-            //user = userService.setUpRoles(user);
 
             List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
-            LOGGER.info("Roles ", roles);
             List<GrantedAuthority> authorities = buildUserAuthority(roles);
 
             return buildUserForAuthentication(user, authorities);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new UsernameNotFoundException(e.getMessage());

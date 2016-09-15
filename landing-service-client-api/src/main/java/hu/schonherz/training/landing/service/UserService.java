@@ -24,4 +24,5 @@ public interface UserService {
     void addRoleToUser(Long userId, RoleVo roleVo);
 
     void registerUser(UserVo user);
+
 }
