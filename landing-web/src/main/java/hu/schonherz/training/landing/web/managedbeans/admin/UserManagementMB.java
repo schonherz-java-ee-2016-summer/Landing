@@ -22,17 +22,22 @@ public class UserManagementMB {
     private UserService userService;
 
     private DualListModel<String> users;
+    private DualListModel<String> usersPass;
 
     @PostConstruct
     public void init() {
         List<String> usersSource = new ArrayList<String>();
         List<String> usersTarget = new ArrayList<String>();
+        List<String> usersPassSource = new ArrayList<String>();
+        List<String> usersPassTarget = new ArrayList<String>();
 
         for (UserVo userVo : userService.getUsers()) {
             usersSource.add(userVo.getName());
+            usersPassSource.add(userVo.getName());
         }
 
         users = new DualListModel<String>(usersSource, usersTarget);
+        usersPass = new DualListModel<String>(usersPassSource, usersPassTarget);
     }
 
     public DualListModel<String> getUsers() {
@@ -43,10 +48,18 @@ public class UserManagementMB {
         this.users = users;
     }
 
+    public DualListModel<String> getUsersPass() {
+        return usersPass;
+    }
+
+    public void setUsersPass(DualListModel<String> usersPass) {
+        this.usersPass = usersPass;
+    }
+
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
         for(Object item : event.getItems()) {
-            builder.append(((String) item)).append("<br />");
+            builder.append((String) item).append("<br />");
         }
 
         FacesMessage msg = new FacesMessage();

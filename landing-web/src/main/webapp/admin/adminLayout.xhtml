@@ -16,67 +16,117 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <h:outputText value="Tasks:" />
-                    <p:selectOneButton value="#{tasks.task}">
-                        <f:selectItem itemLabel="Add roles to users" itemValue="1" />
-                        <f:selectItem itemLabel="Add permissions to roles" itemValue="2" />
-                        <f:selectItem itemLabel="Set passwords to default" itemValue="3" />
-                    </p:selectOneButton>
+            <h:form id="tabform">
+                <p:growl id="msgs" showDetail="true" escape="false" />
 
-                    <p:commandButton value="Submit" update="display" icon="ui-icon-check">
-                        <f:ajax execute="@form" render=":userpanel" />
-                    </p:commandButton>
-                    <p:spacer />
+                <p:tabView>
+                    <p:tab title="User Management">
+                        <p:pickList id="userPickList" value="#{userManagement.users}" var="user" itemLabel="#{user}"
+                                    itemValue="#{user}" showCheckbox="true" responsive="true"
+                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                            <f:facet name="sourceCaption">Users List</f:facet>
+                            <f:facet name="targetCaption">Selected Users List</f:facet>
 
-                    <h:outputText value="Current task:" />
-                    <h:outputText id="display" value="#{tasks.task}" style="font-weight: bold" />
-                </h:panelGrid>
+                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
+                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
+                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
+                        </p:pickList>
+
+                        <p:outputLabel for="userRoles" value="Roles:"/>
+                        <p:selectOneRadio id="userRoles" value="#{roleManagement.userRole}" layout="responsive" columns="3">
+                            <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole}" itemValue="#{userRole}"/>
+                        </p:selectOneRadio>
+
+                        <p:commandButton id="usersSubmit" value="Submit" update="displayUsers"
+                                         oncomplete="PF('usersDialog').show()" style="margin-top:5px"/>
+
+                        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
+                            <h:panelGrid id="displayUsers" columns="2">
+                                <h:outputText value="Source: " style="font-weight:bold"/>
+                                <ui:repeat value="#{userManagement.users.source}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+
+                                <h:outputText value="Target: " style="font-weight:bold"/>
+                                <ui:repeat value="#{userManagement.users.target}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+
+                                <h:outputText value="Role: " style="font-weight:bold"/>
+                                <h:outputText value="#{roleManagement.userRole}" style="margin-right:5px"/>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </p:tab>
+
+                    <p:tab title="Role Management">
+                        <p:pickList id="permissionPickList" value="#{permissionManagement.permissions}" var="perm" itemLabel="#{perm}"
+                                    itemValue="#{perm}" showCheckbox="true" responsive="true"
+                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                            <f:facet name="sourceCaption">Permissions List</f:facet>
+                            <f:facet name="targetCaption">Selected Permissions List</f:facet>
+
+                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
+                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
+                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
+                        </p:pickList>
+
+                        <p:outputLabel for="permissionRoles" value="Permissions:"/>
+                        <p:selectOneRadio id="permissionRoles" value="#{roleManagement.permRole}" layout="responsive" columns="3">
+                            <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole}" itemValue="#{permRole}"/>
+                        </p:selectOneRadio>
+
+                        <p:commandButton id="rolesSubmit" value="Submit" update="displayRoles"
+                                         oncomplete="PF('rolesDialog').show()" style="margin-top:5px"/>
+
+                        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rolesDialog">
+                            <h:panelGrid id="displayRoles" columns="2">
+                                <h:outputText value="Source: " style="font-weight:bold"/>
+                                <ui:repeat value="#{permissionManagement.permissions.source}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+
+                                <h:outputText value="Taret: " style="font-weight:bold"/>
+                                <ui:repeat value="#{permissionManagement.permissions.target}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+
+                                <h:outputText value="Role: " style="font-weight:bold"/>
+                                <h:outputText value="#{roleManagement.permRole}" style="margin-right:5px"/>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </p:tab>
+
+                    <p:tab title="Password Management">
+                        <p:pickList id="passPickList" value="#{userManagement.usersPass}" var="user" itemLabel="#{user}"
+                                    itemValue="#{user}" showCheckbox="true" responsive="true"
+                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                            <f:facet name="sourceCaption">Users List</f:facet>
+                            <f:facet name="targetCaption">Selected Users List</f:facet>
+
+                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
+                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
+                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
+                        </p:pickList>
+
+                        <p:commandButton id="passSubmit" value="Submit" update="displayPass"
+                                         oncomplete="PF('passDialog').show()" style="margin-top:5px"/>
+
+                        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="passDialog">
+                            <h:panelGrid id="displayPass" columns="2">
+                                <h:outputText value="Source: " style="font-weight:bold"/>
+                                <ui:repeat value="#{userManagement.usersPass.source}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+
+                                <h:outputText value="Target: " style="font-weight:bold"/>
+                                <ui:repeat value="#{userManagement.usersPass.target}" var="item">
+                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                </ui:repeat>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </p:tab>
+                </p:tabView>
             </h:form>
-
-            <p:panel id="userpanel">
-                <h:form rendered="#{tasks.task eq 1}">
-                    <p:growl id="msg" showDetail="true" escape="false"/>
-
-                    <h3 style="margin-top: 0">User Management</h3>
-                    <p:pickList id="pickList" value="#{userManagement.users}" var="user" itemLabel="#{user}"
-                                itemValue="#{user}" effect="bounce" showCheckbox="true" responsive="true"
-                                showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
-                        <f:facet name="sourceCaption">Users List</f:facet>
-                        <f:facet name="targetCaption">Selected Users List</f:facet>
-
-                        <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="msg"/>
-                        <p:ajax event="select" listener="#{userManagement.onSelect}" update="msg"/>
-                        <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="msg"/>
-                    </p:pickList>
-
-                    <p:outputLabel for="roles" value="Roles:"/>
-                    <p:selectOneRadio id="roles" value="#{roleManagement.role}" layout="responsive" columns="3">
-                        <f:selectItems value="#{roleManagement.roles}" var="role" itemLabel="#{role}" itemValue="#{role}"/>
-                    </p:selectOneRadio>
-
-                    <p:commandButton id="usersSubmit" value="Submit" update="displayUsers"
-                                     oncomplete="PF('usersDialog').show()" style="margin-top:5px"/>
-
-                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
-                        <h:panelGrid id="displayUsers" columns="2">
-                            <h:outputText value="Source: " style="font-weight:bold"/>
-                            <ui:repeat value="#{userManagement.users.source}" var="item">
-                                <h:outputText value="#{item}" style="margin-right:5px"/>
-                            </ui:repeat>
-
-                            <h:outputText value="Target: " style="font-weight:bold"/>
-                            <ui:repeat value="#{userManagement.users.target}" var="item">
-                                <h:outputText value="#{item}" style="margin-right:5px"/>
-                            </ui:repeat>
-
-                            <h:outputText value="Role: " style="font-weight:bold"/>
-                            <h:outputText value="#{roleManagement.role}" style="margin-right:5px"/>
-                        </h:panelGrid>
-                    </p:dialog>
-                </h:form>
-            </p:panel>
         </ui:define>
 
     </ui:composition>
