@@ -14,13 +14,17 @@
         <security:form-login login-page="/login.xhtml"
                              login-processing-url="/login" default-target-url="/secured/index.xhtml"
                              authentication-failure-url="/login.xhtml?error=true"
-                             username-parameter="j_username" password-parameter="j_password" />
+                             username-parameter="j_username" password-parameter="j_password"
+                             authentication-success-handler-ref="authenticationSuccessHandler"
+                             />
         <security:logout logout-url="/secured/logout"
-                         logout-success-url="/home.xhtml" />
+                         logout-success-url="/home.xhtml"/>
         <security:remember-me remember-me-parameter="remember-me"
                               key="myAppKey" remember-me-cookie="remember-me"
                               token-validity-seconds="86400" />
     </security:http>
+
+    <bean id="authenticationSuccessHandler" class="hu.schonherz.training.landing.web.AuthenticationSuccesHandler"/>
 
     <security:authentication-manager>
         <security:authentication-provider

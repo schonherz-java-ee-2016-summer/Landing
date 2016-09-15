@@ -16,6 +16,8 @@
 
     <import resource="spring-security.xml" />
 
+    <bean id="loggedInUsersMapp" class="hu.schonherz.training.landing.web.LoggedInUsersMapp"></bean>
+
     <jee:local-slsb id="UserService"
                     jndi-name="java:global/landing-ear/landing-service/UserService!hu.schonherz.training.landing.service.UserService"
                     business-interface="hu.schonherz.training.landing.service.UserService" />

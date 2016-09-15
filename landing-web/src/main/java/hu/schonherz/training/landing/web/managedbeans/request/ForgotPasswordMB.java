@@ -38,7 +38,7 @@ public class ForgotPasswordMB {
         user.setPassword(encPassword);
         userService.saveUser(user);
         try {
-            mailSenderMB.sendMail("noreply@javatrainning.hu", user.getEmail(), "password", newPassword);
+            mailSenderMB.sendMail("noreply@javatrainning.hu", user.getEmail(), "Your new password is: ", newPassword);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
