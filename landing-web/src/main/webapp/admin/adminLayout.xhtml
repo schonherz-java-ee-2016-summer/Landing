@@ -38,7 +38,8 @@
                         </p:selectOneRadio>
 
                         <p:commandButton id="usersSubmit" value="Submit" update="displayUsers"
-                                         oncomplete="PF('usersDialog').show()" style="margin-top:5px"/>
+                                         oncomplete="PF('usersDialog').show()" style="margin-top:5px"
+                                         action="#{addRoleToUsers.addRole(userManagement.users.target, roleManagement.userRole)}"/>
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
                             <h:panelGrid id="displayUsers" columns="2">
@@ -76,7 +77,8 @@
                         </p:selectOneRadio>
 
                         <p:commandButton id="rolesSubmit" value="Submit" update="displayRoles"
-                                         oncomplete="PF('rolesDialog').show()" style="margin-top:5px"/>
+                                         oncomplete="PF('rolesDialog').show()" style="margin-top:5px"
+                                         action="#{addPermissionsToRole.addPermissions(permissionManagement.permissions.target, roleManagement.permRole)}"/>
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rolesDialog">
                             <h:panelGrid id="displayRoles" columns="2">
@@ -109,7 +111,8 @@
                         </p:pickList>
 
                         <p:commandButton id="passSubmit" value="Submit" update="displayPass"
-                                         oncomplete="PF('passDialog').show()" style="margin-top:5px"/>
+                                         oncomplete="PF('passDialog').show()" style="margin-top:5px"
+                                         action="#{setPasswordToDefault.setDefault(userManagement.usersPass.target)}"/>
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="passDialog">
                             <h:panelGrid id="displayPass" columns="2">

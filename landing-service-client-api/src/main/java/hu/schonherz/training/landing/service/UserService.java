@@ -24,8 +24,8 @@ public interface UserService {
 
     void addRoleToUser(Long userId, RoleVo roleVo);
 
+    void addRoleToUserByName(String name, RoleVo roleVo);
     void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo);
-
     void registerUser(UserVo user);
 
 }

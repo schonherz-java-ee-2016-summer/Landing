@@ -1,8 +1,10 @@
 package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.core.repository.RoleRepository;
+import hu.schonherz.training.landing.service.mapper.PermissionMapper;
 import hu.schonherz.training.landing.service.mapper.RoleMapper;
 import hu.schonherz.training.landing.service.RoleService;
+import hu.schonherz.training.landing.vo.PermissionVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<RoleVo> getRolesByUserId(Long userId) {
         return RoleMapper.toVo(roleRepository.findRolesByUserId(userId));
+    }
+
+    @Override
+    public void addPermissionToRoleByName(String name, PermissionVo permissionVo) {
+        roleRepository.findByName(name).getPermissions().add(PermissionMapper.toEntity(permissionVo));
     }
 
 }
