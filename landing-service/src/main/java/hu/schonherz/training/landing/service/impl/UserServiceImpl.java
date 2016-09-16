@@ -86,10 +86,13 @@ public class UserServiceImpl implements UserService, UserRemoteService {
         userRepository.findByName(name).getRoles().add(RoleMapper.toEntity(roleVo));
     }
 
-    @Override        loggedInUsers.getUsersMap().put(cookie, remoteUserVo);
+    @Override
+    public void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo) {
+         loggedInUsers.getUsersMap().put(cookie, remoteUserVo);
     }
 
-    @Override    public void registerUser(UserVo user) {
+    @Override
+    public void registerUser(UserVo user) {
 
         User userEntity = UserMapper.toEntity(user);
         if (userEntity.getRoles() == null) {
