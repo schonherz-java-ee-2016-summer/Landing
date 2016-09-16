@@ -76,6 +76,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addRoleToUserByName(String name, RoleVo roleVo) {
+        userRepository.findByName(name).getRoles().add(RoleMapper.toEntity(roleVo));
+    }
+
+    @Override
     public void registerUser(UserVo user) {
 
         User userEntity = UserMapper.toEntity(user);

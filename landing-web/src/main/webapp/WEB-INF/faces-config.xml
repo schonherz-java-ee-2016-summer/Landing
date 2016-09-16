@@ -35,7 +35,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>showProfile</from-outcome>
             <to-view-id>/secured/showProfile.xhtml</to-view-id>
@@ -44,7 +44,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>editProfile</from-outcome>
             <to-view-id>/secured/editProfile.xhtml</to-view-id>
@@ -53,7 +53,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
@@ -62,7 +62,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>register</from-outcome>
             <to-view-id>/register.xhtml</to-view-id>
@@ -71,7 +71,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>forgotPassword</from-outcome>
             <to-view-id>/forgotPassword.xhtml</to-view-id>
@@ -80,7 +80,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/*.xhtml</from-view-id>
+        <from-view-id>*.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>home</from-outcome>
             <to-view-id>/home.xhtml</to-view-id>
