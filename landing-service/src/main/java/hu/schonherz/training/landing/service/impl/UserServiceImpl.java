@@ -2,13 +2,16 @@ package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.core.entity.Role;
 import hu.schonherz.training.landing.core.entity.User;
+import hu.schonherz.training.landing.service.bean.LoggedInUsers;
 import hu.schonherz.training.landing.core.repository.RoleRepository;
 import hu.schonherz.training.landing.core.repository.UserRepository;
 import hu.schonherz.training.landing.service.mapper.RoleMapper;
 import hu.schonherz.training.landing.service.mapper.UserMapper;
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.service.remote.UserRemoteService;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,10 @@ import java.util.List;
 @Stateless(name = "UserService", mappedName = "UserService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
+@Local(UserService.class)
+@Remote(UserRemoteService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserRemoteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -31,9 +36,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private LoggedInUsers loggedInUsers;
 
     @Override
     public List<UserVo> getUsers() {
@@ -76,6 +82,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo) {
+        loggedInUsers.getUsersMap().put(cookie, remoteUserVo);
+    }
+
+    @Override
     public void registerUser(UserVo user) {
 
         User userEntity = UserMapper.toEntity(user);
@@ -92,4 +103,8 @@ public class UserServiceImpl implements UserService {
         userEntity.getRoles().add(role);
     }
 
+    @Override
+    public RemoteUserVo getLoggedInUser(String cookie) {
+        return loggedInUsers.getUsersMap().get(cookie);
+    }
 }

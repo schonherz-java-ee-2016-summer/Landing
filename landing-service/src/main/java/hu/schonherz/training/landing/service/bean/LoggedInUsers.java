@@ -1,12 +1,10 @@
-package hu.schonherz.training.landing.web;
+package hu.schonherz.training.landing.service.bean;
 
 import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 
-@Component
 public class LoggedInUsers {
 
     private HashMap<String, RemoteUserVo> usersMap;

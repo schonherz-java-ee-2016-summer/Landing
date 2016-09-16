@@ -3,12 +3,13 @@ package hu.schonherz.training.landing.web;
 
 import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
+import hu.schonherz.training.landing.web.mapper.RemoteRoleMapper;
 import hu.schonherz.training.landing.web.mapper.RemoteUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,20 +32,17 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @EJB
     private RoleService roleService;
 
-    @Autowired
-    LoggedInUsers loggedInUsers;
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserVo user = userService.getUserByName(userDetails.getUsername());
         List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
-
+        RemoteUserVo remoteUser = RemoteUserMapper.toRemoteUser(user, roles);
+        //RemoteUserVo remoteUser = new RemoteUserVo(user.getId(), user.getName(), user.getEmail(), user.isActive(), RemoteRoleMapper.toRemoteRoleList(roles));
         String cookie = UUID.randomUUID().toString();
 
-        loggedInUsers.getUsersMap().put(cookie, RemoteUserMapper.toRemoteUser(user, roles));
-        LOGGER.info("Registered remote user " + loggedInUsers.getUsersMap().get(cookie).toString());
+        userService.addLoggedInUser(cookie, remoteUser);
     }
 
 }

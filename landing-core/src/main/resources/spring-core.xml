@@ -37,4 +37,6 @@
         </constructor-arg>
     </bean>
 
+    <bean class="hu.schonherz.training.landing.service.bean.LoggedInUsers" />
+
 </beans>

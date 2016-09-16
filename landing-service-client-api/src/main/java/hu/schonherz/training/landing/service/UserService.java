@@ -1,5 +1,6 @@
 package hu.schonherz.training.landing.service;
 
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
 
@@ -22,6 +23,8 @@ public interface UserService {
     void deleteUser(Long id);
 
     void addRoleToUser(Long userId, RoleVo roleVo);
+
+    void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo);
 
     void registerUser(UserVo user);
 

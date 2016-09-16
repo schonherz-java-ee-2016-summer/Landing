@@ -1,7 +1,5 @@
 package hu.schonherz.training.landing.vo.remote;
 
-import hu.schonherz.training.landing.vo.RoleVo;
-
 import java.io.Serializable;
 import java.util.List;
 
