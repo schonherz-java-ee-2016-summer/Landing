@@ -16,7 +16,7 @@
 
         <ui:define name="body">
             <f:view>
-                <form action="login" method="post">
+                <form class="col-lg-push-6" action="login" method="post">
                     <table>
                         <tr>
                             <td><h:outputText value="#{msg['login.name.label']}"/></td>
@@ -25,6 +25,13 @@
                         <tr>
                             <td><h:outputText value="#{msg['login.password.label']}"/></td>
                             <td><input type="password" name="j_password"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="checkbox-inline"> 
+                                    <input type="checkbox" name="remember-me" /> #{msg['rememberme']}
+                                </label>
+                            </td>
                         </tr>
                         <tr>
                             <td><button class="button" type="submit">#{msg['login.submitButton.label']}</button></td>
