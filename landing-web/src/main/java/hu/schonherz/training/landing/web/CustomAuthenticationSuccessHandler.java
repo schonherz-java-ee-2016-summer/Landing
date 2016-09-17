@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -41,9 +42,14 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
         RemoteUserVo remoteUser = RemoteUserMapper.toRemoteUser(user, roles);
         //RemoteUserVo remoteUser = new RemoteUserVo(user.getId(), user.getName(), user.getEmail(), user.isActive(), RemoteRoleMapper.toRemoteRoleList(roles));
-        String cookie = UUID.randomUUID().toString();
+        String cookieId = UUID.randomUUID().toString();
 
-        userService.addLoggedInUser(cookie, remoteUser);
+        userService.addLoggedInUser(cookieId, remoteUser);
+
+        Cookie cookie = new Cookie("loggedInUser", cookieId);
+        cookie.setPath("/");
+        cookie.setMaxAge(86400);
+        httpServletResponse.addCookie(cookie);
 
         setDefaultTargetUrl("/home.xhtml");
         super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
