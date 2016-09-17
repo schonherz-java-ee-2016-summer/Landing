@@ -24,4 +24,11 @@ public class AddPermissionsToRoleMB {
             roleService.addPermissionToRoleByName(role, permissionVo);
         }
     }
+
+    public void removePermissions(List<String> permissionNames, String role) {
+        for (String name : permissionNames) {
+            PermissionVo permissionVo = permissionService.getPermissionByName(name);
+            roleService.removePermissionFromRoleByName(role, permissionVo);
+        }
+    }
 }
