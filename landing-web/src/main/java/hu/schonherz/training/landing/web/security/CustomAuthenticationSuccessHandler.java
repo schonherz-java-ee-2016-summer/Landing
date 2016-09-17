@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.web;
+package hu.schonherz.training.landing.web.security;
 
 
 import hu.schonherz.training.landing.service.RoleService;
@@ -6,14 +6,12 @@ import hu.schonherz.training.landing.service.UserService;
 import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
-import hu.schonherz.training.landing.web.mapper.RemoteRoleMapper;
 import hu.schonherz.training.landing.web.mapper.RemoteUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import javax.ejb.EJB;
@@ -41,7 +39,6 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         UserVo user = userService.getUserByName(userDetails.getUsername());
         List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
         RemoteUserVo remoteUser = RemoteUserMapper.toRemoteUser(user, roles);
-        //RemoteUserVo remoteUser = new RemoteUserVo(user.getId(), user.getName(), user.getEmail(), user.isActive(), RemoteRoleMapper.toRemoteRoleList(roles));
         String cookieId = UUID.randomUUID().toString();
 
         userService.addLoggedInUser(cookieId, remoteUser);

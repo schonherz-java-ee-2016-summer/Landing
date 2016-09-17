@@ -23,7 +23,7 @@
                               token-validity-seconds="86400" />
     </security:http>
 
-    <bean id="authenticationSuccessHandler" class="hu.schonherz.training.landing.web.CustomAuthenticationSuccessHandler"/>
+    <bean id="authenticationSuccessHandler" class="hu.schonherz.training.landing.web.security.CustomAuthenticationSuccessHandler"/>
 
     <security:authentication-manager>
         <security:authentication-provider

@@ -1,4 +1,4 @@
-package hu.schonherz.training.landing.web;
+package hu.schonherz.training.landing.web.security;
 
 
 import hu.schonherz.training.landing.service.RoleService;

@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class RegisterUserMB implements Serializable {
 
     private UserVo user = new UserVo();
-    private String confirmPassword;
 
     public UserVo getUser() {
         return user;
@@ -19,14 +18,6 @@ public class RegisterUserMB implements Serializable {
 
     public void setUser(UserVo user) {
         this.user = user;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
 }
