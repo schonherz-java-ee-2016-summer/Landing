@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationSuccessHandler.class);
 
@@ -43,6 +44,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String cookie = UUID.randomUUID().toString();
 
         userService.addLoggedInUser(cookie, remoteUser);
+
+        setDefaultTargetUrl("/home.xhtml");
+        super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
     }
 
 }
