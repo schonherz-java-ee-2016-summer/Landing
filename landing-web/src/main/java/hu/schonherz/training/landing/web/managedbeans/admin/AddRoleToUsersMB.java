@@ -25,4 +25,12 @@ public class AddRoleToUsersMB {
             userService.addRoleToUserByName(name, roleVo);
         }
     }
+
+    public void removeRole(List<String> userNames, String role) {
+        RoleVo roleVo = roleService.getRoleByName(role);
+
+        for (String name : userNames) {
+            userService.removeRoleFromUserByName(name, roleVo);
+        }
+    }
 }

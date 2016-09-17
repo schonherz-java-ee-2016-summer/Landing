@@ -63,4 +63,9 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+    @Override
+    public void removePermissionFromRoleByName(String name, PermissionVo permissionVo) {
+        roleRepository.findByName(name).getPermissions().remove(PermissionMapper.toEntity(permissionVo));
+    }
+
 }

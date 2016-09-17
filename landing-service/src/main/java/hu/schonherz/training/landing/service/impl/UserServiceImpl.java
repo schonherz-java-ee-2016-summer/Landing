@@ -98,6 +98,18 @@ public class UserServiceImpl implements UserService, UserRemoteService {
     }
 
     @Override
+    public void removeRoleFromUserByName(String name, RoleVo roleVo) {
+        List<Role> newRoles = new ArrayList<Role>();
+
+        for (Role role : userRepository.findByName(name).getRoles()) {
+            if (!(role.getName().equals(roleVo.getName()))) {
+                newRoles.add(role);
+            }
+        }
+        userRepository.findByName(name).setRoles(newRoles);
+    }
+
+    @Override
     public void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo) {
          loggedInUsers.getUsersMap().put(cookie, remoteUserVo);
     }

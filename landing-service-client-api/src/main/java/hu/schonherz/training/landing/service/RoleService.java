@@ -17,4 +17,5 @@ public interface RoleService {
 
     void addPermissionToRoleByName(String name, PermissionVo PermissionVo);
 
+    void removePermissionFromRoleByName(String name, PermissionVo permissionVo);
 }

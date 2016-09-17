@@ -37,9 +37,12 @@
                             <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole}" itemValue="#{userRole}"/>
                         </p:selectOneRadio>
 
-                        <p:commandButton id="usersSubmit" value="Submit" update="displayUsers"
+                        <p:commandButton id="usersAddSubmit" value="Add" update="displayUsers"
                                          oncomplete="PF('usersDialog').show()" style="margin-top:5px"
                                          action="#{addRoleToUsers.addRole(userManagement.users.target, roleManagement.userRole)}"/>
+                        <p:commandButton id="usersRemoveSubmit" value="Remove" update="displayUsers"
+                                         oncomplete="PF('usersDialog').show()" style="margin-top:5px"
+                                         action="#{addRoleToUsers.removeRole(userManagement.users.target, roleManagement.userRole)}"/>
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
                             <h:panelGrid id="displayUsers" columns="2">
@@ -76,9 +79,12 @@
                             <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole}" itemValue="#{permRole}"/>
                         </p:selectOneRadio>
 
-                        <p:commandButton id="rolesSubmit" value="Submit" update="displayRoles"
+                        <p:commandButton id="rolesAddSubmit" value="Add" update="displayRoles"
                                          oncomplete="PF('rolesDialog').show()" style="margin-top:5px"
                                          action="#{addPermissionsToRole.addPermissions(permissionManagement.permissions.target, roleManagement.permRole)}"/>
+                        <p:commandButton id="rolesRemoveSubmit" value="Remove" update="displayRoles"
+                                         oncomplete="PF('rolesDialog').show()" style="margin-top:5px"
+                                         action="#{addPermissionsToRole.removePermissions(permissionManagement.permissions.target, roleManagement.permRole)}"/>
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rolesDialog">
                             <h:panelGrid id="displayRoles" columns="2">
