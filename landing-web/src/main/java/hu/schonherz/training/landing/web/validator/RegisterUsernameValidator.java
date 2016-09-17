@@ -33,9 +33,9 @@ public class RegisterUsernameValidator implements Validator {
         String username = submittedValue.toString();
         ResourceBundle bundle;
         try {
-            bundle = ResourceBundle.getBundle("Landing", context.getViewRoot().getLocale());
+            bundle = ResourceBundle.getBundle("Messages", context.getViewRoot().getLocale());
         } catch (MissingResourceException e) {
-            bundle = ResourceBundle.getBundle("Landing", Locale.ENGLISH);
+            bundle = ResourceBundle.getBundle("Messages", Locale.ENGLISH);
         }
 
         if (username.length() < 3) {

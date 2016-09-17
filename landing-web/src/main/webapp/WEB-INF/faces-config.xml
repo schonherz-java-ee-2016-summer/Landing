@@ -11,7 +11,7 @@
             <supported-locale>hu_HU</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>Landing</base-name>
+            <base-name>Messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>

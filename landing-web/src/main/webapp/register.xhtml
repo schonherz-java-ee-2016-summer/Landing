@@ -40,7 +40,7 @@
                     <p:password id="psw1" value="#{registerUser.user.password}" required="true"
                                 requiredMessage="#{msg['register.password.requiredMessage']}"
                                 match="psw2" feedback="true" inline="true">
-                        <f:validateLength minimum="5"/>
+                        <f:validator validatorId="custom.passwordValidator"/>
                     </p:password>
                     <p:tooltip for="psw1" value="#{msg['register.password.tooltip']}"/>
                     <p:message for="psw1" display="both"/>
