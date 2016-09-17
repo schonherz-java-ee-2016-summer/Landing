@@ -16,53 +16,54 @@
         </ui:define>
 
         <ui:define name="body">
-            <f:view>
-                <h:form id="registerForm">
-                    <table>
-                        <tr>
-                            <td><p:outputLabel for="name" value="#{msg['register.name.label']}"/></td>
-                            <td><p:inputText id="name" value="#{registerUser.user.name}"
-                                             required="true" requiredMessage="#{msg['register.name.requiredMessage']}"
-                                             validator="#{registerUsernameValidator.validate}" /></td>
-                            <td><h:message for="name" style="color:red"/></td>
-                        </tr>
-                        <tr>
-                            <td><p:outputLabel for="email" value="#{msg['register.email.label']}"/></td>
-                            <td><p:inputText id="email" value="#{registerUser.user.email}"
-                                             required="true" requiredMessage="#{msg['register.email.requiredMessage']}"
-                                             validatorMessage="#{msg['register.email.validatorMessage']}">
-                                <f:validateRegex
-                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                            </p:inputText></td>
-                            <td><h:message for="email" style="color:red"/></td>
-                        </tr>
-                        <tr>
-                            <td><p:outputLabel for="psw1" value="#{msg['register.password.label']}"/></td>
-                            <td><p:password id="psw1" value="#{registerUser.user.password}"
-                                            required="true" requiredMessage="#{msg['register.password.requiredMessage']}"
-                                            match="psw2" feedback="true">
-                                <f:validateLength minimum="5"/>
-                            </p:password></td>
-                            <td><h:message for="psw1" style="color:red"/></td>
-                        </tr>
-                        <tr>
-                            <td><p:outputLabel for="psw2" value="#{msg['register.confirmpassword.label']}"/></td>
-                            <td><p:password id="psw2" value="#{registerUser.user.password}"
-                                            required="true" requiredMessage="#{msg['register.confirmpassword.requiredMessage']}">
-                                <f:validateLength minimum="5"/>
-                            </p:password></td>
-                            <td><h:message for="psw2" style="color:red"/></td>
-                        </tr>
-                        <tr>
-                            <td/>
-                            <td><h:commandButton styleClass="button" value="#{msg['register.submitButton.label']}" action="#{register.doRegister}"/></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputLink value="home.xhtml">#{msg['home.title']}</h:outputLink></td>
-                        </tr>
-                    </table>
-                </h:form>
-            </f:view>
+            <h:form id="registerForm">
+                <p:panelGrid columns="2" layout="grid" cellpadding="5">
+                    <p:outputLabel for="name" value="#{msg['register.name.label']}"/>
+                    <p:inputText id="name" value="#{registerUser.user.name}" required="true"
+                                 requiredMessage="#{msg['register.name.requiredMessage']}"
+                                 validator="#{usernameValidator.validate}">
+                    </p:inputText>
+                    <p:tooltip for="name" value="#{msg['register.name.tooltip']}"/>
+                    <p:message for="name" display="both"/>
+
+                    <p:outputLabel for="email" value="#{msg['register.email.label']}"/>
+                    <p:inputText id="email" value="#{registerUser.user.email}" required="true"
+                                 requiredMessage="#{msg['register.email.requiredMessage']}"
+                                 validatorMessage="#{msg['register.email.validatorMessage']}">
+                        <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </p:inputText>
+                    <p:tooltip for="email" value="#{msg['register.email.tooltip']}"/>
+                    <p:message for="email" display="both"/>
+
+                    <p:outputLabel for="psw1" value="#{msg['register.password.label']}"/>
+                    <p:password id="psw1" value="#{registerUser.user.password}" required="true"
+                                requiredMessage="#{msg['register.password.requiredMessage']}"
+                                match="psw2" feedback="true" inline="true">
+                        <f:validateLength minimum="5"/>
+                    </p:password>
+                    <p:tooltip for="psw1" value="#{msg['register.password.tooltip']}"/>
+                    <p:message for="psw1" display="both"/>
+
+                    <p:outputLabel for="psw2" value="#{msg['register.confirmpassword.label']}"/>
+                    <p:password id="psw2" value="#{registerUser.user.password}" required="true"
+                                requiredMessage="#{msg['register.confirmpassword.requiredMessage']}"/>
+                    <p:tooltip for="psw2" value="#{msg['register.confirmpassword.tooltip']}"/>
+                    <p:message for="psw2" display="both"/>
+
+                    <p:commandButton value="#{msg['register.submitButton.label']}"
+                                     ajax="false"
+                                     action="#{register.doRegister}" icon="fa fa-plus"/>
+                </p:panelGrid>
+
+                <p:separator/>
+            </h:form>
+
+            <table>
+                <tr>
+                    <td><h:outputLink value="home.xhtml">#{msg['home.title']}</h:outputLink></td>
+                </tr>
+            </table>
         </ui:define>
     </ui:composition>
 </html>
