@@ -83,7 +83,18 @@ public class UserServiceImpl implements UserService, UserRemoteService {
 
     @Override
     public void addRoleToUserByName(String name, RoleVo roleVo) {
-        userRepository.findByName(name).getRoles().add(RoleMapper.toEntity(roleVo));
+        boolean contains = false;
+
+        for (Role role : userRepository.findByName(name).getRoles()) {
+            contains = role.getName().equals(roleVo.getName());
+            if (contains) {
+                break;
+            }
+        }
+
+        if (!contains) {
+            userRepository.findByName(name).getRoles().add(RoleMapper.toEntity(roleVo));
+        }
     }
 
     @Override

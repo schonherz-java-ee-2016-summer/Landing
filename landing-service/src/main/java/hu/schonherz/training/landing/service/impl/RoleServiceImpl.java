@@ -1,5 +1,6 @@
 package hu.schonherz.training.landing.service.impl;
 
+import hu.schonherz.training.landing.core.entity.Permission;
 import hu.schonherz.training.landing.core.repository.RoleRepository;
 import hu.schonherz.training.landing.service.mapper.PermissionMapper;
 import hu.schonherz.training.landing.service.mapper.RoleMapper;
@@ -48,7 +49,18 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void addPermissionToRoleByName(String name, PermissionVo permissionVo) {
-        roleRepository.findByName(name).getPermissions().add(PermissionMapper.toEntity(permissionVo));
+        boolean contains = false;
+
+        for (Permission perm : roleRepository.findByName(name).getPermissions()) {
+            contains = perm.getName().equals(permissionVo.getName());
+            if (contains) {
+                break;
+            }
+        }
+
+        if (!contains) {
+            roleRepository.findByName(name).getPermissions().add(PermissionMapper.toEntity(permissionVo));
+        }
     }
 
 }
