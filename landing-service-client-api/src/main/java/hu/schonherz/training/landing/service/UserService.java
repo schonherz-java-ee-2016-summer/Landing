@@ -30,5 +30,7 @@ public interface UserService {
 
     void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo);
 
+    void deleteLoggedInUser(String cookie);
+
     void registerUser(UserVo user);
 }

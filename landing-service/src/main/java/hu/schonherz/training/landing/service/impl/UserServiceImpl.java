@@ -115,6 +115,11 @@ public class UserServiceImpl implements UserService, UserRemoteService {
     }
 
     @Override
+    public void deleteLoggedInUser(String cookie) {
+        loggedInUsers.getUsersMap().remove(cookie);
+    }
+
+    @Override
     public void registerUser(UserVo user) {
 
         User userEntity = UserMapper.toEntity(user);

@@ -3,16 +3,18 @@ package hu.schonherz.training.landing.web.security;
 
 import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.service.UserService;
-import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.landing.web.mapper.RemoteUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,9 +25,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationSuccessHandler.class);
+
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @EJB
     private UserService userService;
@@ -47,9 +51,9 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         cookie.setPath("/");
         cookie.setMaxAge(86400);
         httpServletResponse.addCookie(cookie);
+        LOGGER.info("cookie created " + cookie.getValue());
+        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home.xhtml");
 
-        setDefaultTargetUrl("/home.xhtml");
-        super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
     }
 
 }
