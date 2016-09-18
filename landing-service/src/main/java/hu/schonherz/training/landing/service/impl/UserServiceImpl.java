@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService, UserRemoteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public static final String DEFAULT_USER_ROLE = "ROLE_USER";
+    public static final String DEFAULT_USER_ROLE = "USER";
 
     @Autowired
     private UserRepository userRepository;

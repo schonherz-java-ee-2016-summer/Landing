@@ -1,8 +1,10 @@
 package hu.schonherz.training.landing.web.security;
 
 
+import hu.schonherz.training.landing.service.PermissionService;
 import hu.schonherz.training.landing.service.RoleService;
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.PermissionVo;
 import hu.schonherz.training.landing.vo.RoleVo;
 import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
@@ -31,6 +33,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     UserService userService;
     @EJB
     RoleService roleService;
+    @EJB
+    PermissionService permissionService;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
@@ -44,7 +48,12 @@ public class CustomUserDetailsService implements UserDetailsService {
             }
 
             List<RoleVo> roles = roleService.getRolesByUserId(user.getId());
-            List<GrantedAuthority> authorities = buildUserAuthority(roles);
+            List<PermissionVo> permissions = new ArrayList<PermissionVo>();
+
+            for (RoleVo role : roles) {
+                permissions.addAll(permissionService.getPermissionsByRoleId(role.getId()));
+            }
+            List<GrantedAuthority> authorities = buildUserAuthority(permissions);
 
             return buildUserForAuthentication(user, authorities);
 
@@ -59,12 +68,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(user.getName(), user.getPassword(), true, true, true, true, authorities);
     }
 
-    private List<GrantedAuthority> buildUserAuthority(List<RoleVo> userRoles) {
+    private List<GrantedAuthority> buildUserAuthority(List<PermissionVo> userPermissions) {
 
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
-        for (RoleVo userRole : userRoles) {
-            setAuths.add(new SimpleGrantedAuthority(userRole.getName()));
+        for (PermissionVo userPermission : userPermissions) {
+            setAuths.add(new SimpleGrantedAuthority(userPermission.getName()));
         }
 
         return new ArrayList<GrantedAuthority>(setAuths);
