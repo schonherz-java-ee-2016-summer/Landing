@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CustomLogoutSuccesHandler implements LogoutSuccessHandler {
+public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomLogoutSuccesHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
@@ -28,13 +28,14 @@ public class CustomLogoutSuccesHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         String cookie = getHashFromCookies(httpServletRequest.getCookies());
         userService.deleteLoggedInUser(cookie);
+        removeLoggedInUserCookie(cookie, httpServletRequest.getCookies());
         LOGGER.info("cookie destroyed" + cookie);
         redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home.xhtml");
     }
 
     private String getHashFromCookies(Cookie[] cookies) {
 
-        if (cookies.length != 0) {
+        if (cookies.length > 0) {
             for (Cookie cookie : cookies) {
 
                 if (cookie.getName().equals("loggedInUser")) {
@@ -45,5 +46,15 @@ public class CustomLogoutSuccesHandler implements LogoutSuccessHandler {
             }
         }
         return null;
+    }
+
+    private void removeLoggedInUserCookie(String cookie, Cookie[] cookies) {
+        if (cookies.length > 0) {
+            for (Cookie ck : cookies) {
+                if (ck.getName().equals(cookie)) {
+                    ck.setMaxAge(0);
+                }
+            }
+        }
     }
 }

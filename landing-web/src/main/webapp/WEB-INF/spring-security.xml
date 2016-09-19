@@ -17,9 +17,10 @@
                              authentication-failure-url="/login.xhtml?error=true"
                              username-parameter="j_username" password-parameter="j_password"
                              authentication-success-handler-ref="authenticationSuccessHandler"/>
-        <security:logout logout-url="/secured/logout"
+        <security:logout logout-url="/logout"
+                         invalidate-session="true"
                          success-handler-ref="logoutSuccessHandler"
-                         delete-cookies="JSESSIONID, loggedInUser"/>
+                         delete-cookies="JSESSIONID, loggedInUser, remember-me"/>
         <security:remember-me remember-me-parameter="remember-me"
                               key="myAppKey" remember-me-cookie="remember-me"
                               token-validity-seconds="86400"/>
@@ -28,8 +29,7 @@
     <bean id="authenticationSuccessHandler"
           class="hu.schonherz.training.landing.web.security.CustomAuthenticationSuccessHandler"/>
 
-    <bean id="logoutSuccessHandler" class="hu.schonherz.training.landing.web.security.CustomLogoutSuccesHandler"/>
-
+    <bean id="logoutSuccessHandler" class="hu.schonherz.training.landing.web.security.CustomLogoutSuccessHandler"/>
 
     <security:authentication-manager>
         <security:authentication-provider

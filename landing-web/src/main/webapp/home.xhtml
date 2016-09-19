@@ -31,8 +31,8 @@
                              styleClass="form-control"
                              rendered="#{facesContext.externalContext.userPrincipal.name != null}">
                     <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name}"/>
-                    <p:commandButton action="#{logout.logout}" value="#{msg['home.logout.label']}"
-                                     icon="fa fa-user-times"/>
+                    <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout"
+                                   >#{msg['home.logout.label']}</h:outputLink>
                 </p:panelGrid>
             </h:form>
 
