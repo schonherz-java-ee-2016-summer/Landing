@@ -11,11 +11,11 @@
     <ui:composition template="/templates/pageTemplate.xhtml">
 
         <ui:define name="title">
-            My profile
+            #{msg['showProfile.title']}
         </ui:define>
 
         <ui:define name="body">
-            <p:dataList value="#{loginUser.user}" var="user">
+            <p:dataList value="#{showProfile.user}" var="user">
                 <f:facet name="header">
                     #{msg['showProfile.dataList.header']}
                 </f:facet>
