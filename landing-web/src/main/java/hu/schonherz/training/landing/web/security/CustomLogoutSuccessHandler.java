@@ -26,10 +26,16 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        String cookie = getHashFromCookies(httpServletRequest.getCookies());
-        userService.deleteLoggedInUser(cookie);
-        removeLoggedInUserCookie(cookie, httpServletRequest.getCookies());
-        LOGGER.info("cookie destroyed" + cookie);
+        String hash = getHashFromCookies(httpServletRequest.getCookies());
+
+        userService.deleteLoggedInUser(hash);
+
+        Cookie cookie = new Cookie("loggedInUser", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        httpServletResponse.addCookie(cookie);
+        
+        LOGGER.info("cookie destroyed" + hash);
         redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home.xhtml");
     }
 
@@ -48,13 +54,4 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
         return null;
     }
 
-    private void removeLoggedInUserCookie(String cookie, Cookie[] cookies) {
-        if (cookies.length > 0) {
-            for (Cookie ck : cookies) {
-                if (ck.getName().equals(cookie)) {
-                    ck.setMaxAge(0);
-                }
-            }
-        }
-    }
 }
