@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "register")
 @RequestScoped
@@ -28,11 +30,14 @@ public class RegisterMB {
     private RoleService roleService;
 
     public String doRegister() {
-        
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
         user.getUser().setPassword(encPassword);
         userService.registerUser(user.getUser());
+
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Register success", "You have successfully registered to ConOrg!"));
 
         LOGGER.info(user.getUser().getName() + " registered with " + user.getUser().getEmail() + " email address!");
 

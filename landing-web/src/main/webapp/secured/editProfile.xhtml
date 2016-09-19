@@ -16,16 +16,23 @@
         </ui:define>
 
         <ui:define name="body">
-            <p:dataList value="#{editProfile.user}" var="user">
-                <f:facet name="header">
-                    #{msg['editProfile.dataList.header']}
-                </f:facet>
-                <p:panelGrid columns="1" layout="grid" cellpadding="5">
-                    <p:inputText label="#{msg['showProfile.email.label']}" value="#{user.email}"/>
-                    <p:selectBooleanCheckbox label="#{msg['editProfile.activity.label']}" value="#{user.active}" />
-                    <p:commandButton value="#{msg['editProfile.saveButton.label']}" action="#{editProfile.saveUser}"/>
-                </p:panelGrid>
-            </p:dataList>
+            <h:form>
+                <p:dataList value="#{editProfile.user}" var="user">
+                    <f:facet name="header">
+                        #{msg['editProfile.dataList.header']}
+                    </f:facet>
+                    <p:panelGrid columns="1" layout="grid" cellpadding="5">
+                        <p:outputLabel for="email" value="#{msg['editProfile.email.label']}"/>
+                        <p:inputText id="email" value="#{user.email}"/>
+
+                        <p:outputLabel for="activity" value="#{msg['editProfile.activity.label']}"/>
+                        <p:selectBooleanCheckbox id="activity" value="#{user.active}"/>
+
+                        <p:commandButton value="#{msg['editProfile.saveButton.label']}"
+                                         action="#{editProfile.saveUser}"/>
+                    </p:panelGrid>
+                </p:dataList>
+            </h:form>
         </ui:define>
 
     </ui:composition>

@@ -18,6 +18,8 @@
 
         <ui:define name="body">
 
+            <h:outputText value="Sikertelen login" rendered="#{param['error'] == true}"/>
+
             <h:body>
                 <h:form id="loginForm" prependId="false">
                     <p:messages globalOnly="true"/>
@@ -39,7 +41,7 @@
                                      action="#{loginBean.login}"/>
                 </h:form>
             </h:body>
-            
+
         </ui:define>
     </ui:composition>
 </html>

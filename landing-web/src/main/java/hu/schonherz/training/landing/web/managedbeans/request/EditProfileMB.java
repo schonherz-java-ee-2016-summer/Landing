@@ -26,7 +26,7 @@ public class EditProfileMB {
 
     public String saveUser() {
         userService.saveUser(user);
-        return "/home";
+        return "200";
     }
 
     public UserVo getUser() {
