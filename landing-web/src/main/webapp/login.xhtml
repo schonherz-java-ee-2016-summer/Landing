@@ -15,34 +15,28 @@
         </ui:define>
 
         <ui:define name="body">
-            <f:view>
-                <form class="col-lg-push-6" action="login" method="post">
-                    <table>
-                        <tr>
-                            <td><h:outputText value="#{msg['login.name.label']}"/></td>
-                            <td><input type="text" name="j_username"/></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputText value="#{msg['login.password.label']}"/></td>
-                            <td><input type="password" name="j_password"/></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="checkbox-inline"> 
-                                    <input type="checkbox" name="remember-me" /> #{msg['rememberme']}
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><button class="button" type="submit">#{msg['login.submitButton.label']}</button></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputLink value="home.xhtml">#{msg['home.title']}</h:outputLink></td>
-                        </tr>
-                    </table>
+                <form action="login" method="post">
+                    <div>
+                        <label>#{msg['login.name.label']}
+                            <input class="input-group" type="text" name="j_username"/>
+                        </label>
+                    </div>
+                    <div>
+                        <label>#{msg['login.password.label']}
+                            <input class="input-group" type="password" name="j_password"/>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="remember-me" /> #{msg['rememberme']}
+                        </label>
+                    </div>
+                    <div>
+                        <button class="btn-link btn-group-vertical" type="submit">#{msg['login.submitButton.label']}</button>
+                        <h:outputLink styleClass="btn-link btn-group-vertical" value="forgotPassword.xhtml">#{msg['forgotPassword']}</h:outputLink>
+                        <h:outputLink styleClass="btn-link btn-group-vertical" value="home.xhtml">#{msg['home.title']}</h:outputLink>
+                    </div>
                 </form>
-                <h:button styleClass="button" outcome="forgotPassword" value="#{msg['forgotPassword']}"/>
-            </f:view>
         </ui:define>
     </ui:composition>
 </html>

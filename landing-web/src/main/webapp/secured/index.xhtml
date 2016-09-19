@@ -21,7 +21,7 @@
 
             <div class="form-control">
                 <h:outputText value="#{msg['home.loggedInAs']} #{userSession.user.username}" styleClass="text-success"/>
-                <form action="logout" method="post">
+                <form action="/logout" method="post">
                     <button type="submit">#{msg['home.logout']}</button>
                 </form>
             </div>
