@@ -8,8 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.mail.MessagingException;
 import java.util.UUID;
 
 @ManagedBean(name = "forgotPassword")
@@ -28,7 +26,7 @@ public class ForgotPasswordMB {
         UserVo user = userService.getUserByEmail(email);
 
         if (user == null) {
-            return "forgotPassword";
+            return "/forgotPassword.xhtml?user=notfound";
         }
 
         String newPassword = UUID.randomUUID().toString();
