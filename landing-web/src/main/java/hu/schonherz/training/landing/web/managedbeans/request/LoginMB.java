@@ -12,14 +12,34 @@ import java.io.IOException;
 
 @ManagedBean(name="loginBean")
 @RequestScoped
-public class LoginMB{
+public class LoginMB {
+
+    private String username;
+
+    private String password;
 
     public String login() throws ServletException, IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext extenalContext = facesContext.getExternalContext();
-        RequestDispatcher dispatcher = ((ServletRequest)extenalContext.getRequest()).getRequestDispatcher("login");
-        dispatcher.forward((ServletRequest)extenalContext.getRequest(), (ServletResponse)extenalContext.getResponse());
+        ExternalContext externalContext = facesContext.getExternalContext();
+        RequestDispatcher dispatcher = ((ServletRequest)externalContext.getRequest()).getRequestDispatcher("/login");
+        dispatcher.forward((ServletRequest) externalContext.getRequest(), (ServletResponse) externalContext.getResponse());
         facesContext.responseComplete();
         return null;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

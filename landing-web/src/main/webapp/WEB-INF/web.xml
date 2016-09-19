@@ -73,8 +73,9 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-
 
     <ejb-local-ref>
         <ejb-ref-name>UserService</ejb-ref-name>
