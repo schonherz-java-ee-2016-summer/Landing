@@ -6,6 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 
     <ui:composition template="/templates/pageTemplate.xhtml">
@@ -15,6 +16,16 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:dataList value="#{editProfile.user}" var="user">
+                <f:facet name="header">
+                    #{msg['editProfile.dataList.header']}
+                </f:facet>
+                <p:panelGrid columns="1" layout="grid" cellpadding="5">
+                    <p:inputText label="#{msg['showProfile.email.label']}" value="#{user.email}"/>
+                    <p:selectBooleanCheckbox label="#{msg['editProfile.activity.label']}" value="#{user.active}" />
+                    <p:commandButton value="#{msg['editProfile.saveButton.label']}" action="#{editProfile.saveUser}"/>
+                </p:panelGrid>
+            </p:dataList>
         </ui:define>
 
     </ui:composition>
