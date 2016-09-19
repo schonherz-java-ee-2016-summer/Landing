@@ -46,6 +46,8 @@
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="usersDialog">
                             <h:panelGrid id="displayUsers" columns="2">
+                                <h:outputText value="#{msg['admin.users.success.label']}" style="font-weight:bold"/>
+
                                 <h:outputText value="#{msg['admin.users.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{userManagement.users.target}" var="item">
                                     <h:outputText value="#{item}" style="margin-right:5px"/>
@@ -83,6 +85,8 @@
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rolesDialog">
                             <h:panelGrid id="displayRoles" columns="2">
+                                <h:outputText value="#{msg['admin.roles.success.label']}" style="font-weight:bold"/>
+
                                 <h:outputText value="#{msg['admin.permissions.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{permissionManagement.permissions.target}" var="item">
                                     <h:outputText value="#{item}" style="margin-right:5px"/>
@@ -112,6 +116,8 @@
 
                         <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="passDialog">
                             <h:panelGrid id="displayPass" columns="2">
+                                <h:outputText value="#{msg['admin.pass.success.label']}" style="font-weight:bold"/>
+
                                 <h:outputText value="#{msg['admin.users.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{userManagement.usersPass.target}" var="item">
                                     <h:outputText value="#{item}" style="margin-right:5px"/>
