@@ -19,23 +19,33 @@
         <ui:define name="body">
 
             <h:form>
-                <div class="form-control">
+                <p:panelGrid style="display: block"
+                             styleClass="form-control"
+                             rendered="#{facesContext.externalContext.userPrincipal.name == null}">
                     <h:outputLink value="login.xhtml">#{msg['home.signIn']}</h:outputLink>
                     <h:outputText value=" #{msg['home.or']} "/>
                     <h:outputLink value="register.xhtml">#{msg['home.signUp']}</h:outputLink>
-                </div>
+                </p:panelGrid>
+
+                <p:panelGrid style="display: block"
+                             styleClass="form-control"
+                             rendered="#{facesContext.externalContext.userPrincipal.name != null}">
+                    <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name}"/>
+                    <p:commandButton action="#{logout.logout}" value="#{msg['home.logout.label']}"
+                                     icon="fa fa-user-times"/>
+                </p:panelGrid>
             </h:form>
 
             <div class="col-xs-6">
                 <h2>#{msg['home.band']}</h2>
                 <h:outputLink value="/band">
-                    <h:graphicImage styleClass="col-xs-12" value="/images/band.jpg" />
+                    <h:graphicImage styleClass="col-xs-12" value="/images/band.jpg"/>
                 </h:outputLink>
             </div>
             <div class="col-xs-6">
                 <h2>#{msg['home.venue']}</h2>
                 <h:outputLink value="/venue">
-                    <h:graphicImage styleClass="col-xs-12" value="/images/venue.jpg" />
+                    <h:graphicImage styleClass="col-xs-12" value="/images/venue.jpg"/>
                 </h:outputLink>
             </div>
 

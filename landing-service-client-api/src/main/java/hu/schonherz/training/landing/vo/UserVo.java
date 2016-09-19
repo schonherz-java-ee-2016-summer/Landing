@@ -1,8 +1,6 @@
 package hu.schonherz.training.landing.vo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserVo implements Serializable {
 
@@ -14,15 +12,16 @@ public class UserVo implements Serializable {
     private String password;
     private boolean active;
 
-    public UserVo(Long id, String name, String email, String password, boolean active, List<RoleVo> roles) {
+    public UserVo(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.active = active;
+        this.active = true;
     }
 
     public UserVo() {
+        this.active = true;
     }
 
     public Long getId() {
