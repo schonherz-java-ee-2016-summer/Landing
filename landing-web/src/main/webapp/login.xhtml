@@ -10,7 +10,7 @@
       xml:lang="en" lang="en">
 
 
-<ui:composition template="/templates/pageTemplate.xhtml">
+    <ui:composition template="/templates/pageTemplate.xhtml">
 
         <ui:define name="title">
             #{msg['login.title']}
@@ -22,47 +22,47 @@
                 <h:form id="loginForm" prependId="false">
                     <p:messages globalOnly="true"/>
 
-                    <p:panelGrid columns="3">
-                        <p:outputLabel for="j_username" value="#{msg['login.name.label']}" />
-                        <p:inputText id="j_username" required="true" label="username" />
-                        <p:message for="j_username" display="text" style="color:red"/>
+                    <p:panelGrid columns="1" layout="grid" cellpadding="5">
+                        <p:outputLabel for="j_username" value="#{msg['login.name.label']}"/>
+                        <p:inputText id="j_username" value="#{loginBean.username}" required="true" />
+                        <p:message for="j_username" display="both"/>
 
-                        <p:outputLabel for="j_password" value="#{msg['login.password.label']}" />
-                        <p:password id="j_password" label="password" required="true" />
-                        <p:message for="j_password" display="text" style="color:red"/>
+                        <p:outputLabel for="j_password" value="#{msg['login.password.label']}"/>
+                        <p:password id="j_password" value="#{loginBean.password}" required="true"/>
+                        <p:message for="j_password" display="both"/>
 
-                        <p:outputLabel for="_spring_security_remember_me" value="#{msg['rememberme']}" />
-                        <p:selectBooleanCheckbox    id="_spring_security_remember_me" />
+                        <p:outputLabel for="checkbox" value="#{msg['login.rememberMe']}"/>
+                        <p:selectBooleanCheckbox id="checkbox" value="remember-me"/>
                     </p:panelGrid>
 
-                    <h:commandButton type="submit" id="login" value="Login"
-                                     action="#{loginBean.login}" />
+                    <h:commandButton type="submit" id="loginButton" value="Login"
+                                     action="#{loginBean.login}"/>
                 </h:form>
             </h:body>
 
 
-                <!--<form action="login" method="post">-->
-                    <!--<div>-->
-                        <!--<label>#{msg['login.name.label']}-->
-                            <!--<input class="input-group" type="text" name="j_username"/>-->
-                        <!--</label>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<label>#{msg['login.password.label']}-->
-                            <!--<input class="input-group" type="password" name="j_password"/>-->
-                        <!--</label>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<label class="checkbox-inline">-->
-                            <!--<input type="checkbox" name="remember-me" /> #{msg['rememberme']}-->
-                        <!--</label>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<button class="btn-link btn-group-vertical" type="submit">#{msg['login.submitButton.label']}</button>-->
-                        <!--<h:outputLink styleClass="btn-link btn-group-vertical" value="forgotPassword.xhtml">#{msg['forgotPassword']}</h:outputLink>-->
-                        <!--<h:outputLink styleClass="btn-link btn-group-vertical" value="home.xhtml">#{msg['home.title']}</h:outputLink>-->
-                    <!--</div>-->
-                <!--</form>-->
+            <!--<form action="login" method="post">-->
+            <!--<div>-->
+            <!--<label>#{msg['login.name.label']}-->
+            <!--<input class="input-group" type="text" name="username"/>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<label>#{msg['login.password.label']}-->
+            <!--<input class="input-group" type="password" name="password"/>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<label class="checkbox-inline">-->
+            <!--<input type="checkbox" name="remember-me" /> #{msg['rememberme']}-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<button class="btn-link btn-group-vertical" type="submit">#{msg['login.submitButton.label']}</button>-->
+            <!--<h:outputLink styleClass="btn-link btn-group-vertical" value="forgotPassword.xhtml">#{msg['forgotPassword']}</h:outputLink>-->
+            <!--<h:outputLink styleClass="btn-link btn-group-vertical" value="home.xhtml">#{msg['home.title']}</h:outputLink>-->
+            <!--</div>-->
+            <!--</form>-->
         </ui:define>
     </ui:composition>
 </html>
