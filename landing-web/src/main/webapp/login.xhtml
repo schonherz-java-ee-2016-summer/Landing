@@ -24,21 +24,26 @@
                 <h:form id="loginForm" prependId="false">
                     <p:messages globalOnly="true"/>
 
-                    <p:panelGrid columns="1" layout="grid" cellpadding="5">
+                    <p:panelGrid columns="3" layout="grid" cellpadding="5">
                         <p:outputLabel for="username" value="#{msg['login.name.label']}"/>
-                        <p:inputText id="username" value="#{loginBean.username}" required="true" />
+                        <p:inputText id="username" value="#{loginBean.username}" required="true"/>
                         <p:message for="username" display="both"/>
 
                         <p:outputLabel for="password" value="#{msg['login.password.label']}"/>
                         <p:password id="password" value="#{loginBean.password}" required="true"/>
                         <p:message for="password" display="both"/>
 
-                        <p:outputLabel for="checkbox" value="#{msg['login.rememberMe']}"/>
-                        <p:selectBooleanCheckbox id="checkbox" value="remember-me"/>
+                        <div>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="remember-me"/> #{msg['login.rememberMe']}
+                            </label>
+                        </div>
                     </p:panelGrid>
 
-                    <h:commandButton type="submit" id="loginButton" value="Login"
-                                     action="#{loginBean.login}"/>
+                    <h:commandButton
+                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+                            type="submit" id="loginButton" value="Login"
+                            action="#{loginBean.login}"/>
                 </h:form>
             </h:body>
 

@@ -16,8 +16,12 @@
         </ui:define>
 
         <ui:define name="body">
+
             <h:form id="registerForm">
-                <p:panelGrid columns="2" layout="grid" cellpadding="5">
+
+                <p:growl id="growl" showDetail="true" sticky="true"/>
+
+                <p:panelGrid columns="4" layout="grid" cellpadding="5">
                     <p:outputLabel for="name" value="#{msg['register.name.label']}"/>
                     <p:inputText id="name" value="#{registerUser.user.name}" required="true"
                                  requiredMessage="#{msg['register.name.requiredMessage']}"
@@ -53,7 +57,8 @@
 
                     <p:commandButton value="#{msg['register.submitButton.label']}"
                                      ajax="false"
-                                     action="#{register.doRegister}" icon="fa fa-plus"/>
+                                     action="#{registerBean.doRegister}" icon="fa fa-plus"
+                                     update="registerForm:growl"/>
                 </p:panelGrid>
 
                 <p:separator/>

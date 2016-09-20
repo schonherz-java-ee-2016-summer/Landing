@@ -28,7 +28,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         String hash = getHashFromCookies(httpServletRequest.getCookies());
 
-        userService.deleteLoggedInUser(hash);
+        if (hash != null) {
+            userService.deleteLoggedInUser(hash);
+        }
 
         Cookie cookie = new Cookie("loggedInUser", null);
         cookie.setPath("/");
