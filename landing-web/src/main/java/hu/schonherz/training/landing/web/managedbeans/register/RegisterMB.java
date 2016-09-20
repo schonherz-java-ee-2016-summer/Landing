@@ -7,6 +7,7 @@ import hu.schonherz.training.landing.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -31,7 +32,7 @@ public class RegisterMB {
 
     public String doRegister() {
 
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encPassword = bCryptPasswordEncoder.encode(user.getUser().getPassword());
         user.getUser().setPassword(encPassword);
         userService.registerUser(user.getUser());

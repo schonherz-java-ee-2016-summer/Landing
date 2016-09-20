@@ -21,9 +21,9 @@ import java.util.ResourceBundle;
 @FacesValidator
 @ManagedBean(name = "usernameValidator")
 @RequestScoped
-public class RegisterUsernameValidator implements Validator {
+public class UsernameValidator implements Validator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUsernameValidator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsernameValidator.class);
 
     @EJB
     private UserService userService;

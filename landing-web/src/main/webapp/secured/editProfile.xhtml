@@ -17,21 +17,45 @@
 
         <ui:define name="body">
             <h:form>
-                <p:dataList value="#{editProfile.user}" var="user">
-                    <f:facet name="header">
-                        #{msg['editProfile.dataList.header']}
-                    </f:facet>
-                    <p:panelGrid columns="1" layout="grid" cellpadding="5">
-                        <p:outputLabel for="email" value="#{msg['editProfile.email.label']}"/>
-                        <p:inputText id="email" value="#{user.email}"/>
+                <!--<p:dataList value="#{editProfile.user}" var="user">-->
+                <f:facet name="header">
+                    #{msg['editProfile.dataList.header']}
+                </f:facet>
+                <p:panelGrid columns="1" layout="grid" cellpadding="5">
+                    <p:messages autoUpdate="true" closable="true"/>
 
-                        <p:outputLabel for="activity" value="#{msg['editProfile.activity.label']}"/>
-                        <p:selectBooleanCheckbox id="activity" value="#{user.active}"/>
+                    <p:outputLabel for="email" value="#{msg['editProfile.email.label']}"/>
+                    <p:inputText id="email" value="#{editProfile.user.email}" required="true"
+                                 requiredMessage="#{msg['editProfile.email.requiredMessage']}"
+                                 validatorMessage="#{msg['editProfile.email.validatorMessage']}">
+                        <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </p:inputText>
+                    <p:tooltip for="email" value="#{msg['editProfile.email.tooltip']}"/>
+                    <p:message for="email"/>
 
-                        <p:commandButton value="#{msg['editProfile.saveButton.label']}"
-                                         action="#{editProfile.saveUser}"/>
-                    </p:panelGrid>
-                </p:dataList>
+                    <p:outputLabel for="psw1" value="#{msg['editProfile.password.label']}"/>
+                    <p:password id="psw1" value="#{editProfile.user.password}" required="true"
+                                requiredMessage="#{msg['editProfile.password.requiredMessage']}"
+                                match="psw2" feedback="true" inline="true">
+                        <f:validator validatorId="custom.passwordValidator"/>
+                    </p:password>
+                    <p:tooltip for="psw1" value="#{msg['editProfile.password.tooltip']}"/>
+                    <p:message for="psw1" display="both"/>
+
+                    <p:outputLabel for="psw2" value="#{msg['editProfile.confirmpassword.label']}"/>
+                    <p:password id="psw2" value="#{editProfile.user.password}" required="true"
+                                requiredMessage="#{msg['editProfile.confirmpassword.requiredMessage']}"/>
+                    <p:tooltip for="psw2" value="#{msg['editProfile.confirmpassword.tooltip']}"/>
+                    <p:message for="psw2" display="both"/>
+
+                    <p:outputLabel for="activity" value="#{msg['editProfile.activity.label']}"/>
+                    <p:selectBooleanCheckbox id="activity" value="#{editProfile.user.active}"/>
+
+                    <p:commandButton value="#{msg['editProfile.saveButton.label']}"
+                                     action="#{editProfile.saveUser}" icon="fa fa-save"/>
+                </p:panelGrid>
+                <!--</p:dataList>-->
             </h:form>
         </ui:define>
 

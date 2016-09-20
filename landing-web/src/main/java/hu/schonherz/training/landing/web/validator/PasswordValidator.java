@@ -11,7 +11,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 @FacesValidator("custom.passwordValidator")
-public class RegisterPasswordValidator implements Validator {
+public class PasswordValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
