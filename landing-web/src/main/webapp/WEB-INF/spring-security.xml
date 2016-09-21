@@ -7,6 +7,7 @@
     <security:http disable-url-rewriting="false">
         <security:csrf disabled="true"/>
         <security:headers disabled="true"/>
+        <security:access-denied-handler error-page="/403.xhtml"/>
         <security:intercept-url pattern="/secured/*"
                                 access="hasRole('USER')"/>
         <security:intercept-url pattern="/admin/*"
