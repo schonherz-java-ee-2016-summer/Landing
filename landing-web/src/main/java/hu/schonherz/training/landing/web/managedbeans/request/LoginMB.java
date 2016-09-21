@@ -35,7 +35,6 @@ public class LoginMB {
             FacesMessage msg = new FacesMessage();
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             msg.setSummary(bundle.getString("login.userNotFound.summary"));
-            msg.setDetail(bundle.getString("login.userNotFound.detail"));
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
