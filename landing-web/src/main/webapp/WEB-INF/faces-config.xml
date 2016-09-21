@@ -48,7 +48,6 @@
         <navigation-case>
             <from-outcome>200</from-outcome>
             <to-view-id>/secured/editProfile.xhtml</to-view-id>
-            <redirect/>
         </navigation-case>
     </navigation-rule>
 

@@ -9,9 +9,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 @ManagedBean(name = "editProfile")
 @RequestScoped
@@ -35,7 +39,17 @@ public class EditProfileMB {
         String encPassword = encoder.encode(user.getPassword());
         user.setPassword(encPassword);
 
+        ResourceBundle bundle;
+        try {
+            bundle = ResourceBundle.getBundle("Messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        } catch (MissingResourceException e) {
+            bundle = ResourceBundle.getBundle("Messages", Locale.ENGLISH);
+        }
+
         userService.saveUser(user);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                bundle.getString("editProfile.success"),
+                bundle.getString("editProfile.success")));
         return "200";
     }
 
