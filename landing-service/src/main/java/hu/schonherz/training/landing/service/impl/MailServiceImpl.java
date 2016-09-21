@@ -1,6 +1,7 @@
 package hu.schonherz.training.landing.service.impl;
 
 import hu.schonherz.training.landing.service.MailService;
+import hu.schonherz.training.landing.service.exception.EmailSendingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ public class MailServiceImpl implements MailService {
     private Session mailSession;
 
     @Override
-    public void sendMail(String mailFrom, String mailTo, String subject, String mailText) {
+    public void sendMail(String mailFrom, String mailTo, String subject, String mailText) throws EmailSendingException {
         try {
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress(mailFrom));
@@ -31,7 +32,7 @@ public class MailServiceImpl implements MailService {
             message.setSubject(subject);
             Transport.send(message);
         } catch (MessagingException e) {
-            LOGGER.error("Messaging error", e);
+            throw new EmailSendingException("Messaging error", e);
         }
     }
 }

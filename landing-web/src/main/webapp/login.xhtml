@@ -42,9 +42,14 @@
 
                     <h:commandButton
                             styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-                            type="submit" id="loginButton" value="Login"
+                            type="submit" id="loginButton" value="#{msg['login.submitButton.label']}"
                             action="#{loginBean.login}"/>
+                    <ui:param name="loggedIn" value="#{loginBean.username}"/>
                 </h:form>
+
+                <p:separator/>
+
+                <p:button outcome="forgotPassword" value="#{msg['login.forgotPasswordButton.label']}" icon="fa fa-question" />
             </h:body>
 
         </ui:define>
