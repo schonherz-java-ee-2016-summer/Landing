@@ -16,26 +16,30 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:panel>
+                <h:outputLink value="/venue/adminreview.xhtml">
+                    <p:button value="Venue Management"/>
+                </h:outputLink>
+            </p:panel>
             <h:form id="tabform">
                 <p:growl id="msgs" showDetail="true" escape="false" />
 
-                <p:tabView>
+                <p:tabView id="tab">
                     <p:tab title="#{msg['admin.userTab.title']}">
-                        <p:pickList id="userPickList" value="#{userManagement.users}" var="user" itemLabel="#{user}"
-                                    itemValue="#{user}" showCheckbox="true" responsive="true"
-                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
-                            <f:facet name="sourceCaption">#{msg['admin.usersList']}</f:facet>
-                            <f:facet name="targetCaption">#{msg['admin.selectedUsersList']}</f:facet>
-
-                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
-                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
-                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
-                        </p:pickList>
-
                         <p:outputLabel for="userRoles" value="#{msg['admin.roles.label']}"/>
                         <p:selectOneRadio id="userRoles" value="#{roleManagement.userRole}" layout="responsive" columns="3">
                             <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole}" itemValue="#{userRole}"/>
                         </p:selectOneRadio>
+
+                        <p:dataTable id="checkboxUser" var="user" value="#{userManagement.users.source}" selection="#{userManagement.users.target}" rowKey="#{user}" style="margin-bottom:0">
+                            <f:facet name="header">
+                                User Management
+                            </f:facet>
+                            <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
+                            <p:column headerText="Username">
+                                <h:outputText value="#{user}" />
+                            </p:column>
+                        </p:dataTable>
 
                         <p:commandButton id="usersAddSubmit" value="#{msg['admin.addButton.label']}" update="displayUsers"
                                          oncomplete="PF('usersDialog').show()" style="margin-top:5px"
@@ -60,21 +64,20 @@
                     </p:tab>
 
                     <p:tab title="#{msg['admin.roleTab.title']}">
-                        <p:pickList id="permissionPickList" value="#{permissionManagement.permissions}" var="perm" itemLabel="#{perm}"
-                                    itemValue="#{perm}" showCheckbox="true" responsive="true"
-                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
-                            <f:facet name="sourceCaption">#{msg['admin.permissionsList']}</f:facet>
-                            <f:facet name="targetCaption">#{msg['admin.selectedPermissionsList']}</f:facet>
-
-                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
-                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
-                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
-                        </p:pickList>
-
                         <p:outputLabel for="permissionRoles" value="#{msg['admin.roles.label']}"/>
                         <p:selectOneRadio id="permissionRoles" value="#{roleManagement.permRole}" layout="responsive" columns="3">
                             <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole}" itemValue="#{permRole}"/>
                         </p:selectOneRadio>
+
+                        <p:dataTable id="checkboxRole" var="perm" value="#{permissionManagement.permissions.source}" selection="#{permissionManagement.permissions.target}" rowKey="#{perm}" style="margin-bottom:0">
+                            <f:facet name="header">
+                                Role Management
+                            </f:facet>
+                            <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
+                            <p:column headerText="Permission Name">
+                                <h:outputText value="#{perm}" />
+                            </p:column>
+                        </p:dataTable>
 
                         <p:commandButton id="rolesAddSubmit" value="#{msg['admin.addButton.label']}" update="displayRoles"
                                          oncomplete="PF('rolesDialog').show()" style="margin-top:5px"
@@ -99,16 +102,15 @@
                     </p:tab>
 
                     <p:tab title="#{msg['admin.passTab.title']}">
-                        <p:pickList id="passPickList" value="#{userManagement.usersPass}" var="user" itemLabel="#{user}"
-                                    itemValue="#{user}" showCheckbox="true" responsive="true"
-                                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
-                            <f:facet name="sourceCaption">#{msg['admin.usersList']}</f:facet>
-                            <f:facet name="targetCaption">#{msg['admin.selectedUsersList']}</f:facet>
-
-                            <p:ajax event="transfer" listener="#{userManagement.onTransfer}" update="tabform:msgs"/>
-                            <p:ajax event="select" listener="#{userManagement.onSelect}" update="tabform:msgs"/>
-                            <p:ajax event="unselect" listener="#{userManagement.onUnselect}" update="tabform:msgs"/>
-                        </p:pickList>
+                        <p:dataTable id="checkboxPass" var="userPass" value="#{userManagement.usersPass.source}" selection="#{userManagement.usersPass.target}" rowKey="#{userPass}" style="margin-bottom:0">
+                            <f:facet name="header">
+                                Password Management
+                            </f:facet>
+                            <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
+                            <p:column headerText="Username">
+                                <h:outputText value="#{userPass}" />
+                            </p:column>
+                        </p:dataTable>
 
                         <p:commandButton id="passSubmit" value="#{msg['admin.submitButton.label']}" update="displayPass"
                                          oncomplete="PF('passDialog').show()" style="margin-top:5px"

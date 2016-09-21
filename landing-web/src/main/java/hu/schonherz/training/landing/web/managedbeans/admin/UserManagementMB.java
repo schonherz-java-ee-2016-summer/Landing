@@ -24,6 +24,8 @@ public class UserManagementMB {
     private DualListModel<String> users;
     private DualListModel<String> usersPass;
 
+    private String user;
+
     @PostConstruct
     public void init() {
         List<String> usersSource = new ArrayList<String>();
@@ -54,6 +56,14 @@ public class UserManagementMB {
 
     public void setUsersPass(DualListModel<String> usersPass) {
         this.usersPass = usersPass;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void onTransfer(TransferEvent event) {
