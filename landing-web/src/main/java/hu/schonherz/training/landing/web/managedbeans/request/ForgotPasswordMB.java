@@ -31,7 +31,7 @@ public class ForgotPasswordMB {
     @EJB
     private MailService mailService;
 
-    public String sendNewPassword(){
+    public String sendNewPassword() {
         UserVo user = userService.getUserByEmail(email);
 
         ResourceBundle bundle;
@@ -58,8 +58,8 @@ public class ForgotPasswordMB {
             mailService.sendMail("noreply@javatraining.hu", user.getEmail(), "Your new password is: ", newPassword);
         } catch (EmailSendingException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    bundle.getString("forgotPassword.email.notFound.summary"),
-                    bundle.getString("forgotPassword.email.notFound.detail")));
+                    bundle.getString("forgotPassword.sendMail.error.summary"),
+                    bundle.getString("forgotPassword.sendMail.error.detail")));
             return "error";
         }
 

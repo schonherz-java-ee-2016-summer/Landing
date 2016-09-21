@@ -31,11 +31,11 @@ public class LoginMB {
     private String password;
 
     public String login() throws ServletException, IOException {
-        if(userService.getUserByName(username) == null) {
+        if (userService.getUserByName(username) == null) {
             FacesMessage msg = new FacesMessage();
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            msg.setSummary(bundle.getString("username.notfound"));
-            msg.setDetail(username);
+            msg.setSummary(bundle.getString("login.userNotFound.summary"));
+            msg.setDetail(bundle.getString("login.userNotFound.detail"));
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }

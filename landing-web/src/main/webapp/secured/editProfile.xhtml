@@ -17,12 +17,11 @@
 
         <ui:define name="body">
             <h:form>
-                <!--<p:dataList value="#{editProfile.user}" var="user">-->
                 <f:facet name="header">
                     #{msg['editProfile.dataList.header']}
                 </f:facet>
                 <p:panelGrid columns="1" layout="grid" cellpadding="5">
-                    <p:messages autoUpdate="true" closable="true"/>
+                    <p:messages showSummary="true" showDetail="false"/>
 
                     <p:outputLabel for="email" value="#{msg['editProfile.email.label']}"/>
                     <p:inputText id="email" value="#{editProfile.user.email}" required="true"
@@ -32,7 +31,6 @@
                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                     </p:inputText>
                     <p:tooltip for="email" value="#{msg['editProfile.email.tooltip']}"/>
-                    <p:message for="email"/>
 
                     <p:outputLabel for="psw1" value="#{msg['editProfile.password.label']}"/>
                     <p:password id="psw1" value="#{editProfile.user.password}" required="true"
@@ -52,10 +50,9 @@
                     <p:outputLabel for="activity" value="#{msg['editProfile.activity.label']}"/>
                     <p:selectBooleanCheckbox id="activity" value="#{editProfile.user.active}"/>
 
-                    <p:commandButton value="#{msg['editProfile.saveButton.label']}"
+                    <p:commandButton value="#{msg['editProfile.saveButton.label']}" ajax="false"
                                      action="#{editProfile.saveUser}" icon="fa fa-save"/>
                 </p:panelGrid>
-                <!--</p:dataList>-->
             </h:form>
         </ui:define>
 
