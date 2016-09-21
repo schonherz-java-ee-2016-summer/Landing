@@ -38,6 +38,14 @@ public class UserMapper {
         return mapper.map(userVo, User.class);
     }
 
+    public static void toEntity(UserVo userVo, User userEntity) {
+        if (userVo == null || userEntity == null) {
+            return;
+        }
+
+        mapper.map(userVo, userEntity);
+    }
+
     public static List<UserVo> toVo(List<User> users) {
         return users.stream()
                                     .map(UserMapper::toVo)

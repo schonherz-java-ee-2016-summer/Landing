@@ -48,7 +48,12 @@ public class UserServiceImpl implements UserService, UserRemoteService {
 
     @Override
     public UserVo saveUser(UserVo userVo) {
-        return UserMapper.toVo(userRepository.save(UserMapper.toEntity(userVo)));
+        User userEntity = userRepository.findOne(userVo.getId());
+        if (userEntity == null) {
+            userEntity = new User();
+        }
+        UserMapper.toEntity(userVo, userEntity);
+        return UserMapper.toVo(userRepository.save(userEntity));
     }
 
     @Override

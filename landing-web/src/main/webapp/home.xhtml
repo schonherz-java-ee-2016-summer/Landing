@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:sec="http://www.springframework.org/security/tags"
       xml:lang="en" lang="en">
 
     <ui:composition template="/templates/pageTemplate.xhtml">
@@ -30,7 +29,7 @@
                 <p:panelGrid style="display: block"
                              styleClass="form-control"
                              rendered="#{facesContext.externalContext.userPrincipal.name != null}">
-                    <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name}"/>
+                    <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
                     <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout"
                                    >#{msg['home.logout.label']}</h:outputLink>
                 </p:panelGrid>
