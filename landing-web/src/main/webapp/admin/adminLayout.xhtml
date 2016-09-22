@@ -9,35 +9,38 @@
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 
-    <ui:composition template="/templates/pageTemplate.xhtml">
+<ui:composition template="/templates/pageTemplate.xhtml">
 
-        <ui:define name="title">
-            #{msg['admin.title']}
-        </ui:define>
+    <ui:define name="title">
+        #{msg['admin.title']}
+    </ui:define>
 
-        <ui:define name="body">
+    <ui:define name="body">
+        <p:panel>
+            <h:outputLink value="/venue/adminreview.xhtml">
+                <p:button value="Venue Management"/>
+            </h:outputLink>
+        </p:panel>
+        <h:form id="tabform">
+            <p:growl id="msgs" showDetail="true" escape="false" />
             <p:panel>
-                <h:outputLink value="/venue/adminreview.xhtml">
-                    <p:button value="Venue Management"/>
-                </h:outputLink>
-            </p:panel>
-            <h:form id="tabform">
-                <p:growl id="msgs" showDetail="true" escape="false" />
-
                 <p:tabView id="tab">
                     <p:tab title="#{msg['admin.userTab.title']}">
                         <p:outputLabel for="userRoles" value="#{msg['admin.roles.label']}"/>
-                        <p:selectOneRadio id="userRoles" value="#{roleManagement.userRole}" layout="responsive" columns="3">
+                        <p:selectOneRadio id="userRoles" value="#{roleManagement.userRole}" layout="responsive" columns="4">
                             <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole}" itemValue="#{userRole}"/>
                         </p:selectOneRadio>
 
                         <p:dataTable id="checkboxUser" var="user" value="#{userManagement.users.source}" selection="#{userManagement.users.target}" rowKey="#{user}" style="margin-bottom:0">
-                            <f:facet name="header">
-                                User Management
-                            </f:facet>
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="Username">
+                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{user}">
                                 <h:outputText value="#{user}" />
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.email.label']}">
+                                <h:outputText value="#{user}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.active.label']}">
+                                <h:outputText value="#{user}"/>
                             </p:column>
                         </p:dataTable>
 
@@ -65,16 +68,13 @@
 
                     <p:tab title="#{msg['admin.roleTab.title']}">
                         <p:outputLabel for="permissionRoles" value="#{msg['admin.roles.label']}"/>
-                        <p:selectOneRadio id="permissionRoles" value="#{roleManagement.permRole}" layout="responsive" columns="3">
+                        <p:selectOneRadio id="permissionRoles" value="#{roleManagement.permRole}" layout="responsive" columns="4">
                             <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole}" itemValue="#{permRole}"/>
                         </p:selectOneRadio>
 
                         <p:dataTable id="checkboxRole" var="perm" value="#{permissionManagement.permissions.source}" selection="#{permissionManagement.permissions.target}" rowKey="#{perm}" style="margin-bottom:0">
-                            <f:facet name="header">
-                                Role Management
-                            </f:facet>
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="Permission Name">
+                            <p:column headerText="#{msg['admin.permission.name.label']}">
                                 <h:outputText value="#{perm}" />
                             </p:column>
                         </p:dataTable>
@@ -103,12 +103,15 @@
 
                     <p:tab title="#{msg['admin.passTab.title']}">
                         <p:dataTable id="checkboxPass" var="userPass" value="#{userManagement.usersPass.source}" selection="#{userManagement.usersPass.target}" rowKey="#{userPass}" style="margin-bottom:0">
-                            <f:facet name="header">
-                                Password Management
-                            </f:facet>
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="Username">
+                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{userPass}">
                                 <h:outputText value="#{userPass}" />
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.email.label']}">
+                                <h:outputText value="#{userPass}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.active.label']}">
+                                <h:outputText value="#{userPass}"/>
                             </p:column>
                         </p:dataTable>
 
@@ -128,9 +131,10 @@
                         </p:dialog>
                     </p:tab>
                 </p:tabView>
-            </h:form>
-        </ui:define>
+            </p:panel>
+        </h:form>
+    </ui:define>
 
-    </ui:composition>
+</ui:composition>
 
 </html>
