@@ -18,9 +18,9 @@
 
         <ui:define name="body">
 
-            <p:outputLabel value="Sikertelen login" rendered="#{param['error'] == true}"/>
+            <p:panel rendered="#{facesContext.externalContext.userPrincipal == null}">
+                <p:outputLabel value="Sikertelen login" rendered="#{param['error'] == true}"/>
 
-            <h:body>
                 <h:form id="loginForm" prependId="false">
                     <p:messages showSummary="true" showDetail="false"/>
 
@@ -51,7 +51,10 @@
 
                 <p:button outcome="forgotPassword" value="#{msg['login.forgotPasswordButton.label']}"
                           icon="fa fa-question"/>
-            </h:body>
+            </p:panel>
+
+            <p:outputLabel rendered="#{facesContext.externalContext.userPrincipal != null}"
+                           value="Already logged in!"/>
 
         </ui:define>
     </ui:composition>
