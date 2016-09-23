@@ -28,19 +28,19 @@
                     <p:tab title="#{msg['admin.userTab.title']}">
                         <p:outputLabel for="userRoles" value="#{msg['admin.roles.label']}"/>
                         <p:selectOneRadio id="userRoles" value="#{roleManagement.userRole}" layout="responsive" columns="4">
-                            <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole}" itemValue="#{userRole}"/>
+                            <f:selectItems value="#{roleManagement.userRoles}" var="userRole" itemLabel="#{userRole.name}" itemValue="#{userRole.name}"/>
                         </p:selectOneRadio>
 
-                        <p:dataTable id="checkboxUser" var="user" value="#{userManagement.users.source}" selection="#{userManagement.users.target}" rowKey="#{user}" style="margin-bottom:0">
+                        <p:dataTable id="checkboxUser" var="user" value="#{userManagement.users.source}" selection="#{userManagement.users.target}" rowKey="#{user.id}" style="margin-bottom:0">
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{user}">
-                                <h:outputText value="#{user}" />
+                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{user.name}">
+                                <h:outputText value="#{user.name}" />
                             </p:column>
-                            <p:column headerText="#{msg['admin.user.email.label']}">
-                                <h:outputText value="#{user}"/>
+                            <p:column headerText="#{msg['admin.user.email.label']}" sortBy="#{user.email}">
+                                <h:outputText value="#{user.email}"/>
                             </p:column>
-                            <p:column headerText="#{msg['admin.user.active.label']}">
-                                <h:outputText value="#{user}"/>
+                            <p:column headerText="#{msg['admin.user.active.label']}" sortBy="#{user.active}">
+                                <h:outputText value="#{user.active}"/>
                             </p:column>
                         </p:dataTable>
 
@@ -57,7 +57,7 @@
 
                                 <h:outputText value="#{msg['admin.users.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{userManagement.users.target}" var="item">
-                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                    <h:outputText value="#{item.name}" style="margin-right:5px"/>
                                 </ui:repeat>
 
                                 <h:outputText value="#{msg['admin.role.label']}" style="font-weight:bold"/>
@@ -69,13 +69,13 @@
                     <p:tab title="#{msg['admin.roleTab.title']}">
                         <p:outputLabel for="permissionRoles" value="#{msg['admin.roles.label']}"/>
                         <p:selectOneRadio id="permissionRoles" value="#{roleManagement.permRole}" layout="responsive" columns="4">
-                            <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole}" itemValue="#{permRole}"/>
+                            <f:selectItems value="#{roleManagement.permRoles}" var="permRole" itemLabel="#{permRole.name}" itemValue="#{permRole.name}"/>
                         </p:selectOneRadio>
 
-                        <p:dataTable id="checkboxRole" var="perm" value="#{permissionManagement.permissions.source}" selection="#{permissionManagement.permissions.target}" rowKey="#{perm}" style="margin-bottom:0">
+                        <p:dataTable id="checkboxRole" var="perm" value="#{permissionManagement.permissions.source}" selection="#{permissionManagement.permissions.target}" rowKey="#{perm.id}" style="margin-bottom:0">
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="#{msg['admin.permission.name.label']}">
-                                <h:outputText value="#{perm}" />
+                            <p:column headerText="#{msg['admin.permission.name.label']}" sortBy="#{perm.name}">
+                                <h:outputText value="#{perm.name}" />
                             </p:column>
                         </p:dataTable>
 
@@ -92,7 +92,7 @@
 
                                 <h:outputText value="#{msg['admin.permissions.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{permissionManagement.permissions.target}" var="item">
-                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                    <h:outputText value="#{item.name}" style="margin-right:5px"/>
                                 </ui:repeat>
 
                                 <h:outputText value="#{msg['admin.role.label']}" style="font-weight:bold"/>
@@ -102,16 +102,16 @@
                     </p:tab>
 
                     <p:tab title="#{msg['admin.passTab.title']}">
-                        <p:dataTable id="checkboxPass" var="userPass" value="#{userManagement.usersPass.source}" selection="#{userManagement.usersPass.target}" rowKey="#{userPass}" style="margin-bottom:0">
+                        <p:dataTable id="checkboxPass" var="userPass" value="#{userManagement.usersPass.source}" selection="#{userManagement.usersPass.target}" rowKey="#{userPass.id}" style="margin-bottom:0">
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
-                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{userPass}">
-                                <h:outputText value="#{userPass}" />
+                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{userPass.name}">
+                                <h:outputText value="#{userPass.name}" />
                             </p:column>
-                            <p:column headerText="#{msg['admin.user.email.label']}">
-                                <h:outputText value="#{userPass}"/>
+                            <p:column headerText="#{msg['admin.user.email.label']}" sortBy="#{userPass.email}">
+                                <h:outputText value="#{userPass.email}"/>
                             </p:column>
-                            <p:column headerText="#{msg['admin.user.active.label']}">
-                                <h:outputText value="#{userPass}"/>
+                            <p:column headerText="#{msg['admin.user.active.label']}" sortBy="#{userPass.active}">
+                                <h:outputText value="#{userPass.active}"/>
                             </p:column>
                         </p:dataTable>
 
@@ -125,7 +125,7 @@
 
                                 <h:outputText value="#{msg['admin.users.label']}" style="font-weight:bold"/>
                                 <ui:repeat value="#{userManagement.usersPass.target}" var="item">
-                                    <h:outputText value="#{item}" style="margin-right:5px"/>
+                                    <h:outputText value="#{item.name}" style="margin-right:5px"/>
                                 </ui:repeat>
                             </h:panelGrid>
                         </p:dialog>

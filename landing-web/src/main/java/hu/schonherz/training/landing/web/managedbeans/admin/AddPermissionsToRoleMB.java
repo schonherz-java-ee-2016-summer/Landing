@@ -18,16 +18,14 @@ public class AddPermissionsToRoleMB {
     @EJB
     private RoleService roleService;
 
-    public void addPermissions(List<String> permissionNames, String role) {
-        for (String name : permissionNames) {
-            PermissionVo permissionVo = permissionService.getPermissionByName(name);
+    public void addPermissions(List<PermissionVo> permissions, String role) {
+        for (PermissionVo permissionVo : permissions) {
             roleService.addPermissionToRoleByName(role, permissionVo);
         }
     }
 
-    public void removePermissions(List<String> permissionNames, String role) {
-        for (String name : permissionNames) {
-            PermissionVo permissionVo = permissionService.getPermissionByName(name);
+    public void removePermissions(List<PermissionVo> permissions, String role) {
+        for (PermissionVo permissionVo : permissions) {
             roleService.removePermissionFromRoleByName(role, permissionVo);
         }
     }

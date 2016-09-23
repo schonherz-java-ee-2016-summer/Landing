@@ -23,10 +23,8 @@ public class SetPasswordToDefaultMB {
     @EJB
     private MailService mailService;
 
-    public void setDefault(List<String> userNames) {
-        for (String name : userNames) {
-            UserVo userVo = userService.getUserByName(name);
-
+    public void setDefault(List<UserVo> users) {
+        for (UserVo userVo : users) {
             ResourceBundle bundle;
             try {
                 bundle = ResourceBundle.getBundle("Messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());

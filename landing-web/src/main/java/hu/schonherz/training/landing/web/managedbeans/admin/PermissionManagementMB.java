@@ -16,34 +16,32 @@ public class PermissionManagementMB {
     @EJB
     private PermissionService permissionService;
 
-    private DualListModel<String> permissions;
-    private String permission;
+    private DualListModel<PermissionVo> permissions;
+    private PermissionVo permission;
 
     @PostConstruct
     public void init() {
-        List<String> permissionsSource = new ArrayList<String>();
-        List<String> permissionsTarget = new ArrayList<String>();
+        List<PermissionVo> permissionsSource = new ArrayList<PermissionVo>();
+        List<PermissionVo> permissionsTarget = new ArrayList<PermissionVo>();
 
-        for (PermissionVo permissionVo : permissionService.getPermissions()) {
-            permissionsSource.add(permissionVo.getName());
-        }
+        permissionsSource.addAll(permissionService.getPermissions());
 
-        permissions = new DualListModel<String>(permissionsSource, permissionsTarget);
+        permissions = new DualListModel<PermissionVo>(permissionsSource, permissionsTarget);
     }
 
-    public DualListModel<String> getPermissions() {
+    public DualListModel<PermissionVo> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(DualListModel<String> permissions) {
+    public void setPermissions(DualListModel<PermissionVo> permissions) {
         this.permissions = permissions;
     }
 
-    public String getPermission() {
+    public PermissionVo getPermission() {
         return permission;
     }
 
-    public void setPermission(String permission) {
+    public void setPermission(PermissionVo permission) {
         this.permission = permission;
     }
 }
