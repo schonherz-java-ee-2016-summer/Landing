@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xml:lang="en" lang="en">
 
     <ui:composition template="/templates/pageTemplate.xhtml">
@@ -17,46 +18,69 @@
 
         <ui:define name="body">
 
-            <p:panelGrid columns="2" layout="grid" cellpadding="5">
-                <f:facet name="header">
-                    <p:outputLabel value="#{msg['lists.grid.title']}" />
-                </f:facet>
-
-                <p:dataTable value="#{bandsAndVenues.bands}" var="band" rows="10"
-                             emptyMessage="#{msg['lists.bands.emptyMessage']}">
+            <h:form>
+                <p:panelGrid columns="2" layout="grid" cellpadding="5">
                     <f:facet name="header">
-                        <p:outputLabel value="#{msg['lists.bands.title']}" />
+                        <p:outputLabel value="#{msg['lists.grid.title']}"/>
                     </f:facet>
 
-                    <p:column headerText="#{msg['lists.bands.name']}">
-                        <h:outputText value="#{band.name}" />
+                    <p:column>
+                        <p:dataTable value="#{bandsAndVenues.bands}" var="band" rowKey="#{band.id}"
+                                     selectionMode="single" selection="#{bandsAndVenues.selectedBand}"
+                                     emptyMessage="#{msg['lists.bands.emptyMessage']}">
+                            <f:facet name="header">
+                                <p:outputLabel value="#{msg['lists.bands.title']}"/>
+                            </f:facet>
+
+                            <p:column headerText="#{msg['lists.bands.name']}">
+                                <h:outputText value="#{band.name}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg['lists.bands.genre']}">
+                                <h:outputText value="#{band.genre}"/>
+                            </p:column>
+
+                            <f:facet name="footer">
+                                <p:outputLabel
+                                        value="#{msg['lists.bands.numberLabel']} #{fn:length(bandsAndVenues.bands)}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:commandButton id="showBand" ajax="false" value="#{msg['lists.bands.showButton.label']}"
+                                         action="#{bandsAndVenues.showBandProfile}"/>
+                    </p:column>
+                    <p:column>
+                        <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rowKey="#{venue.id}"
+                                     selectionMode="single" selection="#{bandsAndVenues.selectedVenue}"
+                                     emptyMessage="#{msg['lists.venues.emptyMessage']}">
+                            <f:facet name="header">
+                                <p:outputLabel value="#{msg['lists.venues.title']}"/>
+                            </f:facet>
+
+                            <p:column headerText="#{msg['lists.venues.name']}">
+                                <h:outputText value="#{venue.name}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg['lists.venues.type']}">
+                                <h:outputText value="#{venue.type.name}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg['lists.venues.city']}">
+                                <h:outputText value="#{venue.address.city}"/>
+                            </p:column>
+
+                            <f:facet name="footer">
+                                <p:outputLabel
+                                        value="#{msg['lists.venues.numberLabel']} #{fn:length(bandsAndVenues.venues)}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:commandButton id="showVenue" ajax="false" value="#{msg['lists.venues.showButton.label']}"
+                                         action="#{bandsAndVenues.showVenueProfile}"/>
                     </p:column>
 
-                    <p:column headerText="#{msg['lists.bands.genre']}">
-                        <h:outputText value="#{band.genre}" />
-                    </p:column>
-                </p:dataTable>
-
-                <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rows="10"
-                             emptyMessage="#{msg['lists.venues.emptyMessage']}">
-                    <f:facet name="header">
-                        <p:outputLabel value="#{msg['lists.venues.title']}" />
-                    </f:facet>
-
-                    <p:column headerText="#{msg['lists.venues.name']}">
-                        <h:outputText value="#{venue.name}" />
-                    </p:column>
-
-                    <p:column headerText="#{msg['lists.venues.type']}">
-                        <h:outputText value="#{venue.type.name}" />
-                    </p:column>
-
-                    <p:column headerText="#{msg['lists.venues.city']}">
-                        <h:outputText value="#{venue.address.city}" />
-                    </p:column>
-                </p:dataTable>
-
-            </p:panelGrid>
+                </p:panelGrid>
+            </h:form>
 
         </ui:define>
 

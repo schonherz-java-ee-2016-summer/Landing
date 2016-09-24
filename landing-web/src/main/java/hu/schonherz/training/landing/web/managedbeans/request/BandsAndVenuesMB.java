@@ -9,7 +9,9 @@ import hu.schonherz.training.venue.vo.VenueVo;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.util.List;
 
 @ManagedBean(name = "bandsAndVenues")
@@ -21,6 +23,9 @@ public class BandsAndVenuesMB {
 
     private List<BandVo> bands;
     private List<VenueVo> venues;
+
+    private BandVo selectedBand;
+    private VenueVo selectedVenue;
 
     @PostConstruct
     public void init() {
@@ -47,6 +52,30 @@ public class BandsAndVenuesMB {
         venues = venueRemoteService.getAllVenues();
     }
 
+    public void showVenueProfile() {
+        Long venueId = selectedVenue.getId();
+        if (venueId != null) {
+            String url = "/../venue/profile.xhtml?venueid=" + venueId;
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void showBandProfile() {
+        Long bandId = selectedBand.getId();
+        if (bandId != null) {
+            String url = "/../band/profile.xhtml?id=" + bandId;
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public List<BandVo> getBands() {
         return bands;
     }
@@ -61,5 +90,21 @@ public class BandsAndVenuesMB {
 
     public void setVenues(List<VenueVo> venues) {
         this.venues = venues;
+    }
+
+    public BandVo getSelectedBand() {
+        return selectedBand;
+    }
+
+    public void setSelectedBand(BandVo selectedBand) {
+        this.selectedBand = selectedBand;
+    }
+
+    public VenueVo getSelectedVenue() {
+        return selectedVenue;
+    }
+
+    public void setSelectedVenue(VenueVo selectedVenue) {
+        this.selectedVenue = selectedVenue;
     }
 }
