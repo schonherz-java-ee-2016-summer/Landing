@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+
+    <ui:composition template="/templates/pageTemplate.xhtml">
+
+        <ui:define name="title">
+            #{msg['lists.title']}
+        </ui:define>
+
+        <ui:define name="body">
+
+            <p:panelGrid columns="2" layout="grid" cellpadding="5">
+                <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rows="10">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{venue.name}" />
+                    </p:column>
+
+                    <p:column headerText="Type">
+                        <h:outputText value="#{venue.type}" />
+                    </p:column>
+
+                    <p:column headerText="Address">
+                        <h:outputText value="#{venue.address}" />
+                    </p:column>
+                </p:dataTable>
+
+                <p:dataTable value="#{bandsAndVenues.bands}" var="band" rows="10">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{band.name}" />
+                    </p:column>
+
+                    <p:column headerText="Genre">
+                        <h:outputText value="#{band.genre}" />
+                    </p:column>
+                </p:dataTable>
+            </p:panelGrid>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
