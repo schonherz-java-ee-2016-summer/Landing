@@ -18,29 +18,44 @@
         <ui:define name="body">
 
             <p:panelGrid columns="2" layout="grid" cellpadding="5">
-                <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rows="10">
-                    <p:column headerText="Name">
+                <f:facet name="header">
+                    <p:outputLabel value="#{msg['lists.grid.title']}" />
+                </f:facet>
+
+                <p:dataTable value="#{bandsAndVenues.bands}" var="band" rows="10"
+                             emptyMessage="#{msg['lists.bands.emptyMessage']}">
+                    <f:facet name="header">
+                        <p:outputLabel value="#{msg['lists.bands.title']}" />
+                    </f:facet>
+
+                    <p:column headerText="#{msg['lists.bands.name']}">
+                        <h:outputText value="#{band.name}" />
+                    </p:column>
+
+                    <p:column headerText="#{msg['lists.bands.genre']}">
+                        <h:outputText value="#{band.genre}" />
+                    </p:column>
+                </p:dataTable>
+
+                <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rows="10"
+                             emptyMessage="#{msg['lists.venues.emptyMessage']}">
+                    <f:facet name="header">
+                        <p:outputLabel value="#{msg['lists.venues.title']}" />
+                    </f:facet>
+
+                    <p:column headerText="#{msg['lists.venues.name']}">
                         <h:outputText value="#{venue.name}" />
                     </p:column>
 
-                    <p:column headerText="Type">
+                    <p:column headerText="#{msg['lists.venues.type']}">
                         <h:outputText value="#{venue.type.name}" />
                     </p:column>
 
-                    <p:column headerText="Address">
+                    <p:column headerText="#{msg['lists.venues.city']}">
                         <h:outputText value="#{venue.address.city}" />
                     </p:column>
                 </p:dataTable>
 
-                <p:dataTable value="#{bandsAndVenues.bands}" var="band" rows="10">
-                    <p:column headerText="Name">
-                        <h:outputText value="#{band.name}" />
-                    </p:column>
-
-                    <p:column headerText="Genre">
-                        <h:outputText value="#{band.genre}" />
-                    </p:column>
-                </p:dataTable>
             </p:panelGrid>
 
         </ui:define>

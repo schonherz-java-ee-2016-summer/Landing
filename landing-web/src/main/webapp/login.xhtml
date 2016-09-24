@@ -40,10 +40,12 @@
                         </div>
                     </p:panelGrid>
 
-                    <h:commandButton
-                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-                            type="submit" id="loginButton" value="#{msg['login.submitButton.label']}"
-                            action="#{loginBean.login}"/>
+                    <div align="center">
+                        <h:commandButton
+                                styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+                                type="submit" id="loginButton" value="#{msg['login.submitButton.label']}"
+                                action="#{loginBean.login}"/>
+                    </div>
                     <ui:param name="loggedIn" value="#{loginBean.username}"/>
                 </h:form>
 
