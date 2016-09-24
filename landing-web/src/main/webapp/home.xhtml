@@ -31,7 +31,8 @@
                 <p:panelGrid style="display: block"
                              rendered="#{facesContext.externalContext.userPrincipal.name != null}">
                     <h4>
-                        <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
+                        <h:outputText
+                                value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
                         <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout">
                             #{msg['home.logout.label']}
                         </h:outputLink>
@@ -40,14 +41,19 @@
             </h:form>
 
             <p:panelGrid styleClass="img-responsive" columns="2" layout="grid">
+                <p:column>
+                    <h2 style="text-align: center">#{msg['home.band']}</h2>
                     <h:outputLink value="/band">
-                        <h2 style="text-align: center">#{msg['home.band']}</h2>
                         <h:graphicImage styleClass="image col-xs-12" value="/resources/images/band.jpg"/>
                     </h:outputLink>
+                </p:column>
+
+                <p:column>
+                    <h2 style="text-align: center">#{msg['home.venue']}</h2>
                     <h:outputLink value="/venue">
-                        <h2 style="text-align: center">#{msg['home.venue']}</h2>
                         <h:graphicImage styleClass="image col-xs-12" value="/resources/images/venue.jpg"/>
                     </h:outputLink>
+                </p:column>
             </p:panelGrid>
 
         </ui:define>
