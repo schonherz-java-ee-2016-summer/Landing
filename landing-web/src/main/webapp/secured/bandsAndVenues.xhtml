@@ -18,8 +18,11 @@
 
         <ui:define name="body">
 
+            <p:messages showSummary="true" showDetail="true"/>
+
             <h:form>
                 <p:panelGrid columns="2" layout="grid" cellpadding="5">
+
                     <f:facet name="header">
                         <p:outputLabel value="#{msg['lists.grid.title']}"/>
                     </f:facet>
@@ -49,6 +52,7 @@
                         <p:commandButton id="showBand" ajax="false" value="#{msg['lists.bands.showButton.label']}"
                                          action="#{bandsAndVenues.showBandProfile}"/>
                     </p:column>
+
                     <p:column>
                         <p:dataTable value="#{bandsAndVenues.venues}" var="venue" rowKey="#{venue.id}"
                                      selectionMode="single" selection="#{bandsAndVenues.selectedVenue}"

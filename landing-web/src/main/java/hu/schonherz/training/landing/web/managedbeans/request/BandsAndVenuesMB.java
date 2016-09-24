@@ -7,6 +7,7 @@ import hu.schonherz.training.venue.ejb.remote.stateless.VenueRemoteService;
 import hu.schonherz.training.venue.vo.VenueVo;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -53,26 +54,30 @@ public class BandsAndVenuesMB {
     }
 
     public void showVenueProfile() {
-        Long venueId = selectedVenue.getId();
-        if (venueId != null) {
-            String url = "/../venue/profile.xhtml?venueid=" + venueId;
+        if (selectedVenue != null) {
+            String url = "/../venue/profile.xhtml?venueid=" + selectedVenue.getId();
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(url);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "None selected", "Select an item to continue!"));
         }
     }
 
     public void showBandProfile() {
-        Long bandId = selectedBand.getId();
-        if (bandId != null) {
-            String url = "/../band/profile.xhtml?id=" + bandId;
+        if (selectedBand != null) {
+            String url = "/../band/profile.xhtml?id=" + selectedBand.getId();
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(url);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "None selected!", "S"));
         }
     }
 
