@@ -67,7 +67,9 @@
             </p:panel>
 
             <p:outputLabel rendered="#{facesContext.externalContext.userPrincipal != null}"
-                           value="Already logged in!"/>
+                styleClass="center-block">
+                <h2 style="text-align: center">#{msg['register.alreadyLoggedIn.label']}</h2>
+            </p:outputLabel>
             
         </ui:define>
     </ui:composition>
