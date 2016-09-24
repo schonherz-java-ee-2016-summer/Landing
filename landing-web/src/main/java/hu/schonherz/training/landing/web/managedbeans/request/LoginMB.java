@@ -1,6 +1,7 @@
 package hu.schonherz.training.landing.web.managedbeans.request;
 
 import hu.schonherz.training.landing.service.UserService;
+import hu.schonherz.training.landing.vo.UserVo;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -31,10 +32,18 @@ public class LoginMB {
     private String password;
 
     public String login() throws ServletException, IOException {
-        if (userService.getUserByName(username) == null) {
+        UserVo user = userService.getUserByName(username);
+        if (user == null) {
             FacesMessage msg = new FacesMessage();
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             msg.setSummary(bundle.getString("login.userNotFound.summary"));
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return null;
+        }
+        if (user.isActive() == false){
+            FacesMessage msg = new FacesMessage();
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            msg.setSummary(bundle.getString("login.userInactive.summary"));
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
