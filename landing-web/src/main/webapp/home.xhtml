@@ -16,6 +16,7 @@
         </ui:define>
 
         <ui:define name="body">
+            <h:outputStylesheet name="css/landing.css"/>
 
             <h:form>
                 <p:panelGrid style="display: block"
@@ -41,11 +42,11 @@
             <p:panelGrid styleClass="img-responsive" columns="2" layout="grid">
                     <h:outputLink value="/band">
                         <h2 style="text-align: center">#{msg['home.band']}</h2>
-                        <h:graphicImage styleClass="col-xs-12" value="/images/band.jpg"/>
+                        <h:graphicImage styleClass="image col-xs-12" value="/resources/images/band.jpg"/>
                     </h:outputLink>
                     <h:outputLink value="/venue">
                         <h2 style="text-align: center">#{msg['home.venue']}</h2>
-                        <h:graphicImage styleClass="col-xs-12" value="/images/venue.jpg"/>
+                        <h:graphicImage styleClass="image col-xs-12" value="/resources/images/venue.jpg"/>
                     </h:outputLink>
             </p:panelGrid>
 
