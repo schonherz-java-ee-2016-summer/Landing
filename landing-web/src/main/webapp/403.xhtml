@@ -12,14 +12,16 @@
 <ui:composition template="/templates/pageTemplate.xhtml">
 
     <ui:define name="title">
-        #{msg['forgotPassword.title']}
+        #{msg['403.title']}
     </ui:define>
 
     <ui:define name="body">
-        <h:outputText value="Nem regisztrált e-mail cím" rendered="#{param['error'] == true}"/>
-        <h:form>
-            <h:outputText value="#{msg['acces.denied']}"/>
-        </h:form>
+        <p:panelGrid styleClass="img-responsive" columns="1" layout="grid">
+            <h:outputLink value="/landing/home.xhtml">
+                <h2 style="text-align: center">#{msg['acces.denied']}</h2>
+                <h:graphicImage styleClass="col-xs-12" value="/images/403.png"/>
+            </h:outputLink>
+        </p:panelGrid>
     </ui:define>
 </ui:composition>
 </html>
