@@ -14,6 +14,9 @@ import javax.faces.context.FacesContext;
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 @ManagedBean(name = "bandsAndVenues")
 @RequestScoped
@@ -62,8 +65,15 @@ public class BandsAndVenuesMB {
                 e.printStackTrace();
             }
         } else {
+            ResourceBundle bundle;
+            try {
+                bundle = ResourceBundle.getBundle("Messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+            } catch (MissingResourceException e) {
+                bundle = ResourceBundle.getBundle("Messages", Locale.ENGLISH);
+            }
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "None selected", "Select an item to continue!"));
+                    bundle.getString("lists.noneSelected.summary"), bundle.getString("lists.noneSelected.detail")));
         }
     }
 
@@ -76,8 +86,15 @@ public class BandsAndVenuesMB {
                 e.printStackTrace();
             }
         } else {
+            ResourceBundle bundle;
+            try {
+                bundle = ResourceBundle.getBundle("Messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+            } catch (MissingResourceException e) {
+                bundle = ResourceBundle.getBundle("Messages", Locale.ENGLISH);
+            }
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "None selected!", "S"));
+                    bundle.getString("lists.noneSelected.summary"), bundle.getString("lists.noneSelected.detail")));
         }
     }
 
