@@ -19,19 +19,22 @@
 
             <h:form>
                 <p:panelGrid style="display: block"
-                             styleClass="form-control"
                              rendered="#{facesContext.externalContext.userPrincipal.name == null}">
-                    <h:outputLink value="login.xhtml">#{msg['home.signIn']}</h:outputLink>
-                    <h:outputText value=" #{msg['home.or']} "/>
-                    <h:outputLink value="register.xhtml">#{msg['home.signUp']}</h:outputLink>
+                    <h4>
+                        <h:outputLink value="login.xhtml">#{msg['home.signIn']}</h:outputLink>
+                        <h:outputText value=" #{msg['home.or']} "/>
+                        <h:outputLink value="register.xhtml">#{msg['home.signUp']}</h:outputLink>
+                    </h4>
                 </p:panelGrid>
 
                 <p:panelGrid style="display: block"
-                             styleClass="form-control"
                              rendered="#{facesContext.externalContext.userPrincipal.name != null}">
-                    <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
-                    <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout"
-                                   >#{msg['home.logout.label']}</h:outputLink>
+                    <h4>
+                        <h:outputText value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
+                        <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout">
+                            #{msg['home.logout.label']}
+                        </h:outputLink>
+                    </h4>
                 </p:panelGrid>
             </h:form>
 
