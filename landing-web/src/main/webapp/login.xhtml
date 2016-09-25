@@ -19,7 +19,18 @@
         <ui:define name="body">
 
             <p:panel rendered="#{facesContext.externalContext.userPrincipal == null}">
-                <p:outputLabel value="Sikertelen login" rendered="#{param['error'] == true}"/>
+
+                <p:outputLabel value="#{msg['login.title']}" styleClass="label label-info"/>
+                <p:separator/>
+
+                <p:outputLabel value="#{msg['login.error']}" rendered="#{param['error'] == true}"
+                               styleClass="label label-danger"/>
+                <p:separator rendered="#{param['error'] == true}"/>
+
+                <p:outputLabel value="#{msg['login.notRegistered.label']}&#160;"/>
+                <p:link href="/../landing/register.xhtml" value="#{msg['login.notRegistered.link']}"/>
+
+                <p:separator/>
 
                 <h:form id="loginForm" prependId="false">
                     <p:messages showSummary="true" showDetail="false"/>
@@ -56,7 +67,7 @@
             </p:panel>
 
             <p:outputLabel rendered="#{facesContext.externalContext.userPrincipal != null}"
-                styleClass="center-block">
+                           styleClass="center-block">
                 <h2 style="text-align: center">#{msg['login.alreadyLoggedIn.label']}</h2>
             </p:outputLabel>
 

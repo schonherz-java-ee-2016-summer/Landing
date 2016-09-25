@@ -18,9 +18,16 @@
         <ui:define name="body">
 
             <p:panel rendered="#{facesContext.externalContext.userPrincipal == null}">
-                <h:form id="registerForm">
 
-                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:outputLabel value="#{msg['register.title']}" styleClass="label label-info"/>
+                <p:separator/>
+
+                <p:outputLabel value="#{msg['register.alreadyRegistered.label']}&#160;"/>
+                <p:link href="/../landing/login.xhtml" value="#{msg['register.alreadyRegistered.link']}"/>
+
+                <p:separator/>
+
+                <h:form id="registerForm">
 
                     <p:panelGrid columns="4" layout="grid" cellpadding="5">
                         <p:outputLabel for="name" value="#{msg['register.name.label']}"/>
@@ -67,10 +74,10 @@
             </p:panel>
 
             <p:outputLabel rendered="#{facesContext.externalContext.userPrincipal != null}"
-                styleClass="center-block">
+                           styleClass="center-block">
                 <h2 style="text-align: center">#{msg['register.alreadyLoggedIn.label']}</h2>
             </p:outputLabel>
-            
+
         </ui:define>
     </ui:composition>
 </html>

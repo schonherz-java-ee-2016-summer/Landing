@@ -32,11 +32,12 @@
                 <p:panelGrid columns="2" layout="grid" cellpading="5">
                     <p:outputLabel value="#{msg['showProfile.name.label']}"/>
                     <p:outputLabel value="#{showProfile.user.name}"/>
+
                     <p:outputLabel value="#{msg['showProfile.email.label']}"/>
                     <p:outputLabel value="#{showProfile.user.email}"/>
+
                     <p:outputLabel value="#{msg['showProfile.activity.label']}"/>
-                    <p:outputLabel rendered="#{!showProfile.user.active}" value="#{msg['showProfile.activity.inactive.label']}"/>
-                    <p:outputLabel rendered="#{showProfile.user.active}" value="#{msg['showProfile.activity.active.label']}"/>
+                    <p:selectBooleanCheckbox disabled="true" value="#{showProfile.user.active}"/>
                 </p:panelGrid>
             </p:panelGrid>
         </ui:define>

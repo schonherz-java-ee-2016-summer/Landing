@@ -17,6 +17,8 @@
 
         <ui:define name="body">
             <h:form>
+                <p:messages showSummary="true" showDetail="false"/>
+
                 <f:facet name="header">
                     #{msg['editProfile.dataList.header']}
                 </f:facet>
@@ -29,7 +31,7 @@
                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                     </p:inputText>
                     <p:tooltip for="email" value="#{msg['editProfile.email.tooltip']}"/>
-                    <p:messages showSummary="true" showDetail="false"/>
+                    <p:message for="email" display="both"/>
 
                     <p:outputLabel for="psw1" value="#{msg['editProfile.password.label']}"/>
                     <p:password id="psw1" value="#{editProfile.user.password}" required="true"

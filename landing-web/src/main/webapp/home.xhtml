@@ -32,7 +32,8 @@
                              rendered="#{facesContext.externalContext.userPrincipal.name != null}">
                     <h4>
                         <h:outputText
-                                value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name} "/>
+                                value="#{msg['home.loggedInAs']} #{facesContext.externalContext.userPrincipal.name}&#160;"
+                                styleClass="label label-default"/>
                         <h:outputLink value="#{facesContext.externalContext.requestContextPath}/logout">
                             #{msg['home.logout.label']}
                         </h:outputLink>
