@@ -20,9 +20,7 @@
                 <f:facet name="header">
                     #{msg['editProfile.dataList.header']}
                 </f:facet>
-                <p:panelGrid columns="1" layout="grid" cellpadding="5">
-                    <p:messages showSummary="true" showDetail="false"/>
-
+                <p:panelGrid columns="4" layout="grid" cellpadding="5">
                     <p:outputLabel for="email" value="#{msg['editProfile.email.label']}"/>
                     <p:inputText id="email" value="#{editProfile.user.email}" required="true"
                                  requiredMessage="#{msg['editProfile.email.requiredMessage']}"
@@ -30,6 +28,7 @@
                         <f:validateRegex
                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                     </p:inputText>
+                    <p:messages showSummary="true" showDetail="false"/>
                     <p:tooltip for="email" value="#{msg['editProfile.email.tooltip']}"/>
 
                     <p:outputLabel for="psw1" value="#{msg['editProfile.password.label']}"/>

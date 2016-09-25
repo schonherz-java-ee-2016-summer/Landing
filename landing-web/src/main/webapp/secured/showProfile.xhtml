@@ -16,15 +16,29 @@
         </ui:define>
 
         <ui:define name="body">
-            <p:dataList value="#{showProfile.user}" var="user">
+            <!--<p:dataList value="#{showProfile.user}" var="user">-->
+                <!--<f:facet name="header">-->
+                    <!--#{msg['showProfile.dataList.header']}-->
+                <!--</f:facet>-->
+                <!--<div><h:outputText value="#{msg['showProfile.name.label']} #{user.name}"/></div>-->
+                <!--<div><h:outputText value="#{msg['showProfile.email.label']} #{user.email}"/></div>-->
+                <!--<div><h:outputText rendered="#{user.active}" value="#{msg['showProfile.activity.active.label']}"/></div>-->
+                <!--<div><h:outputText rendered="#{!user.active}" value="#{msg['showProfile.activity.inactive.label']}"/></div>-->
+            <!--</p:dataList>-->
+            <p:panelGrid columns="2" layout="grid" cellpadding="5">
                 <f:facet name="header">
                     #{msg['showProfile.dataList.header']}
                 </f:facet>
-                <div><h:outputText value="#{msg['showProfile.name.label']} #{user.name}"/></div>
-                <div><h:outputText value="#{msg['showProfile.email.label']} #{user.email}"/></div>
-                <div><h:outputText rendered="#{user.active}" value="#{msg['showProfile.activity.active.label']}"/></div>
-                <div><h:outputText rendered="#{!user.active}" value="#{msg['showProfile.activity.inactive.label']}"/></div>
-            </p:dataList>
+                <p:panelGrid columns="2" layout="grid" cellpading="5">
+                    <p:outputLabel value="#{msg['showProfile.name.label']}"/>
+                    <p:outputLabel value="#{showProfile.user.name}"/>
+                    <p:outputLabel value="#{msg['showProfile.email.label']}"/>
+                    <p:outputLabel value="#{showProfile.user.email}"/>
+                    <p:outputLabel value="#{msg['showProfile.activity.label']}"/>
+                    <p:outputLabel rendered="#{!showProfile.user.active}" value="#{msg['showProfile.activity.inactive.label']}"/>
+                    <p:outputLabel rendered="#{showProfile.user.active}" value="#{msg['showProfile.activity.active.label']}"/>
+                </p:panelGrid>
+            </p:panelGrid>
         </ui:define>
 
     </ui:composition>
