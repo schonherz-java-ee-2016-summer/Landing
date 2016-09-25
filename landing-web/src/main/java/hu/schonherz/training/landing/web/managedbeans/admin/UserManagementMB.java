@@ -18,8 +18,7 @@ public class UserManagementMB {
 
     private DualListModel<UserVo> users;
     private DualListModel<UserVo> usersPass;
-
-    private UserVo user;
+    private DualListModel<UserVo> usersActive;
 
     @PostConstruct
     public void init() {
@@ -27,12 +26,16 @@ public class UserManagementMB {
         List<UserVo> usersTarget = new ArrayList<UserVo>();
         List<UserVo> usersPassSource = new ArrayList<UserVo>();
         List<UserVo> usersPassTarget = new ArrayList<UserVo>();
+        List<UserVo> usersActiveSource = new ArrayList<UserVo>();
+        List<UserVo> usersActiveTarget = new ArrayList<UserVo>();
 
         usersSource.addAll(userService.getUsers());
         usersPassSource.addAll(userService.getUsers());
+        usersActiveSource.addAll(userService.getUsers());
 
         users = new DualListModel<UserVo>(usersSource, usersTarget);
         usersPass = new DualListModel<UserVo>(usersPassSource, usersPassTarget);
+        usersActive = new DualListModel<UserVo>(usersActiveSource, usersActiveTarget);
     }
 
     public DualListModel<UserVo> getUsers() {
@@ -51,11 +54,11 @@ public class UserManagementMB {
         this.usersPass = usersPass;
     }
 
-    public UserVo getUser() {
-        return user;
+    public DualListModel<UserVo> getUsersActive() {
+        return usersActive;
     }
 
-    public void setUser(UserVo user) {
-        this.user = user;
+    public void setUsersActive(DualListModel<UserVo> usersActive) {
+        this.usersActive = usersActive;
     }
 }

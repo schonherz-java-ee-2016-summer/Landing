@@ -100,6 +100,37 @@
                         </p:dialog>
                     </p:tab>
 
+                    <p:tab title="#{msg['admin.activeTab.title']}">
+                        <p:dataTable id="checkboxActive" var="userActive" value="#{userManagement.usersActive.source}" selection="#{userManagement.usersActive.target}" rowKey="#{userActive.id}" style="margin-bottom:0">
+                            <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
+                            <p:column headerText="#{msg['admin.user.name.label']}" sortBy="#{userActive.name}">
+                                <h:outputText value="#{userActive.name}" />
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.email.label']}" sortBy="#{userActive.email}">
+                                <h:outputText value="#{userActive.email}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['admin.user.active.label']}" sortBy="#{userActive.active}">
+                                <h:outputText value="#{userActive.active}"/>
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:commandButton id="activeTrueSubmit" value="#{msg['admin.activeButton.label']}" update="displayActive"
+                                         oncomplete="PF('activeDialog').show()" style="margin-top:5px"
+                                         action="#{setUsersActivity.setActivity(userManagement.usersActive.target, true)}"/>
+                        <p:commandButton id="activeFalseSubmit" value="#{msg['admin.inactiveButton.label']}" update="displayActive"
+                                         oncomplete="PF('activeDialog').show()" style="margin-top:5px"
+                                         action="#{setUsersActivity.setActivity(userManagement.usersActive.target, false)}"/>
+
+                        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="activeDialog" header="#{msg['admin.active.success.label']}">
+                            <h:panelGrid id="displayActive" columns="2">
+                                <h:outputText value="#{msg['admin.users.label']}" style="font-weight:bold"/>
+                                <ui:repeat value="#{userManagement.usersActive.target}" var="item">
+                                    <h:outputText value="#{item.name}" style="margin-left:5px"/>
+                                </ui:repeat>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </p:tab>
+
                     <p:tab title="#{msg['admin.passTab.title']}">
                         <p:dataTable id="checkboxPass" var="userPass" value="#{userManagement.usersPass.source}" selection="#{userManagement.usersPass.target}" rowKey="#{userPass.id}" style="margin-bottom:0">
                             <p:column selectionMode="multiple" style="width:36px;text-align:center"/>

@@ -115,6 +115,11 @@ public class UserServiceImpl implements UserService, UserRemoteService {
     }
 
     @Override
+    public void setUserActivityByName(String name, boolean activity) {
+        userRepository.findByName(name).setActive(activity);
+    }
+
+    @Override
     public void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo) {
          loggedInUsers.getUsersMap().put(cookie, remoteUserVo);
     }

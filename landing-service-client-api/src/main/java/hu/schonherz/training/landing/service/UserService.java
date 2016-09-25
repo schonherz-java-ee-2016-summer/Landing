@@ -28,6 +28,8 @@ public interface UserService {
 
     void removeRoleFromUserByName(String name, RoleVo roleVo);
 
+    void setUserActivityByName(String name, boolean activity);
+
     void addLoggedInUser(String cookie, RemoteUserVo remoteUserVo);
 
     void deleteLoggedInUser(String cookie);
