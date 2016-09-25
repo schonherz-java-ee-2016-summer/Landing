@@ -28,8 +28,8 @@
                         <f:validateRegex
                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                     </p:inputText>
-                    <p:messages showSummary="true" showDetail="false"/>
                     <p:tooltip for="email" value="#{msg['editProfile.email.tooltip']}"/>
+                    <p:messages showSummary="true" showDetail="false"/>
 
                     <p:outputLabel for="psw1" value="#{msg['editProfile.password.label']}"/>
                     <p:password id="psw1" value="#{editProfile.user.password}" required="true"
