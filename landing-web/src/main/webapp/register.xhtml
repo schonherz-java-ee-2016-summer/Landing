@@ -41,10 +41,7 @@
                         <p:outputLabel for="email" value="#{msg['register.email.label']}"/>
                         <p:inputText id="email" value="#{registerUser.user.email}" required="true"
                                      requiredMessage="#{msg['register.email.requiredMessage']}"
-                                     validatorMessage="#{msg['register.email.validatorMessage']}">
-                            <f:validateRegex
-                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                        </p:inputText>
+                                     validator="#{emailValidator.validate}"/>
                         <p:tooltip for="email" value="#{msg['register.email.tooltip']}"/>
                         <p:message for="email" display="both"/>
 
@@ -65,8 +62,7 @@
 
                         <p:commandButton value="#{msg['register.submitButton.label']}"
                                          ajax="false"
-                                         action="#{registerBean.doRegister}" icon="fa fa-plus"
-                                         update="registerForm:growl"/>
+                                         action="#{registerBean.doRegister}" icon="fa fa-plus"/>
                     </p:panelGrid>
 
                     <p:separator/>
